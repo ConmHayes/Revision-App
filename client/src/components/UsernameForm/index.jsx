@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 export default function UsernameForm({
   username,
   setUsername,
@@ -10,6 +12,8 @@ export default function UsernameForm({
   inputPw,
   setInputPw,
 }) {
+  
+
   function handleInputUN(e) {
     setInputUn(e.target.value);
   }
@@ -38,7 +42,7 @@ export default function UsernameForm({
   return (
     <form id="login">
       <label htmlFor="username" className="input-label">
-        <i className="material-icons ikon">person</i>
+        <i className="material-icons ikon" style = {{color: "#3C7F72"}}>person</i>
         <input
           className="Input"
           type="text"
@@ -49,7 +53,7 @@ export default function UsernameForm({
         />
       </label>
       <label htmlFor="password" className="input-label">
-        <i className="material-icons ikon" >lock</i>
+        <i className="material-icons ikon" style = {{color: "#3C7F72"}}>lock</i>
         <input
           className="Input"
           type="password"

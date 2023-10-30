@@ -115,7 +115,8 @@ footer {
 }
 
 .ikon{
-  color: #3C7F72 
+  color: #3C7F72;
+  background-color: #3C7F72;
 }
 
 .Input {
@@ -126,7 +127,7 @@ footer {
   background-color: transparent;
   text-align: center;
   width: 100%;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #3C7F72;
   margin-bottom: 20px;
   color: #3C7F72 ;
   justify-content: left;
