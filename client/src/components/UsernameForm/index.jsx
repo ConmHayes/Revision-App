@@ -16,6 +16,16 @@ export default function EmailForm({
   function handleInputPW(e) {
     setInputPw(e.target);
   }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    setUsername(inputUn);
+    setPassword(inputPw);
+    setInputPw("Password");
+    setInputUn("Username");
+  }
+
   function revealPassword() {
     const x = document.getElementById("password");
     if (x.type === "password") {
@@ -34,7 +44,7 @@ export default function EmailForm({
           type="text"
           id="username"
           name="username"
-          placeholder="Username"
+          value={username}
           onChange={handleInputUN}
         />
       </label>
@@ -45,7 +55,7 @@ export default function EmailForm({
           type="password"
           id="password"
           name="password"
-          placeholder="Password"
+          value={password}
           onChange={handleInputPW}
         ></input>
       </label>
@@ -56,6 +66,9 @@ export default function EmailForm({
           onClick={revealPassword}
         />
       </label>
+      <button className="loginButton" type="submit" onSubmit={handleSubmit}>
+        {" "}
+      </button>
     </form>
   );
 }

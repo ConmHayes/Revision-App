@@ -3,8 +3,8 @@ import { UsernameForm } from "../../Components";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
-  const [inputUn, setInputUn] = useState("");
-  const [inputPw, setInputPw] = useState("");
+  const [inputUn, setInputUn] = useState("Username");
+  const [inputPw, setInputPw] = useState("Password");
   const [password, setPassword] = useState("");
 
   return (
