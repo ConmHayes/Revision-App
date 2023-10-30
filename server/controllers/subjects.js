@@ -9,10 +9,10 @@ const index = async (req, res) => {
   }
 }
 
-const showSubject = async (req, res) => {
+const showByName = async (req, res) => {
   try {
     const name = req.params.subject.toLowerCase()
-    const subjectName = await Subjects.getNotesBySubject(name)
+    const subjectName = await Subjects.getBySubject(name)
     res.status(200).json(subjectName)
   } catch(err) {
     res.status(404).json({ error: err.message })
@@ -49,4 +49,4 @@ const deleteSubject = async (req, res) => {
   }
 }
 
-module.exports = { index, showSubject, createSubject, updateSubject, deleteSubject }
+module.exports = { index, showByName, createSubject, updateSubject, deleteSubject }

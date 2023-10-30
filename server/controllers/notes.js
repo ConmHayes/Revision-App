@@ -41,7 +41,7 @@ const updateNote = async (req, res) => {
     }
 }
 
-const deleteNote = async (req,res) => {
+const deleteNote = async (req, res) => {
     try{
         const id = req.params.id
         const note = await Notes.getOneById(id)
