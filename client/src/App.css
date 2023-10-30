@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Jost&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Jost&display=swap"); 
 
-h1 {
+ h1 {
   color: #36454f;
   font-size: 50 px;
   text-align: center;
@@ -10,9 +10,9 @@ body {
   background-image: url("./assets/start.png");
   min-height: 100%;
   font-family: "Jost", sans-serif;
-  min-height: 100vh; /* Use viewport height instead of height */
+  min-height: 100vh;
   width: 100%;
-  overflow: hidden; /* Prevent content overflow */
+  overflow: hidden;
 }
 
 footer {
@@ -29,28 +29,28 @@ footer {
 
 .input-label i {
   position: absolute;
-  left: 10px; /* Adjust the left position as needed */
-  top: 35%; /* Center the icon vertically */
-  line-height: 0px; /* Match the line-height to the input height */
-  color: rgb(255, 255, 255); /* Set the color of the icon */
-  font-size: 20px; /* Set the size of the icon */
+  left: 10px;
+  top: 35%;
+  line-height: 0px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
 }
 
 .navbar {
   color: green;
-}
+} 
 
-.mailInput::placeholder::before,
+ .mailInput::placeholder::before,
 .passwordInput::placeholder::before {
-  content: "\00a0"; /* Add a non-breaking space to create space for the icon */
+  content: "\00a0";
 }
 
 .mailInput::placeholder::before {
-  content: "\f0e0"; /* Unicode for an email icon (✉) */
+  content: "\f0e0";
 }
 
 .passwordInput::placeholder::before {
-  content: "\f023"; /* Unicode for a lock icon () */
+  content: "\f023";
 }
 
 .container {
@@ -92,10 +92,10 @@ footer {
 
 .flexbox-container {
   display: flex;
-  flex-direction: row; /* Change to column to center vertically */
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 80vh; /* Set to 100% of the viewport height for vertical centering */
+  height: 80vh;
 }
 
 .login-array {
@@ -109,15 +109,15 @@ footer {
   max-width: 500px;
   max-height: 400px;
   margin-top: -80px;
-  /* box-shadow: 0px 0px 5px 5px rgb(253, 253, 253); */
+
 }
 
 .Input {
-  font-weight: bold; /* Make the font bold */
-  font-size: 1.2rem; /* Set the font size */
-  padding: 10px; /* Add padding for spacing */
-  border: none; /* Remove the border */
-  background-color: transparent; /* Set the background color */
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
   text-align: center;
   width: 100%;
   border-bottom: 1px solid white;
@@ -130,23 +130,12 @@ footer {
   color: transparent;
 }
 
-.custom-navbar {
-  /* background-color: #f6f1e9; Replace with your desired color code or name */
-  background: linear-gradient(
-    109.6deg,
-    rgb(214, 231, 217) 0%,
-    rgb(167, 225, 170) 20%,
-    rgb(122, 147, 119) 80%
-  );
-  color: white; /* Text color */
-}
-
 .custom-navbar .navbar-toggler-icon {
-  color: white; /* Toggler icon color */
+  color: white;
 }
 
 .custom-navbar .nav-link {
-  color: white; /* Link text color */
+  color: white; 
 }
 
 ::placeholder {
@@ -165,11 +154,11 @@ footer {
 }
 
 .passwordInput {
-  font-weight: bold; /* Make the font bold */
-  font-size: 1.2rem; /* Set the font size */
-  padding: 10px; /* Add padding for spacing */
-  border: none; /* Remove the border */
-  background-color: transparent; /* Set the background color#d7ecff; */
+  font-weight: bold; 
+  font-size: 1.2rem;
+  padding: 10px; 
+  border: none; 
+  background-color: transparent; 
   text-align: center;
   width: 100%;
   border-bottom: 1px solid white;
@@ -225,10 +214,10 @@ footer {
   padding-bottom: 20px;
 }
 
-/* Style the hover effect on dropdown items */
+
 .dropdown-item:hover {
-  background-color: #444; /* Change this to your desired hover color */
-  color: lightgreen; /* Change this to your desired hover text color */
+  background-color: #444; 
+  color: lightgreen; 
 }
 
 * {
@@ -266,7 +255,7 @@ a {
   width: 100%;
 }
 
-/* Front - Calendar */
+
 .front {
   transform: rotateY(0deg);
 }
@@ -345,7 +334,7 @@ a {
   top: -4px;
 }
 
-/* Back - Event form */
+
 
 .back {
   height: 100%;
@@ -428,7 +417,7 @@ a {
   outline: none;
 }
 
-/* Flip animation */
+
 
 .flip {
   transform: rotateY(180deg);
@@ -437,4 +426,4 @@ a {
 .front,
 .back {
   backface-visibility: hidden;
-}
+} 
