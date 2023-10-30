@@ -92,4 +92,56 @@ describe('notes controller', () => {
 
         })
     })
+
+
+    describe ('createNote', () => {
+        it ('should create a note with a status code 200', async () =>{
+            const reqBody = {
+                note: 'test note',
+                topic: 'test topic',
+                datePosted: '2023-10-30T12:00:00.000Z'
+            }
+
+            const createdNote = {
+                note_id: 1,
+                ... reqBody
+            }
+
+            jest.spyOn(Notes, 'createNote').mockResolvedValue(createdNote)
+
+            const mockReq = {body: reqBody}
+
+            await Notes.createNote(mockReq, mockRes)
+
+            expect(Notes.createNote).toHaveBeenCalledTimes(1);
+            expect(Notes.createNote).toHaveBeenCalledWith(reqBody);
+            expect(mockStatus).toHaveBeenCalledWith(200);
+            expect(mockJson).toHaveBeenCalledWith(createdNote);
+        })
+
+        it ('should send an error with a status code 404 upon failing', async () =>{
+            const reqBody = {
+                note: 'test note',
+                topic: 'test topic',
+                datePosted: '2023-10-30T12:00:00.000Z'
+            }
+
+            const err = 'Failure to create note'
+
+            jest.spyOn(Notes, 'createNote').mockResolvedValue(createdNote)
+
+            const mockReq = {body: reqBody}
+
+            await Notes.createNote(mockReq, mockRes)
+
+            expect(Notes.createNote).toHaveBeenCalledTimes(1);
+            expect(Notes.createNote).toHaveBeenCalledWith(reqBody);
+            expect(mockStatus).toHaveBeenCalledWith(404);
+            expect(mockJson).toHaveBeenCalledWith({error: err});
+        })
+
+
+        // update and delete left for this.
+
+    })
   })
