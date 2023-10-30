@@ -6,7 +6,7 @@ const cors = require("cors")
 // Importing routers
 
 const userRouter = require("./routes/user")
-const timeTableRouter = require("./routes/timetable")
+
 
 
 // For serving static files
@@ -25,7 +25,7 @@ app.use(cors())
 
 // Using the routers 
 app.use("/", userRouter)
-app.use("/timetable", timeTableRouter)
+
 
 // Exporting the server
 module.exports = app

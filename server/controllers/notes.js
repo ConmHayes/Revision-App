@@ -9,7 +9,7 @@ const index = async (req,res) => {
    }
 }
 
-const showNotes = async (req,res) => {
+const showNote = async (req,res) => {
     try{
         const id = req.params.id
         const note = await Notes.getOneById(id)
@@ -55,4 +55,4 @@ const deleteNote = async (req, res) => {
 
 
 
-module.exports = { index, showNotes, createNote, updateNote, deleteNote }
+module.exports = { index, showNote, createNote, updateNote, deleteNote }
