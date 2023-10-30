@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { UsernameForm } from "../../Components";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [inputUn, setInputUn] = useState("");
+  const [inputPw, setInputPw] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <>
@@ -10,6 +14,16 @@ export default function LoginPage() {
         <div className="flexbox-item flexbox-login-array">
           <div className="login-array">
             <h2>Login</h2>
+            <UsernameForm
+              username={username}
+              setUsername={setUsername}
+              password={password}
+              setPassword={setPassword}
+              inputUn={inputUn}
+              setInputUn={setInputUn}
+              inputPw={inputPw}
+              setInputPw={setInputPw}
+            />
           </div>
         </div>
       </div>
