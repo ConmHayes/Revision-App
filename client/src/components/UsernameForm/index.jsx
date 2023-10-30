@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EmailForm({
+export default function UsernameForm({
   username,
   setUsername,
   password,
@@ -11,19 +11,19 @@ export default function EmailForm({
   setInputPw,
 }) {
   function handleInputUN(e) {
-    setInputUn(e.target);
+    setInputUn(e.target.value);
   }
   function handleInputPW(e) {
-    setInputPw(e.target);
+    setInputPw(e.target.value);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
+    console.log("Hi")
 
     setUsername(inputUn);
     setPassword(inputPw);
-    setInputPw("Password");
-    setInputUn("Username");
+
   }
 
   function revealPassword() {
@@ -38,24 +38,24 @@ export default function EmailForm({
   return (
     <form id="login">
       <label htmlFor="username" className="input-label">
-        <i className="material-icons">person</i>
+        <i className="material-icons ikon">person</i>
         <input
           className="Input"
           type="text"
           id="username"
           name="username"
-          value={username}
+          placeholder={inputUn}
           onChange={handleInputUN}
         />
       </label>
       <label htmlFor="password" className="input-label">
-        <i className="material-icons">lock</i>
+        <i className="material-icons ikon" >lock</i>
         <input
           className="Input"
           type="password"
           id="password"
           name="password"
-          value={password}
+          placeholder={inputPw}
           onChange={handleInputPW}
         ></input>
       </label>
@@ -65,9 +65,9 @@ export default function EmailForm({
           type="checkbox"
           onClick={revealPassword}
         />
-      </label>
+      </label> Show Password
       <button className="loginButton" type="submit" onSubmit={handleSubmit}>
-        {" "}
+        Login
       </button>
     </form>
   );
