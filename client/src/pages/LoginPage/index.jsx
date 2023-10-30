@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { UsernameForm } from "../../Components";
+
+localStorage.clear();
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
-  const [inputUn, setInputUn] = useState("");
-  const [inputPw, setInputPw] = useState("");
+  const [inputUn, setInputUn] = useState("Username");
+  const [inputPw, setInputPw] = useState("Password");
   const [password, setPassword] = useState("");
 
   return (
