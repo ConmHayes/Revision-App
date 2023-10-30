@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { Link, useParams } from "react-router-dom";
 
 
-export default function notePage() {
+export default function NotePage() {
   const { id } = useParams();
   const [note, setNote] = useState({});
   const [loading, setLoading] = useState(true);

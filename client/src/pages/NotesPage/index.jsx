@@ -19,8 +19,8 @@ export default function NotesPage() {
     return notes.map((note) => {
       return (
         <div key={note.id}>
-          <h1>{note.title}</h1>
-          <p>{note.description}</p>
+          <h1>{note}</h1>
+          {/* <p>{note.description}</p> */}
           <button onClick={deleteNote}>Delete</button>
         </div>
       );
