@@ -1,4 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css?family=Jost&display=swap"); 
+@import url("https://fonts.googleapis.com/css?family=Jost&display=swap"); 
 
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Jost&display=swap");
@@ -128,7 +128,7 @@ footer {
 
 /* Input Field Styles */
 .Input,
-.passwordInput {
+.passwordInput,
 .flexbox-image-login {
   height: 600px;
   width: 600px;
@@ -187,7 +187,6 @@ footer {
   width: 100%;
   background-color: #fffbed;
   color: #ff724b;
-=======
   border-bottom: 1px solid white;
   margin-bottom: 20px;
   color: white;
@@ -209,6 +208,7 @@ footer {
 ::placeholder {
   color: white;
 }
+
 .loginButton {
   border-radius: 8px;
   border-color: white;
@@ -239,6 +239,7 @@ footer {
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   margin: 0;
+  }
 
 .passwordInput {
   font-weight: bold; 
@@ -278,7 +279,6 @@ footer {
   transform: scale(1.2);
 }
 
-
 .pwicon {
   padding-right: 25px;
   font-family: "FontAwesome";
@@ -290,7 +290,6 @@ footer {
   font-weight: bold;
   padding-bottom: 20px;
 }
-
 
 .dropdown-item:hover {
   background-color: #444; 
@@ -309,7 +308,6 @@ footer {
 a {
   text-decoration: none;
 }
-
 
 body,
 html {
@@ -381,7 +379,6 @@ ul {
   color: black;
   border-radius: 50px;
 }
-=======
 
 .container {
   align-items: center;
@@ -403,7 +400,6 @@ ul {
   transform-style: preserve-3d;
   width: 100%;
 }
-
 
 .front {
   transform: rotateY(0deg);
@@ -482,8 +478,6 @@ ul {
   right: -4px;
   top: -4px;
 }
-
-
 
 .back {
   height: 100%;
@@ -566,8 +560,6 @@ ul {
   outline: none;
 }
 
-
-
 .flip {
   transform: rotateY(180deg);
 }
@@ -575,4 +567,4 @@ ul {
 .front,
 .back {
   backface-visibility: hidden;
-}  */
+}
