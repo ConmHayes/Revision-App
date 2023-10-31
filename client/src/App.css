@@ -1,9 +1,34 @@
-@import url("https://fonts.googleapis.com/css?family=Jost&display=swap"); 
+/* Fonts */
+@import url("https://fonts.googleapis.com/css?family=Jost&display=swap");
 
- h1 {
-  color: #36454f;
-  font-size: 50 px;
+h1 {
+  color: #3c7f72;
+  font-size: 30px;
   text-align: center;
+  margin: 30px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+
+/* Your existing .navbar class */
+.navbar {
+  color: #3c7f72;
+  background-color: #ff724b;
+}
+
+/* Style for the links within the navbar */
+.navbar a {
+  color: #3c7f72;
+  font-weight: bold;
+}
+
+/* Link Styles */
+.link {
+  color: #ff724b;
+  text-decoration: none;
+}
+.navbar li {
+  margin: 0 30px;
 }
 
 body {
@@ -33,6 +58,30 @@ footer {
   position: absolute;
   left: 10px;
   top: 35%;
+  line-height: 0;
+  color: #fffbed;
+  font-size: 20px;
+}
+
+/* Container Styles */
+.container {
+  position: relative;
+  width: 50%;
+  margin: 10px auto;
+}
+
+/* Flexbox and Layout Styles */
+.flexbox-item,
+.flexbox-image-login,
+.flexbox-login-array,
+.flexbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Update sizes and properties as needed */
+}
+
+.logo {
   line-height: 0px;
   color: rgb(255, 255, 255);
   font-size: 20px;
@@ -81,6 +130,9 @@ footer {
   max-height: 600px;
 }
 
+/* Input Field Styles */
+.Input,
+.passwordInput,
 .flexbox-image-login {
   height: 600px;
   width: 600px;
@@ -131,7 +183,20 @@ footer {
   background-color: transparent;
   text-align: center;
   width: 100%;
-  border-bottom: 1px solid #3C7F72;
+  border-bottom: 1px solid #fffbed;
+  margin-bottom: 20px;
+  color: #fffbed;
+}
+
+/* Button Styles */
+.loginButton {
+  border-radius: 8px;
+  border-color: #fffbed;
+  height: 40px;
+  width: 100%;
+  background-color: #fffbed;
+  color: #ff724b;
+  border-bottom: 1px solid white;
   margin-bottom: 20px;
   color: #3C7F72 ;
   justify-content: left;
@@ -152,6 +217,7 @@ footer {
 ::placeholder {
   color: white;
 }
+
 .loginButton {
   border-radius: 8px;
   border-color: white;
@@ -163,6 +229,26 @@ footer {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+/* Hover Effect on Icons */
+.ikon a:hover {
+  color: black;
+  background-color: #fffbed;
+  border-radius: 8px;
+}
+
+/* Hover Effect on Dropdown */
+.dropdown-item:hover {
+  background-color: #444;
+  color: #ffcb2f;
+}
+
+/* Reset Default Styles */
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  }
 
 .passwordInput {
   font-weight: bold; 
@@ -202,17 +288,6 @@ footer {
   transform: scale(1.2);
 }
 
-.ikon {
-  color: whitesmoke;
-  cursor: pointer;
-}
-
-#ikon a:hover {
-  color: black;
-  background-color: white;
-  border-radius: 8px;
-}
-
 .pwicon {
   padding-right: 25px;
   font-family: "FontAwesome";
@@ -224,7 +299,6 @@ footer {
   font-weight: bold;
   padding-bottom: 20px;
 }
-
 
 .dropdown-item:hover {
   background-color: #444; 
@@ -244,6 +318,76 @@ a {
   text-decoration: none;
 }
 
+body,
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: #fffbed */
+  background-color: #fff2d4;
+}
+
+.custom-navbar {
+  background: linear-gradient(
+    109.6deg,
+    rgb(255, 251, 237) 0%,
+    rgb(255, 203, 47) 20%,
+    rgb(211, 74, 36) 80%
+  );
+  color: #36454f;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: #ffcb2f;
+}
+
+li {
+  margin: 0 10px;
+}
+
+.link {
+  color: #36454f;
+  text-decoration: none;
+}
+
+/* Updated styles for the navbar links */
+.navbar {
+  background: linear-gradient(
+    109.6deg,
+    rgb(255, 251, 237) 0%,
+    rgb(253, 217, 109) 20%,
+    rgb(236, 137, 110) 80%
+  );
+}
+
+/* Font style for the notes and note */
+.notes-section h1,
+.note-section h1 {
+  font-family: "Jost", sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #ff724b;
+  color: black;
+  border-radius: 50px;
+}
 
 .container {
   align-items: center;
@@ -265,7 +409,6 @@ a {
   transform-style: preserve-3d;
   width: 100%;
 }
-
 
 .front {
   transform: rotateY(0deg);
@@ -344,8 +487,6 @@ a {
   right: -4px;
   top: -4px;
 }
-
-
 
 .back {
   height: 100%;
@@ -428,8 +569,6 @@ a {
   outline: none;
 }
 
-
-
 .flip {
   transform: rotateY(180deg);
 }
@@ -437,4 +576,4 @@ a {
 .front,
 .back {
   backface-visibility: hidden;
-} 
+}

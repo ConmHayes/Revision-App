@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 import { NavLink, Outlet } from "react-router-dom";
 
 const styles = ({ isActive }) => ({ fontWeight: isActive ? "bold" : "medium" });
@@ -7,7 +8,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <nav>
+        <nav className="navbar">
           <NavLink to="/" style={styles}>
             {" "}
             Home{" "}
