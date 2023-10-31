@@ -71,7 +71,6 @@ footer {
 }
 
 /* Flexbox and Layout Styles */
-.flexbox-item,
 .flexbox-image-login,
 .flexbox-login-array,
 .flexbox-container {
@@ -80,6 +79,8 @@ footer {
   justify-content: center;
   /* Update sizes and properties as needed */
 }
+
+
 
 .logo {
   line-height: 0px;
@@ -116,11 +117,12 @@ footer {
 
 .flexbox-item {
   width: 50px;
-  height: 100px;
+  height: 600px;
   margin: 100px;
   background-color: transparent;
   max-width: 50px;
-  max-height: 100px;
+  max-height: 600px;
+  justify-content: flex-end;
 }
 
 .logo {
@@ -131,8 +133,7 @@ footer {
 }
 
 /* Input Field Styles */
-.Input,
-.passwordInput,
+
 .flexbox-image-login {
   height: 600px;
   width: 600px;
@@ -140,12 +141,22 @@ footer {
   max-height: 600px;
 }
 
+.Input,
+.passwordInput{
+  height: 50px;
+  width: 90%
+}
+
 .flexbox-login-array {
   width: 500px;
-  height: 100px;
+  height: 600px;
   margin-top: 25px;
   max-width: 500px;
-  max-height: 100px;
+  max-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
 }
 
 .flexbox-container {
@@ -215,7 +226,7 @@ footer {
 }
 
 ::placeholder {
-  color: white;
+  color: #3C7F72 ;
 }
 
 .loginButton {
