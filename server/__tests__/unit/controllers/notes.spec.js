@@ -31,14 +31,13 @@ describe('notes controller', () => {
                 }
               ];
               
-            jest.spyOn(Notes, 'getAll')
-                .mockResolvedValue(testGoats)
+            jest.spyOn(Notes, 'getAll').mockResolvedValue(testNotes)
         
             await notesController.index(null, mockRes)
         
             expect(Notes.getAll).toHaveBeenCalledTimes(1)
             expect(mockStatus).toHaveBeenCalledWith(200)
-            expect(mockSend).toHaveBeenCalledWith(testNotes)
+            expect(mockJson).toHaveBeenCalledWith(testNotes)
             })
 
       it('sends an error upon fail', async () =>{
@@ -48,7 +47,7 @@ describe('notes controller', () => {
         await notesController.index (null,mockRes)
         expect(Notes.getAll).toHaveBeenCalledTimes(1)
         expect(mockStatus).toHaveBeenCalledWith(500)
-        expect(mockSend).toHaveBeenCalledWith({ error: 'Something happened to your db'})
+        expect(mockJson).toHaveBeenCalledWith({ error: 'Something happened to your db'})
       })
     })
 
@@ -57,7 +56,7 @@ describe('notes controller', () => {
         it('should return a single note with a status code 200', async () =>{
             const noteId = 1;
             const testNote = {
-                note_id = noteId,
+                note_id: noteId,
                 note: 'Test Note',
                 topic: 'Test topic',
                 datePosted: '2023-10-30T12:00:00.000Z'
@@ -111,7 +110,7 @@ describe('notes controller', () => {
 
             const mockReq = {body: reqBody}
 
-            await Notes.createNote(mockReq, mockRes)
+            await notesController.createNote(mockReq, mockRes)
 
             expect(Notes.createNote).toHaveBeenCalledTimes(1);
             expect(Notes.createNote).toHaveBeenCalledWith(reqBody);
@@ -128,20 +127,117 @@ describe('notes controller', () => {
 
             const err = 'Failure to create note'
 
-            jest.spyOn(Notes, 'createNote').mockResolvedValue(createdNote)
+            jest.spyOn(Notes, 'createNote').mockRejectedValue(new Error(err))
 
             const mockReq = {body: reqBody}
 
-            await Notes.createNote(mockReq, mockRes)
+            await notesController.createNote(mockReq, mockRes)
 
             expect(Notes.createNote).toHaveBeenCalledTimes(1);
             expect(Notes.createNote).toHaveBeenCalledWith(reqBody);
             expect(mockStatus).toHaveBeenCalledWith(404);
             expect(mockJson).toHaveBeenCalledWith({error: err});
         })
+    })
 
+    describe ('updateNote', () =>{
+        it ('should update note with a status code 200', async ()=> {
+            const noteId=1
+            const reqBody = {
+                note: 'Update note test',
+                topic: 'Update topic test',
+                datePosted: '2023-10-30T14:00:00.000Z'
+            }
 
-        // update and delete left for this.
+            const updatedNote = {
+                note_id: noteId,
+                ...reqBody
+            }
+
+            jest.spyOn(Notes, 'updateNote').mockResolvedValue(updatedNote)
+
+            const mockReq = {params: {id: noteId}, body: reqBody}
+
+            await notesController.updateNote(mockReq, mockRes)
+
+            expect (Notes.updateNote).toHaveBeenCalledTimes(1)
+            expect (Notes.updateNote).toHaveBeenCalledWith(noteId, reqBody)
+            expect (mockStatus).toHaveBeenCalledWith(200);
+            expect (mockJson).toHaveBeenCalledWith(updatedNote)
+        })
+
+        it ('should send an error with status code 404 upon failing', async ()=>{
+            const noteId = 1;
+            const reqBody = {
+                note: 'Update note test',
+                topic: 'Updated topic test',
+                datePosted: '2023-10-30T14:00:00.000Z'
+            }
+
+            const err = 'Failed to update note';
+
+            jest.spyOn(Notes, 'updateNote').mockRejectedValue(new Error(err))
+
+            const mockReq = {params:{id:noteId}, body: reqBody}
+
+            await notesController.updateNote(mockReq, mockRes)
+
+            expect(Notes.updateNote).toHaveBeenCalledTimes(1);
+            expect(Notes.updateNote).toHaveBeenCalledWith(noteId, reqBody);
+            expect(mockStatus).toHaveBeenCalledWith(404);
+            expect(mockJson).toHaveBeenCalledWith({error: err});
+        })
 
     })
-  })
+   
+    
+    describe ('deleteNote', () => {
+        it ('should delete a note with a status code 200', async()=>{
+            const noteId = 1
+            const deletedNote = new Notes({
+                note_id: noteId,
+                note: 'deleted note',
+                topic: 'deleted note',
+                datePosted: '2023-10-30T12:00:00.000Z'
+            })
+
+            jest.spyOn(Notes, 'getOneById').mockResolvedValue(deletedNote)
+
+            jest.spyOn(deletedNote, 'deleteNote').mockResolvedValue({message: 'Note has been successfully deleted'})
+
+            const mockReq = {params:{id:noteId}}
+
+            await notesController.deleteNote(mockReq, mockRes)
+
+            expect (Notes.getOneById).toHaveBeenCalledTimes(1)
+            expect (Notes.getOneById).toHaveBeenCalledWith(noteId)
+            expect (deletedNote.deleteNote).toHaveBeenCalledTimes(1)
+            expect (mockStatus).toHaveBeenCalledWith(200)
+            expect (mockJson).toHaveBeenCalledWith({message: 'Note has been successfully deleted'})
+        })
+
+        it ('should send an error with a status code 404 upon failing', async () => {
+            const noteId = 1;
+            const attemptedDeletedNote = new Notes({
+                note_id: noteId,
+                note: 'deleted note',
+                topic: 'deleted note',
+                datePosted: '2023-10-30T12:00:00.000Z'
+            })
+
+            const err = 'Failed to delete note'
+
+            jest.spyOn(Notes, 'getOneById').mockResolvedValue(attemptedDeletedNote)
+
+            jest.spyOn(attemptedDeletedNote, 'deleteNote').mockRejectedValue(new Error(err))
+
+            const mockReq = {params: {id: noteId}}
+
+            await notesController.deleteNote(mockReq, mockRes)
+
+            expect (Notes.getOneById).toHaveBeenCalledTimes(1)
+            expect (mockStatus).toHaveBeenCalledWith(404)
+            expect(mockJson).toHaveBeenCalledWith({error: err})
+        })
+    })
+})

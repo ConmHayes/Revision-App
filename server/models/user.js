@@ -20,8 +20,17 @@ class User {
         const {username, password} = data;
 
         let response = await db.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING users_id;", [username, password]) 
+
+        if (response.rows.length === 0) {
+            throw new Error ("Failed to create username")
+        }
+        return response.rows[0]
         } catch(err){ 
-          throw new Error("Username already exists")
+            if (err.message === 'duplicate key value violates unique constraint "users_username_key"'){
+                throw new Error('Username already exists')
+            } else {
+                throw new Error('Failed to create username')
+            }
         }
 
     }

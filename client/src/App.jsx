@@ -14,6 +14,7 @@ function App() {
           <Route path=":id" element={<Pages.TimetablePage />} />
         </Route>
         <Route path="/notes" element={<Pages.NotesPage />} />
+        <Route path="/notes/:id" element={<Pages.NotePage />} />
         <Route path="*" element={<Pages.NotFoundPage />} />
       </Route>
       <Route path="/login" element={<Pages.LoginPage />} />
@@ -24,12 +25,4 @@ function App() {
 
 export default App;
 
-// Home  "/"
-// LoginPage "/login"
-// SignuPage "/signup"
-// TimetablesPage "/timetables"
-// TimetablePage "/timetables/:id"
-// Notes "/notes"
-// NotfoundPage "*"
 
-// optional "/about"

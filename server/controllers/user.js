@@ -36,20 +36,11 @@ const logIn = async (req,res) => {
         if (!legit){
             throw new Error ("Username and password does not match")
         } else {
-            // Create a token
-            // if(await Token.getByUser(user.users_id) != ErrorEvent){
-            //     try {
-            //         const prevToken = await Token.getByUser(user.users_id)
-            //         const result = await prevToken.destroyToken()
-            //     } catch (err) {
-            //         res.status(404).json({error: err.message})
-            //     }
-            // }
+
             try {
                 const prevToken = await Token.getByUser(user.users_id)
                 const result = await prevToken.destroyToken()
             } catch (err) {
-                //I don't know how else to say I WANT the error to happen
             }finally{
                 const token = await Token.create(user.users_id)
                 // Sending a response to the client 
