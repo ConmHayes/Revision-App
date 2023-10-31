@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { UsernameForm } from "../../Components";
+import { UsernameForm } from "../../components";
 
 export default function SignupPage() {
   const [username, setUsername] = useState("");
