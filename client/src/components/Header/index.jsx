@@ -9,6 +9,7 @@ export default function Header() {
     <>
       <header>
         <nav className="navbar">
+          <img src="../../../public/logo.png" alt="logo" />
           <NavLink to="/" style={styles}>
             {" "}
             Home{" "}

@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Jost&display=swap"); 
-
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Jost&display=swap");
 
@@ -10,6 +8,13 @@ h1 {
   margin: 30px;
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
+}
+
+body.loginPage {
+  background-image: url("../src/assets/start.svg");
+  background-size: cover;
+  background-position: center;
+  /* Other styles for the login page */
 }
 
 /* Your existing .navbar class */
@@ -34,7 +39,8 @@ h1 {
 }
 
 body {
-  background-image: url("./assets/start.png");
+  /*background-image: url("./assets/start.svg");*/
+  background-size: cover;
   min-height: 100%;
   font-family: "Jost", sans-serif;
   min-height: 100vh;
@@ -52,6 +58,7 @@ footer {
 .input-label {
   position: relative;
   width: 100%;
+  color: #3C7F72 
 }
 
 .input-label i {
@@ -59,7 +66,8 @@ footer {
   left: 10px;
   top: 35%;
   line-height: 0;
-  color: #fffbed;
+  color: #3C7F72
+;
   font-size: 20px;
 }
 
@@ -71,7 +79,6 @@ footer {
 }
 
 /* Flexbox and Layout Styles */
-.flexbox-item,
 .flexbox-image-login,
 .flexbox-login-array,
 .flexbox-container {
@@ -80,6 +87,8 @@ footer {
   justify-content: center;
   /* Update sizes and properties as needed */
 }
+
+
 
 .logo {
   line-height: 0px;
@@ -110,13 +119,18 @@ footer {
   margin: 10px 700px;
 }
 
+.inline-link{
+  color: #3C7F72
+}
+
 .flexbox-item {
   width: 50px;
-  height: 100px;
+  height: 600px;
   margin: 100px;
   background-color: transparent;
   max-width: 50px;
-  max-height: 100px;
+  max-height: 600px;
+  justify-content: flex-end;
 }
 
 .logo {
@@ -127,8 +141,7 @@ footer {
 }
 
 /* Input Field Styles */
-.Input,
-.passwordInput,
+
 .flexbox-image-login {
   height: 600px;
   width: 600px;
@@ -136,12 +149,23 @@ footer {
   max-height: 600px;
 }
 
+.Input,
+.passwordInput{
+  height: 50px;
+  width: 90%;
+  color: #3C7F72;
+}
+
 .flexbox-login-array {
   width: 500px;
-  height: 100px;
+  height: 600px;
   margin-top: 25px;
   max-width: 500px;
-  max-height: 100px;
+  max-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
 }
 
 .flexbox-container {
@@ -157,13 +181,18 @@ footer {
   flex-direction: column;
   padding: 1rem;
   background: transparent;
-  color: white;
+  color: #D34A24;
   width: 500px;
   height: 400px;
   max-width: 500px;
   max-height: 400px;
   margin-top: -80px;
 
+}
+
+.ikon{
+  color: #3C7F72;
+  background-color: #3C7F72;
 }
 
 .Input {
@@ -174,9 +203,10 @@ footer {
   background-color: transparent;
   text-align: center;
   width: 100%;
-  border-bottom: 1px solid #fffbed;
+  border-bottom: 1px solid #3C7F72;
   margin-bottom: 20px;
-  color: #fffbed;
+  color: #3C7F72
+  ;
 }
 
 /* Button Styles */
@@ -189,7 +219,7 @@ footer {
   color: #ff724b;
   border-bottom: 1px solid white;
   margin-bottom: 20px;
-  color: white;
+  color: #3C7F72 ;
   justify-content: left;
 }
 
@@ -206,7 +236,7 @@ footer {
 }
 
 ::placeholder {
-  color: white;
+  color: #3C7F72 ;
 }
 
 .loginButton {
@@ -357,7 +387,7 @@ li {
     109.6deg,
     rgb(255, 251, 237) 0%,
     rgb(253, 217, 109) 20%,
-    rgb(236, 137, 110) 80%
+    rgb(244, 196, 183) 80%
   );
 }
 
@@ -380,6 +410,195 @@ ul {
   border-radius: 50px;
 }
 
+.react-calendar { 
+  width: 400px;
+  max-width: 100%;
+  background-color: #fff;
+  color: green;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.125em;
+ }
+.react-calendar--doubleView {
+  width: 700px;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: -0.5em;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 0.5em;
+}
+
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.react-calendar button {
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  margin-bottom: 1em;
+}
+
+.react-calendar__navigation button {
+  color: #d10000;
+  min-width: 44px;
+  background: none;
+  font-size: 16px;
+  margin-top: 8px;
+ }
+
+ .react-calendar__navigation button[disabled] {
+  background-color: #f0f0f0;
+ }
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+ background-color: #f8f8fa;
+}
+
+abbr[title] {
+  text-decoration: none;
+ }
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em;
+}
+
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #757575;
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em 0.5em;
+}
+
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 10px 6.6667px;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.833em;
+}
+
+.react-calendar__tile:disabled {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+ background-color: #d10000;
+ color: whitesmoke;
+ border-radius: 6px;
+}
+
+.react-calendar__tile--now {
+  background: #6f48eb33;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #6f48eb;
+ }
+
+ .react-calendar__tile--now:enabled:hover,
+ .react-calendar__tile--now:enabled:focus {
+  background: #6f48eb33;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #6f48eb;
+ }
+.react-calendar__tile--hasActive {
+  background: pink;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+ background: #f8f8fa;
+}
+
+.react-calendar__tile--active {
+  background: #d10000;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+ }
+
+ .react-calendar__tile--active:enabled:hover,
+ .react-calendar__tile--active:enabled:focus {
+  background: #d10000;
+  color: white;
+ }
+
+ .react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #f8f8fa;
+ }
+
+ .react-calendar__tile--range {
+  background: #f8f8fa;
+  color: #6f48eb;
+  border-radius: 0;
+ }
+ .react-calendar__tile--rangeStart {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background: #d10000;
+  color: white;
+ }
+ .react-calendar__tile--rangeEnd {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background: #d10000;
+  color: white;
+ }
+
+/*
 .container {
   align-items: center;
   display: flex;
@@ -567,4 +786,4 @@ ul {
 .front,
 .back {
   backface-visibility: hidden;
-}
+}*/

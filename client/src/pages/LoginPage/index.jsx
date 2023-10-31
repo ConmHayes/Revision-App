@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { UsernameForm } from "../../components";
+import { Link } from "react-router-dom";
+import "./style.css";
 
 localStorage.clear();
+//document.body.style.backgroundImage = "url(../assets/start.svg)"
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [inputUn, setInputUn] = useState("Username");
   const [inputPw, setInputPw] = useState("Password");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    document.body.classList.add("login-page");
+    document.body.classList.remove("home-page");
+    return () => {
+      document.body.classList.remove("login-page");
+    };
+  }, []);
 
   return (
     <>
@@ -26,6 +37,16 @@ export default function LoginPage() {
               inputPw={inputPw}
               setInputPw={setInputPw}
             />
+            <p>
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="inline-link"
+                style={{ color: "#3C7F72" }}
+              >
+                Create one here!
+              </Link>
+            </p>
           </div>
         </div>
       </div>
