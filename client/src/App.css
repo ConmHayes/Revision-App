@@ -292,22 +292,35 @@ footer {
   margin-bottom: 20px;
 }
 
-.circle {
-  width: 50px;
-  height: 50px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
-  background-color: transparent;
+.tall-form{
+  height: 500px;
+  width: 500px;
+  border-radius: 8px;
+  border: 2px;
+  border-color: green;
+  background-color: #d10000;
   text-align: center;
-  color: white;
-  transform: scale(1);
-  transition: opacity 0.4s, transform 0.4s;
+  flex-direction: column;
 }
 
-.circle :hover {
-  transform: scale(1.2);
+.flexbox-header{
+  height: 50px;
+  width: 95%;
+  border-bottom: 3px solid green;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-color: yellow;
 }
+
+.flexbox-form{
+  height: 450px;
+  position: relative;
+  top: 10px;
+  width: 95%;
+  background-color: blue;
+
+}
+
 
 .pwicon {
   padding-right: 25px;
