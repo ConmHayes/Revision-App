@@ -4,7 +4,7 @@ import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 import { BrowserRouter } from "react-router-dom";
 import NotesPage from ".";
-import { afterEach, describe, expect} from "vitest"
+import { afterEach, describe, expect, it, global, vi} from "vitest"
 
 describe("NotesPage", () => {
     const fetchSpy = vi.spyOn(global, "fetch");
@@ -12,10 +12,12 @@ describe("NotesPage", () => {
         cleanup();
         fetchSpy.mockRestore();
     });
+
     it ("fetch notes", async () => {
-        const mockResponse = {
-            "id": 1,
-            // "title": "Note 1"
+        const mockResponse = {            
+            "note_id": 1,
+            "note": "This is the note text 1",
+            "topic": "Topic 1"
         }
         const mockResolvedValue = {
             ok: true,
@@ -23,14 +25,12 @@ describe("NotesPage", () => {
         }
         fetchSpy.mockReturnValue(mockResolvedValue)
         render(<BrowserRouter><NotesPage /></BrowserRouter>);
-        expect(fetchSpy).toHaveBeenCalledTimes(1);
+        expect(fetch).toHaveBeenCalledTimes(1);
+        expect(fetch).toHaveBeenCalledWith("https://time-table-server.onrender.com/notes");
 
-        // expect(fetchSpy).toHaveBeenCalledWith("http://localhost:3000/notes");
-        // await screen.findByText("Note 1");
-
-        // const heading = await screen.findByText("");
-        // expect(heading).toBeInTheDocument();
-    
+        const topic = await screen.findByText("Topic 1");
+        expect(topic).toBeInTheDocument();
+       
     });
 
 
