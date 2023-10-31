@@ -8,7 +8,11 @@ import NotePage from "./NotePage";
 global.fetch = jest.fn(() =>
   Promise.resolve({
     ok: true,
-    json: () => Promise.resolve({ id: 1, title: "Note 1" }),
+    json: () => Promise.resolve({
+        "note_id": 1,
+        "note": "This is the note text 1",
+        "topic": "Topic 1"
+        }),
   })
 );
 
