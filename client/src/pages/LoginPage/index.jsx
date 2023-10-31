@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UsernameForm } from "../../Components";
+import { UsernameForm } from "../../components";
 
 localStorage.clear();
 
