@@ -1,4 +1,4 @@
-const Notes = require('../models/Notes')
+const Notes = require('../models/notes')
 
 const index = async (req,res) => {
    try {
