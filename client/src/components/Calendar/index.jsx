@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar"
 
+
 export default function schedule( ) {
   const [today, setToday] = useState("");
   const [date, setDate] = useState(new Date())
@@ -40,7 +41,11 @@ export default function schedule( ) {
     const date = `${d}${suffix} ${months[m]} ${y}`;
     setToday(date);
   }
+  function logi(e){
+    const exactDate = e
+    console.log(Object.keys(e))
 
+  }
   useEffect(() => {
     getToday();
   }, []);
@@ -50,7 +55,7 @@ export default function schedule( ) {
     <div className = "app">
       <h1 className = "text-center">React Calendar</h1>
       <div className = "calendar-container">
-        <Calendar onChange = { setDate } value = { date } />
+        <Calendar onChange = { setDate } value = { date } onClickDay={logi}/>
       </div>
       <p className = "text-center">
         <span className = "bold"> { today }</span>
