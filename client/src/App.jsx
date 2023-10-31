@@ -1,7 +1,7 @@
 import "./App.css";
 import * as Pages from "./pages";
 import { Routes, Route } from "react-router-dom";
-import { Header } from './Components'
+import { Header } from "./components";
 
 function App() {
   return (
@@ -18,7 +18,6 @@ function App() {
       </Route>
       <Route path="/login" element={<Pages.LoginPage />} />
       <Route path="/signup" element={<Pages.SignupPage />} />
-
     </Routes>
   );
 }

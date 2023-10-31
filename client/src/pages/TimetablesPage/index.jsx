@@ -1,11 +1,13 @@
-import { Calendar, TimetableGallery } from "../../Components";
+import { Calendar, TimetableGallery } from "../../components";
 
 export default function TimetablesPage() {
-  return (<>
-      <div className = "flexbox-container">
+  return (
+    <>
+      <div className="flexbox-container">
         <Calendar />
-      </div>;
+      </div>
+      ;
       <TimetableGallery />
     </>
-)
+  );
 }
