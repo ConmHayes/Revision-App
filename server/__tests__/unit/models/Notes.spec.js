@@ -163,8 +163,6 @@ describe ('Notes model', () =>{
                 rows: [deletedNoteInput]
             })
 
-
-
             const deletedNote = await deletedNoteInput.deleteNote()
 
             expect(deletedNote).toHaveProperty('note_id', noteId);
