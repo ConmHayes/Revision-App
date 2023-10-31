@@ -9,7 +9,6 @@ function App() {
       <Route path="/" element={<Header />}>
         <Route index element={<Pages.HomePage />} />
 
-        <Route path="/signup" element={<Pages.SignupPage />} />
         <Route path="/timetables">
           <Route index element={<Pages.TimetablesPage />} />
           <Route path=":id" element={<Pages.TimetablePage />} />
@@ -18,6 +17,8 @@ function App() {
         <Route path="*" element={<Pages.NotFoundPage />} />
       </Route>
       <Route path="/login" element={<Pages.LoginPage />} />
+      <Route path="/signup" element={<Pages.SignupPage />} />
+
     </Routes>
   );
 }

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { UsernameForm } from "../../Components";
+import { Link } from "react-router-dom"
 
 localStorage.clear();
+//document.body.style.backgroundImage = "url(./assets/start.svg)"
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -26,6 +28,7 @@ export default function LoginPage() {
               inputPw={inputPw}
               setInputPw={setInputPw}
             />
+            <p>Don't have an account? <Link to = "/signup" className = "inline-link" style = {{ color : "#3C7F72" }}>Create one here!</Link></p>
           </div>
         </div>
       </div>

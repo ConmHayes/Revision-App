@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { UsernameForm } from "../../Components";
 
+
+
 export default function SignupPage() {
   const [username, setUsername] = useState("");
   const [inputUn, setInputUn] = useState("Username");
@@ -11,6 +13,7 @@ export default function SignupPage() {
   return (
     <>
       <div className="flexbox-container">
+        <div className="flexbox-item flexbox-image-login"></div>
         <div className="flexbox-item flexbox-login-array">
           <div className="login-array">
             <h2>Register</h2>
@@ -26,7 +29,6 @@ export default function SignupPage() {
             />
           </div>
         </div>
-        <div className="flexbox-item flexbox-image-login"></div>
       </div>
     </>
   );
