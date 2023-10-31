@@ -1,4 +1,4 @@
-const Notes = require('../models/Notes')
+const Notes = require('../models/notes')
 
 const index = async (req,res) => {
    try {
@@ -51,8 +51,5 @@ const deleteNote = async (req, res) => {
         res.status(404).json({error:err.message})
     }
 }
-
-
-
 
 module.exports = { index, showNote, createNote, updateNote, deleteNote }

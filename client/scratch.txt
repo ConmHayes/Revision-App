@@ -1,0 +1,10 @@
+Home  "/"
+LoginPage "/login"
+SignuPage "/signup"
+TimetablesPage "/timetables"
+TimetablePage "/timetables/:id"
+Notes "/notes"
+NotfoundPage "*"
+
+
+optional "/about"

@@ -1,31 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
+import "./App.css";
+import * as Pages from "./pages";
+import { Routes, Route } from "react-router-dom";
+import { Header } from './components'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <img src={viteLogo} className="logo" alt="Vite logo" />
-        <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Header />}>
+        <Route index element={<Pages.HomePage />} />
+
+        <Route path="/signup" element={<Pages.SignupPage />} />
+        <Route path="/timetables">
+          <Route index element={<Pages.TimetablesPage />} />
+          <Route path=":id" element={<Pages.TimetablePage />} />
+        </Route>
+        <Route path="/notes" element={<Pages.NotesPage />} />
+        <Route path="*" element={<Pages.NotFoundPage />} />
+      </Route>
+      <Route path="/login" element={<Pages.LoginPage />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
+
+// Home  "/"
+// LoginPage "/login"
+// SignuPage "/signup"
+// TimetablesPage "/timetables"
+// TimetablePage "/timetables/:id"
+// Notes "/notes"
+// NotfoundPage "*"
+
+// optional "/about"
