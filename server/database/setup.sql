@@ -1,8 +1,14 @@
-DROP TABLE IF EXISTS TimeTable;
 DROP TABLE IF EXISTS Notes;
 DROP TABLE IF EXISTS Token;
 DROP TABLE IF EXISTS Subjects;
 DROP TABLE IF EXISTS users;
+
+CREATE TABLE users(
+    users_id INT GENERATED ALWAYS AS IDENTITY,
+    username VARCHAR(200) UNIQUE NOT NULL,
+    password VARCHAR(200) NOT NULL,
+    PRIMARY KEY (users_id)
+);
 
 CREATE TABLE Notes(
     note_id INT GENERATED ALWAYS AS IDENTITY,
@@ -25,15 +31,8 @@ CREATE TABLE Subjects(
     subjectName VARCHAR(255) UNIQUE NOT NULL,
     subjectDescription VARCHAR(255) NOT NULL,
     note_id INT NOT NULL,
-    user_id INT NOT NULL,
+    users_id INT NOT NULL,
     PRIMARY KEY (subject_id),
     FOREIGN KEY (note_id) REFERENCES Notes(note_id),
-    FOREIGN KEY (user_id) REFERENCES Notes(user_id)
-);
-
-CREATE TABLE users(
-    users_id INT GENERATED ALWAYS AS IDENTITY,
-    username VARCHAR(200) UNIQUE NOT NULL,
-    password VARCHAR(200) NOT NULL,
-    PRIMARY KEY (users_id)
+    FOREIGN KEY (users_id) REFERENCES users(users_id)
 );
