@@ -9,7 +9,7 @@ export default function NotePage() {
 
   useEffect(() => { 
     async function loadNote() {
-      const res = await fetch(`http://localhost:3000/notes/${id}`);
+      const res = await fetch(`https://time-table-server.onrender.com/notes/${id}`);
       const note = await res.json();
       setNote(note);
       setLoading(false);
@@ -20,8 +20,8 @@ export default function NotePage() {
     
       return (
       <div>
-        <h1>{note.title}</h1>
-        <p>{note.description}</p>
+        <h1>{note.topic}</h1>
+        <p>{note.note}</p>
         {/* <button onClick={deleteNote}>Delete</button> */}
         <Link to="/notes">Back</Link>
       </div>

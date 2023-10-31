@@ -1,14 +1,13 @@
-// individual note page like time table( time tables)
-// add rute on app
+
 import React, { useEffect, useState } from "react";
-// import {}
+
 
 export default function NotesPage() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => { 
     async function getNotes() {
-      const res = await fetch("http://localhost:3000/notes");
+      const res = await fetch(`https://time-table-server.onrender.com/notes`);
       const notes = await res.json();
       setNotes(notes);
     }
@@ -19,8 +18,8 @@ export default function NotesPage() {
     return notes.map((note) => {
       return (
         <div key={note.id}>
-          <h1>{note}</h1>
-          {/* <p>{note.description}</p> */}
+          <h1>{note.topic}</h1>
+          <p>{note.note}</p>          
           <button onClick={deleteNote}>Delete</button>
         </div>
       );
@@ -34,7 +33,7 @@ export default function NotesPage() {
         "Content-Type": "application/json",
       },
     };
-    await fetch(`http://localhost:3000/notes/${id}`, options);
+    await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.id !== id);
     setNotes(updatedNotes);
     
