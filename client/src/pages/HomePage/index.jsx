@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const linkStyle = {
-    color: "#FF724B",
+    color: "white",
   };
   return (
     <>
-      <h1>Unleash Your Productivity & Conquer Procrastination Now!</h1>
-      <span>Manage Your Schedule and Note Your Way to Success!</span>
+      <h1>Unleash Your Productivity</h1>
+      {/* <span>Manage Your Schedule and Note Your Way to Success!</span> */}
       <ul>
         <li>
           <Link to="/timetables" style={linkStyle}>
