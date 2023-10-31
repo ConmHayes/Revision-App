@@ -49,4 +49,5 @@ const deleteSubject = async (req, res) => {
   }
 }
 
-module.exports = { index, showByName, createSubject, updateSubject, deleteSubject }
+module.exports = { index, showByName, createSubject, updateSubject, deleteSubject}
+// , showByName, createSubject, updateSubject, deleteSubject 

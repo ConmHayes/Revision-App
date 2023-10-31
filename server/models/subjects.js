@@ -1,19 +1,24 @@
 const db = require('../database/connect')
 
 class Subjects{
-  constructor({subject_id, description, subjectName, notes_id}) {
+  constructor({subject_id, subjectDescription, subjectName, notes_id, users_id}) {
     this.subject_id = subject_id
-    this.description = description
+    this.subjectDescription = subjectDescription
     this.subjectName = subjectName
     this.notes_id = notes_id
+    this.users_id = users_id
   }
 
   static async getAll() {
-    const response = await db.query("SELECT topics FROM Subjects")
-    if (response.rows.length === 0) {
-      throw new Error("No subjects available available")
+    const response = await db.query("SELECT * FROM Subjects")
+    try {
+      if (response.rows.length === 0) {
+        throw new Error("No subjects available available")
+      }
+      return response.rows.map(subjects => new Subjects(subjects))
+    } catch(err) {
+      throw new Error(err.message)
     }
-    return response.rows.map(subjects => new Subjects(subjects))
   }
 
   static async getBySubject(subject) {
@@ -37,8 +42,8 @@ class Subjects{
 
   static async createSubject(data) {
     try {
-      const {subject_id, description, subjectName, notes_id} = data
-      const response = await db.query("INSERT INTO Subjects (subject_id, description, subjectName, notes_id) VALUES ($1,$2,$3,$4) RETURNING *;", [subject_id, description, subjectName, notes_id])
+      const {subject_id, subjectDescription, subjectName, notes_id, users_id} = data
+      const response = await db.query("INSERT INTO Subjects (subject_id, subjectDescription, subjectName, notes_id, users_id) VALUES ($1,$2,$3,$4,$5) RETURNING *;", [subject_id, subjectDescription, subjectName, notes_id, users_id])
       return new Subjects(response.rows)
     } catch(err){ 
       throw new Error(err.message)
@@ -47,8 +52,8 @@ class Subjects{
 
   static async updateSubject(id, data) {
     try {
-      const { description, subjectName, notes_id } = data;
-      const response = await db.query('UPDATE Subjects SET description = $1, subjectName = $2, notes_id = $3 WHERE subject_id = $4 RETURNING *;', [description, category, rating, id])
+      const { subjectDescription, subjectName, notes_id, users_id } = data;
+      const response = await db.query('UPDATE Subjects SET subjectDescription = $1, subjectName = $2, notes_id = $3, users_id = $4 WHERE subject_id = $5 RETURNING *;', [subjectDescription, subjectName, notes_id, users_id, id])
       return new Subjects(response.rows[0])
     } catch(err) {
       throw new Error(err.message)
