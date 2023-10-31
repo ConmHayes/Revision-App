@@ -12,7 +12,11 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.43",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.8.5",
+    "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0"
   },
