@@ -1,3 +1,9 @@
-export default function TimetablesPage() {
-  return <div>TimeTables Page</div>;
+import { TimetableGallery } from "../../components";
+
+export default function TimetablePage() {
+  return (
+    <>
+      <TimetableGallery />
+    </>
+  );
 }
