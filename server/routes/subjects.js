@@ -2,8 +2,10 @@ const {Router} = require('express')
 const subjectsController = require('../controllers/subjects')
 const subjectsRouter = Router()
 
-subjectsController.get("/", subjectsRouter.index)
-subjectsController.get("/:id", subjectsRouter.showSubjects)
-subjectsController.post("/", subjectsRouter.createSubject)
-subjectsController.patch("/:id", subjectsRouter.updateSubject)
-subjectsController.delete("/:id", subjectsRouter.deleteSubject)
+subjectsRouter.get("/", subjectsController.index)
+subjectsRouter.get("/:name", subjectsController.showByName)
+subjectsRouter.post("/", subjectsController.createSubject)
+subjectsRouter.patch("/:id", subjectsController.updateSubject)
+subjectsRouter.delete("/:id", subjectsController.deleteSubject)
+
+module.exports = subjectsRouter
