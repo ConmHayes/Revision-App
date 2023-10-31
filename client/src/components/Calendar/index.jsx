@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Calendar from "react-calendar"
 
-export default function Calendar() {
+export default function schedule( ) {
   const [today, setToday] = useState("");
+  const [date, setDate] = useState(new Date())
 
   function getToday() {
     const y = new Date().getFullYear();
-    const m = new Date().getMonth() + 1;
+    const m = new Date().getMonth();
     const d = new Date().getDate();
 
     const months = [
@@ -23,6 +25,7 @@ export default function Calendar() {
       "November",
       "December",
     ];
+
     let suffix;
     if ((d == 1) | (d == 21) | (d == 31)) {
       suffix = "st";
@@ -42,8 +45,24 @@ export default function Calendar() {
     getToday();
   }, []);
 
+
   return (
-    <div className="container">
+    <div className = "app">
+      <h1 className = "text-center">React Calendar</h1>
+      <div className = "calendar-container">
+        <Calendar onChange = { setDate } value = { date } />
+      </div>
+      <p className = "text-center">
+        <span className = "bold"> { today }</span>
+      </p>
+    </div>
+    
+  );
+}
+
+
+/*
+<div className="container">
       <div className="calendar">
         <div className="front">
           <div className="current-date">
@@ -65,5 +84,4 @@ export default function Calendar() {
         </div>
       </div>
     </div>
-  );
-}
+*/
