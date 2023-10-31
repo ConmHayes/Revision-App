@@ -70,7 +70,7 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
         <Calendar onChange = { setDate } value = { date } onClickDay={logi}/>
       </div>
       <p className = "text-center">
-        <span className = "bold"> { today }</span>
+        <span className = "bold" > { today }</span>
       </p>
     </div>
     

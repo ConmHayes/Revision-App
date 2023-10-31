@@ -189,7 +189,9 @@ footer {
   margin-top: -80px;
 
 }
-
+.bold{
+  font-family: 'Courier New', Courier, monospace;
+}
 .ikon{
   color: #3C7F72;
   background-color: #3C7F72;
@@ -297,8 +299,8 @@ footer {
   width: 500px;
   border-radius: 8px;
   border: 2px;
-  border-color: green;
-  background-color: #d10000;
+  border-color: #3C7F72;
+  background-color: transparent;
   text-align: center;
   flex-direction: column;
 }
@@ -306,19 +308,58 @@ footer {
 .flexbox-header{
   height: 50px;
   width: 95%;
-  border-bottom: 3px solid green;
+  border-bottom: 3px solid #3C7F72;
+  border-bottom-right-radius: 8px;
   align-items: flex-end;
   justify-content: flex-end;
-  background-color: yellow;
+  font-family: 'Courier New', Courier, monospace;
+  color: #3C7F72
+
 }
 
+
 .flexbox-form{
-  height: 450px;
+  height: 400px;
   position: relative;
   top: 10px;
   width: 95%;
-  background-color: blue;
+  
 
+}
+.flex-options{
+  font-family: 'Courier New', Courier, monospace;
+  position: relative;
+  top: 5px
+}
+
+.select-option{
+  background-color: #3C7F72;
+  font-family: 'Courier New', Courier, monospace;
+
+}
+.button-box{
+  display: flex;
+  position: relative;
+  top: 70px;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.form-button{
+  width: 45%;
+  background-color: #3C7F72;
+  color: whitesmoke;
+  border-radius: 80px;
+}
+.event-input{
+  height: 450px;
+  background-color: #fff2d4;
+  width: 480px;
+  font-family: 'Courier New', Courier, monospace;
+  resize: none;
+  border-radius: 8px;
+  border-color: #3C7F72;
 }
 
 
@@ -335,7 +376,7 @@ footer {
 }
 
 .dropdown-item:hover {
-  background-color: #444; 
+  background-color: #3C7F72; 
   color: lightgreen; 
 }
 
