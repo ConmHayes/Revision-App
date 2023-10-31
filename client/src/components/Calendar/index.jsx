@@ -7,11 +7,7 @@ export default function schedule( ) {
   const [today, setToday] = useState("");
   const [date, setDate] = useState(new Date())
 
-  function getToday() {
-    const y = new Date().getFullYear();
-    const m = new Date().getMonth();
-    const d = new Date().getDate();
-
+  function dateReturn(d, m, y){
     const months = [
       "January",
       "February",
@@ -39,11 +35,25 @@ export default function schedule( ) {
     }
 
     const date = `${d}${suffix} ${months[m]} ${y}`;
-    setToday(date);
+    return date
   }
-  function logi(e){
-    const exactDate = e
-    console.log(Object.keys(e))
+
+  function getToday() {
+    const y = new Date().getFullYear();
+    const m = new Date().getMonth();
+    const d = new Date().getDate();
+    
+    setToday(dateReturn(d, m, y));
+  }
+  function logi(date){
+    const d = date.getDate()
+    const m = date.getMonth()
+    const y = date.getFullYear()
+    const selectedDate = dateReturn(d, m, y)
+    const data = {
+      dateString: selectedDate,
+    }
+    console.log(selectedDate)
 
   }
   useEffect(() => {
@@ -53,7 +63,7 @@ export default function schedule( ) {
 
   return (
     <div className = "app">
-      <h1 className = "text-center">React Calendar</h1>
+      <h1 className = "text-center">Your Calendar</h1>
       <div className = "calendar-container">
         <Calendar onChange = { setDate } value = { date } onClickDay={logi}/>
       </div>

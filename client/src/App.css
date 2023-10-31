@@ -10,6 +10,13 @@ h1 {
   font-weight: bold;
 }
 
+body.loginPage {
+  background-image: url("../src/assets/start.svg");
+  background-size: cover;
+  background-position: center;
+  /* Other styles for the login page */
+}
+
 /* Your existing .navbar class */
 .navbar {
   color: #3c7f72;
@@ -32,7 +39,7 @@ h1 {
 }
 
 body {
-  background-image: url("./assets/start.svg");
+  /*background-image: url("./assets/start.svg");*/
   background-size: cover;
   min-height: 100%;
   font-family: "Jost", sans-serif;
@@ -59,7 +66,8 @@ footer {
   left: 10px;
   top: 35%;
   line-height: 0;
-  color: #fffbed;
+  color: #3C7F72
+;
   font-size: 20px;
 }
 
@@ -144,7 +152,8 @@ footer {
 .Input,
 .passwordInput{
   height: 50px;
-  width: 90%
+  width: 90%;
+  color: #3C7F72;
 }
 
 .flexbox-login-array {
@@ -194,9 +203,10 @@ footer {
   background-color: transparent;
   text-align: center;
   width: 100%;
-  border-bottom: 1px solid #fffbed;
+  border-bottom: 1px solid #3C7F72;
   margin-bottom: 20px;
-  color: #fffbed;
+  color: #3C7F72
+  ;
 }
 
 /* Button Styles */
