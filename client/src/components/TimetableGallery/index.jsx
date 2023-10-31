@@ -4,17 +4,15 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import TimetableImage from "../TimetableImage";
+import TimetableCard from "../TimetableCard";
 
 export default function TimetableGallery() {
-  let url = "";
   const [timetables, setTimetables] = useState([]);
+
   useEffect(() => {
     async function displayTimetables() {
       try {
-        const response = await fetch(
-          "https://time-table-app.onrender.com/timetables"
-        );
+        const response = await fetch("http://localhost:5173/timetables");
         const data = await response.json();
         console.log(data);
         setTimetables(data);
@@ -24,11 +22,12 @@ export default function TimetableGallery() {
     }
     displayTimetables();
   }, []);
+
   return (
     <div className="timetables">
       {timetables.map((timetable) => (
         <Link to={`/timetables/${timetable.id}`} key={timetable.id}>
-          <TimetableImage timetable={timetable} />
+          <TimetableCard timetable={timetable} />
         </Link>
       ))}
     </div>

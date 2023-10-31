@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { UsernameForm } from "../../components";
 
-
-
 export default function SignupPage() {
   const [username, setUsername] = useState("");
   const [inputUn, setInputUn] = useState("Username");

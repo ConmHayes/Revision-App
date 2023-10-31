@@ -9,10 +9,7 @@ export default function Header() {
     <>
       <header>
         <nav className="navbar">
-          <img
-            src="../../../public/Screenshot 2023-10-31 at 09.19.25.png"
-            alt="logo"
-          />
+          <img src="../../../public/logo.png" alt="logo" />
           <NavLink to="/" style={styles}>
             {" "}
             Home{" "}

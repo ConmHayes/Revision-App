@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { UsernameForm } from "../../components";
-import { Link } from "react-router-dom"
+
+import { Link } from "react-router-dom";
+
 import "./style.css";
 
 localStorage.clear();
@@ -37,7 +39,16 @@ export default function LoginPage() {
               inputPw={inputPw}
               setInputPw={setInputPw}
             />
-            <p>Don't have an account? <Link to = "/signup" className = "inline-link" style = {{ color : "#3C7F72" }}>Create one here!</Link></p>
+            <p>
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="inline-link"
+                style={{ color: "#3C7F72" }}
+              >
+                Create one here!
+              </Link>
+            </p>
           </div>
         </div>
       </div>
