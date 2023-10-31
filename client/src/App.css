@@ -1,13 +1,46 @@
-/* @import url("https://fonts.googleapis.com/css?family=Jost&display=swap"); */
+/* Fonts */
+@import url("https://fonts.googleapis.com/css?family=Jost&display=swap");
 
-/* h1 {
-  color: #36454f;
-  font-size: 50 px;
+h1 {
+  color: #3c7f72;
+  font-size: 30px;
   text-align: center;
+  margin: 30px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+
+body.loginPage {
+  background-image: url("../src/assets/start.svg");
+  background-size: cover;
+  background-position: center;
+  /* Other styles for the login page */
+}
+
+/* Your existing .navbar class */
+.navbar {
+  color: #3c7f72;
+  background-color: #ff724b;
+}
+
+/* Style for the links within the navbar */
+.navbar a {
+  color: #3c7f72;
+  font-weight: bold;
+}
+
+/* Link Styles */
+.link {
+  color: #ff724b;
+  text-decoration: none;
+}
+.navbar li {
+  margin: 0 30px;
 }
 
 body {
-  background-image: url("./assets/start.png");
+  /*background-image: url("./assets/start.svg");*/
+  background-size: cover;
   min-height: 100%;
   font-family: "Jost", sans-serif;
   min-height: 100vh;
@@ -25,12 +58,39 @@ footer {
 .input-label {
   position: relative;
   width: 100%;
+  color: #3C7F72 
 }
 
 .input-label i {
   position: absolute;
   left: 10px;
   top: 35%;
+  line-height: 0;
+  color: #3C7F72
+;
+  font-size: 20px;
+}
+
+/* Container Styles */
+.container {
+  position: relative;
+  width: 50%;
+  margin: 10px auto;
+}
+
+/* Flexbox and Layout Styles */
+.flexbox-image-login,
+.flexbox-login-array,
+.flexbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Update sizes and properties as needed */
+}
+
+
+
+.logo {
   line-height: 0px;
   color: rgb(255, 255, 255);
   font-size: 20px;
@@ -38,9 +98,9 @@ footer {
 
 .navbar {
   color: green;
-} */
+} 
 
-/* .mailInput::placeholder::before,
+ .mailInput::placeholder::before,
 .passwordInput::placeholder::before {
   content: "\00a0";
 }
@@ -59,13 +119,18 @@ footer {
   margin: 10px 700px;
 }
 
+.inline-link{
+  color: #3C7F72
+}
+
 .flexbox-item {
   width: 50px;
-  height: 100px;
+  height: 600px;
   margin: 100px;
   background-color: transparent;
   max-width: 50px;
-  max-height: 100px;
+  max-height: 600px;
+  justify-content: flex-end;
 }
 
 .logo {
@@ -75,6 +140,8 @@ footer {
   max-height: 600px;
 }
 
+/* Input Field Styles */
+
 .flexbox-image-login {
   height: 600px;
   width: 600px;
@@ -82,12 +149,23 @@ footer {
   max-height: 600px;
 }
 
+.Input,
+.passwordInput{
+  height: 50px;
+  width: 90%;
+  color: #3C7F72;
+}
+
 .flexbox-login-array {
   width: 500px;
-  height: 100px;
+  height: 600px;
   margin-top: 25px;
   max-width: 500px;
-  max-height: 100px;
+  max-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
 }
 
 .flexbox-container {
@@ -103,13 +181,18 @@ footer {
   flex-direction: column;
   padding: 1rem;
   background: transparent;
-  color: white;
+  color: #D34A24;
   width: 500px;
   height: 400px;
   max-width: 500px;
   max-height: 400px;
   margin-top: -80px;
 
+}
+
+.ikon{
+  color: #3C7F72;
+  background-color: #3C7F72;
 }
 
 .Input {
@@ -120,9 +203,23 @@ footer {
   background-color: transparent;
   text-align: center;
   width: 100%;
+  border-bottom: 1px solid #3C7F72;
+  margin-bottom: 20px;
+  color: #3C7F72
+  ;
+}
+
+/* Button Styles */
+.loginButton {
+  border-radius: 8px;
+  border-color: #fffbed;
+  height: 40px;
+  width: 100%;
+  background-color: #fffbed;
+  color: #ff724b;
   border-bottom: 1px solid white;
   margin-bottom: 20px;
-  color: white;
+  color: #3C7F72 ;
   justify-content: left;
 }
 
@@ -139,8 +236,9 @@ footer {
 }
 
 ::placeholder {
-  color: white;
+  color: #3C7F72 ;
 }
+
 .loginButton {
   border-radius: 8px;
   border-color: white;
@@ -152,6 +250,26 @@ footer {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
+/* Hover Effect on Icons */
+.ikon a:hover {
+  color: black;
+  background-color: #fffbed;
+  border-radius: 8px;
+}
+
+/* Hover Effect on Dropdown */
+.dropdown-item:hover {
+  background-color: #444;
+  color: #ffcb2f;
+}
+
+/* Reset Default Styles */
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  }
 
 .passwordInput {
   font-weight: bold; 
@@ -191,17 +309,6 @@ footer {
   transform: scale(1.2);
 }
 
-.ikon {
-  color: whitesmoke;
-  cursor: pointer;
-}
-
-#ikon a:hover {
-  color: black;
-  background-color: white;
-  border-radius: 8px;
-}
-
 .pwicon {
   padding-right: 25px;
   font-family: "FontAwesome";
@@ -213,7 +320,6 @@ footer {
   font-weight: bold;
   padding-bottom: 20px;
 }
-
 
 .dropdown-item:hover {
   background-color: #444; 
@@ -239,10 +345,260 @@ html {
 }
 
 body {
-  background: #dfebed;
-  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: #fffbed */
+  background-color: #fff2d4;
 }
 
+.custom-navbar {
+  background: linear-gradient(
+    109.6deg,
+    rgb(255, 251, 237) 0%,
+    rgb(255, 203, 47) 20%,
+    rgb(211, 74, 36) 80%
+  );
+  color: #36454f;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: #ffcb2f;
+}
+
+li {
+  margin: 0 10px;
+}
+
+.link {
+  color: #36454f;
+  text-decoration: none;
+}
+
+/* Updated styles for the navbar links */
+.navbar {
+  background: linear-gradient(
+    109.6deg,
+    rgb(255, 251, 237) 0%,
+    rgb(253, 217, 109) 20%,
+    rgb(244, 196, 183) 80%
+  );
+}
+
+/* Font style for the notes and note */
+.notes-section h1,
+.note-section h1 {
+  font-family: "Jost", sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #ff724b;
+  color: black;
+  border-radius: 50px;
+}
+
+.react-calendar { 
+  width: 400px;
+  max-width: 100%;
+  background-color: #fff;
+  color: green;
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.125em;
+ }
+.react-calendar--doubleView {
+  width: 700px;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer {
+  display: flex;
+  margin: -0.5em;
+}
+
+.react-calendar--doubleView .react-calendar__viewContainer > * {
+  width: 50%;
+  margin: 0.5em;
+}
+
+.react-calendar,
+.react-calendar *,
+.react-calendar *:before,
+.react-calendar *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.react-calendar button {
+  margin: 0;
+  border: 0;
+  outline: none;
+}
+
+.react-calendar button:enabled:hover {
+  cursor: pointer;
+}
+
+.react-calendar__navigation {
+  display: flex;
+  height: 44px;
+  margin-bottom: 1em;
+}
+
+.react-calendar__navigation button {
+  color: #d10000;
+  min-width: 44px;
+  background: none;
+  font-size: 16px;
+  margin-top: 8px;
+ }
+
+ .react-calendar__navigation button[disabled] {
+  background-color: #f0f0f0;
+ }
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+ background-color: #f8f8fa;
+}
+
+abbr[title] {
+  text-decoration: none;
+ }
+
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.5em;
+}
+
+.react-calendar__month-view__weekNumbers .react-calendar__tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #757575;
+}
+
+.react-calendar__year-view .react-calendar__tile,
+.react-calendar__decade-view .react-calendar__tile,
+.react-calendar__century-view .react-calendar__tile {
+  padding: 2em 0.5em;
+}
+
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 10px 6.6667px;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.833em;
+}
+
+.react-calendar__tile:disabled {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+ background-color: #d10000;
+ color: whitesmoke;
+ border-radius: 6px;
+}
+
+.react-calendar__tile--now {
+  background: #6f48eb33;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #6f48eb;
+ }
+
+ .react-calendar__tile--now:enabled:hover,
+ .react-calendar__tile--now:enabled:focus {
+  background: #6f48eb33;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #6f48eb;
+ }
+.react-calendar__tile--hasActive {
+  background: pink;
+}
+
+.react-calendar__tile--hasActive:enabled:hover,
+.react-calendar__tile--hasActive:enabled:focus {
+ background: #f8f8fa;
+}
+
+.react-calendar__tile--active {
+  background: #d10000;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+ }
+
+ .react-calendar__tile--active:enabled:hover,
+ .react-calendar__tile--active:enabled:focus {
+  background: #d10000;
+  color: white;
+ }
+
+ .react-calendar--selectRange .react-calendar__tile--hover {
+  background-color: #f8f8fa;
+ }
+
+ .react-calendar__tile--range {
+  background: #f8f8fa;
+  color: #6f48eb;
+  border-radius: 0;
+ }
+ .react-calendar__tile--rangeStart {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  background: #d10000;
+  color: white;
+ }
+ .react-calendar__tile--rangeEnd {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background: #d10000;
+  color: white;
+ }
+
+/*
 .container {
   align-items: center;
   display: flex;
@@ -263,7 +619,6 @@ body {
   transform-style: preserve-3d;
   width: 100%;
 }
-
 
 .front {
   transform: rotateY(0deg);
@@ -342,8 +697,6 @@ body {
   right: -4px;
   top: -4px;
 }
-
-
 
 .back {
   height: 100%;
@@ -426,8 +779,6 @@ body {
   outline: none;
 }
 
-
-
 .flip {
   transform: rotateY(180deg);
 }
@@ -435,184 +786,4 @@ body {
 .front,
 .back {
   backface-visibility: hidden;
-} */
-
-/* Fonts */
-@import url("https://fonts.googleapis.com/css?family=Jost&display=swap");
-
-body {
-  background-image: url("./assets/start.png");
-  min-height: 100vh;
-  font-family: "Jost", sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-h1 {
-  color: #ff724b;
-  font-size: 50px;
-  text-align: center;
-}
-
-span {
-  color: #fffbed;
-}
-
-/* Navbar */
-.navbar {
-  color: #3c7f72;
-}
-
-/* Link Styles */
-.link {
-  color: #ff724b;
-  text-decoration: none;
-}
-
-/* Form Input Styles */
-.input-label {
-  position: relative;
-  width: 100%;
-}
-
-.input-label i {
-  position: absolute;
-  left: 10px;
-  top: 35%;
-  line-height: 0;
-  color: #fffbed;
-  font-size: 20px;
-}
-
-/* Container Styles */
-.container {
-  position: relative;
-  width: 50%;
-  margin: 10px auto;
-}
-
-/* Flexbox and Layout Styles */
-.flexbox-item,
-.flexbox-image-login,
-.flexbox-login-array,
-.flexbox-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Update sizes and properties as needed */
-}
-
-.logo {
-  max-width: 600px;
-  max-height: 600px;
-}
-
-/* Input Field Styles */
-.Input,
-.passwordInput {
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  text-align: center;
-  width: 100%;
-  border-bottom: 1px solid #fffbed;
-  margin-bottom: 20px;
-  color: #fffbed;
-}
-
-/* Button Styles */
-.loginButton {
-  border-radius: 8px;
-  border-color: #fffbed;
-  height: 40px;
-  width: 100%;
-  background-color: #fffbed;
-  color: #ff724b;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Circle Styles */
-.circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  background-color: transparent;
-  text-align: center;
-  color: #fffbed;
-  transition: opacity 0.4s, transform 0.4s;
-}
-
-.circle:hover {
-  transform: scale(1.2);
-}
-
-/* Hover Effect on Icons */
-.ikon a:hover {
-  color: black;
-  background-color: #fffbed;
-  border-radius: 8px;
-}
-
-/* Hover Effect on Dropdown */
-.dropdown-item:hover {
-  background-color: #444;
-  color: #ffcb2f;
-}
-
-/* Reset Default Styles */
-* {
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-body,
-html {
-  height: 100%;
-}
-
-body {
-  background-image: url("./assets/start.png");
-  min-height: 100vh;
-  font-family: "Jost", sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #dfebed;
-}
-
-.custom-navbar {
-  background: linear-gradient(
-    109.6deg,
-    rgb(255, 251, 237) 0%,
-    rgb(255, 203, 47) 20%,
-    rgb(211, 74, 36) 80%
-  );
-  color: #36454f;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-  background-color: #ffcb2f;
-}
-
-li {
-  margin: 0 10px;
-}
-
-.link {
-  color: #36454f;
-  text-decoration: none;
-}
+}*/
