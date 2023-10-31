@@ -1,5 +1,5 @@
 import "./App.css";
-import * as Pages from "./Pages";
+import * as Pages from "./pages";
 import { Routes, Route } from "react-router-dom";
 import { Header } from "./Components";
 
@@ -25,12 +25,4 @@ function App() {
 
 export default App;
 
-// Home  "/"
-// LoginPage "/login"
-// SignuPage "/signup"
-// TimetablesPage "/timetables"
-// TimetablePage "/timetables/:id"
-// Notes "/notes"
-// NotfoundPage "*"
 
-// optional "/about"
