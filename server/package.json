@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node ./index.js",
     "setup-db": "node ./database/setup.js",
     "dev": "nodemon ./index.js",
     "both": "node ./database/setup.js && nodemon ./server/index.js",
