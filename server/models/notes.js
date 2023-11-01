@@ -34,8 +34,8 @@ class Notes {
 
   static async createNote(data) {
     try {
-      const {note_id, note, topic, datePosted} = data
-      const response = await db.query("INSERT INTO Notes (note_id, note, topic, datePosted) VALUES ($1,$2,$3,$4) RETURNING *;", [note_id, note, topic, datePosted])
+      const {note, topic, datePosted} = data
+      const response = await db.query("INSERT INTO Notes (note, topic, datePosted) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, datePosted])
       return new Notes(response.rows)
     } catch(err){ 
       throw new Error(err.message)
