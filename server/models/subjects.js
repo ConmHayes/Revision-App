@@ -1,11 +1,11 @@
 const db = require('../database/connect')
 
 class Subjects{
-  constructor({subject_id, subjectDescription, subjectName, notes_id, users_id}) {
+  constructor({subject_id, subjectdescription, subjectname, note_id, users_id}) {
     this.subject_id = subject_id
-    this.subjectDescription = subjectDescription
-    this.subjectName = subjectName
-    this.notes_id = notes_id
+    this.subjectdescription = subjectdescription
+    this.subjectname = subjectname
+    this.note_id = note_id
     this.users_id = users_id
   }
 
@@ -22,7 +22,7 @@ class Subjects{
   }
 
   static async getBySubject(subject) {
-    const response = await db.query("SELECT * FROM Subjects WHERE LOWER(subjectName) = $1", [subject])
+    const response = await db.query("SELECT * FROM Subjects WHERE LOWER(subjectname) = $1", [subject])
     if (response.rows.length === 0) {
       throw new Error("No notes for this subject available")
     }
@@ -42,8 +42,8 @@ class Subjects{
 
   static async createSubject(data) {
     try {
-      const {subject_id, subjectDescription, subjectName, notes_id, users_id} = data
-      const response = await db.query("INSERT INTO Subjects (subject_id, subjectDescription, subjectName, notes_id, users_id) VALUES ($1,$2,$3,$4,$5) RETURNING *;", [subject_id, subjectDescription, subjectName, notes_id, users_id])
+      const {subjectdescription, subjectname, note_id, users_id} = data
+      const response = await db.query("INSERT INTO Subjects (subjectdescription, subjectname, note_id, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [subjectdescription, subjectname, note_id, users_id])
       return new Subjects(response.rows)
     } catch(err){ 
       throw new Error(err.message)
@@ -52,8 +52,8 @@ class Subjects{
 
   static async updateSubject(id, data) {
     try {
-      const { subjectDescription, subjectName, notes_id, users_id } = data;
-      const response = await db.query('UPDATE Subjects SET subjectDescription = $1, subjectName = $2, notes_id = $3, users_id = $4 WHERE subject_id = $5 RETURNING *;', [subjectDescription, subjectName, notes_id, users_id, id])
+      const { subjectdescription, subjectname, note_id, users_id } = data;
+      const response = await db.query('UPDATE Subjects SET subjectdescription = $1, subjectname = $2, note_id = $3, users_id = $4 WHERE subject_id = $5 RETURNING *;', [subjectdescription, subjectname, note_id, users_id, id])
       return new Subjects(response.rows[0])
     } catch(err) {
       throw new Error(err.message)
