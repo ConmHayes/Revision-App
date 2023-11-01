@@ -1,7 +1,7 @@
-import { Calendar, TimetableGallery, EventForm } from "../../components";
+import { Calendar, TimetableGallery, EventForm, NotesByDate } from "../../components";
 import { useState, useEffect } from "react"
 
-export default function TimetablesPage() {
+export default function TimetablesPage( ) {
   const [createEvent, setCreateEvent] = useState(false)
   const [tempData, setTempData] = useState("")
   const [events, setEvents] = useState({
@@ -16,8 +16,16 @@ export default function TimetablesPage() {
 
   return (<>
       <div className = "flexbox-container" style = {{ justifyContent: "center"}}>
-        <div className="flex-item">
-          {createEvent == true ? "hello" : "Boo"}</div>
+        <div className="flex-item" style = {{position: "relative", right: "75px"}}>
+          {createEvent == false ? "" : <NotesByDate 
+                                              tempData = {tempData} 
+                                              setTempData = {setTempData}
+                                              events = {events}
+                                              setEvents = {setEvents}
+                                              createEvent = {createEvent}
+                                              setCreateEvent = {setCreateEvent}
+                                              timestamp = {timestamp}
+                                              setTimestamp = {setTimestamp}/>}</div>
         <div className = "flex-item">
         <Calendar createEvent = { createEvent } 
                   setCreateEvent = { setCreateEvent } 
