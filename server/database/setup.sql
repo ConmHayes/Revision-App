@@ -22,7 +22,9 @@ CREATE TABLE Notes(
     note VARCHAR(255) NOT NULL,
     topic VARCHAR(255) NOT NULL,
     datePosted TIMESTAMP NOT NULL,
-    PRIMARY KEY (note_id)
+    users_id INT NOT NULL,
+    PRIMARY KEY (note_id),
+    FOREIGN KEY (users_id) REFERENCES users(users_id)
 );
 
 INSERT INTO Notes (note, topic, datePosted)
