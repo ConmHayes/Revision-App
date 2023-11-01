@@ -21,8 +21,10 @@ const showNote = async (req,res) => {
 }
 
 const createNote = async (req, res) => {
+    const token = req.headers["authorization"]
+
     try{
-        const note = await Notes.createNote(req.body)
+        const note = await Notes.createNote(req.body, token)
         res.status(200).json(note)
 
     }catch (err){
