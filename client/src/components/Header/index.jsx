@@ -5,6 +5,9 @@ import { NavLink, Outlet } from "react-router-dom";
 const styles = ({ isActive }) => ({ fontWeight: isActive ? "bold" : "medium" });
 
 export default function Header() {
+  function handleClick(){
+    localStorage.clear()
+  }
   return (
     <>
       <header>
@@ -20,7 +23,7 @@ export default function Header() {
           <NavLink to="/notes" style={styles}>
             Notes
           </NavLink>
-          <NavLink to="/login" style={styles}>
+          <NavLink to="/login" style={styles} onClick={handleClick}>
             {" "}
             Logout
           </NavLink>
