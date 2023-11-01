@@ -48,8 +48,7 @@ class Notes {
     }
   }
 
-  static async createNote(data) {
-    const token = req.headers["authorization"]
+  static async createNote(data, token) {
     try {
       const user = await User.getOneByToken(token)
       const { note, topic, dateposted } = data
