@@ -23,9 +23,6 @@ const showNote = async (req,res) => {
 
 const createNote = async (req, res) => {
     const token = req.headers["authorization"]
-    console.log("Hello")
-
-    console.log(`token ${token}`)
 
     try{
         const note = await Notes.createNote(req.body, token)
@@ -63,6 +60,7 @@ const showNotesByDate = async (req, res) => {
         const data = req.body
         const token = req.headers["authorization"]
         const notes = await Notes.getAllByDate(data, token)
+        console.log(notes)
         res.status(200).json(notes)
 
     }catch(err){
