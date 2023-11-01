@@ -52,4 +52,16 @@ const deleteNote = async (req, res) => {
     }
 }
 
-module.exports = { index, showNote, createNote, updateNote, deleteNote }
+const showNotesByDate = async (req, res) => {
+    try{
+        const data = req.body
+        const notes = await Notes.getAllByDate(data)
+        res.status(200).json(notes)
+
+    }catch(err){
+        res.status(400).json({error: err.message})
+
+    }
+}
+
+module.exports = { index, showNote, createNote, updateNote, deleteNote, showNotesByDate }

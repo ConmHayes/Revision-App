@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 
 
 export default function UsernameForm({
-  username,
-  setUsername,
-  password,
-  setPassword,
   inputUn,
   setInputUn,
   inputPw,
   setInputPw,
+  button_Text,
+  setButtonText
 }) {
+  
   
 
   function handleInputUN(e) {
@@ -23,13 +22,65 @@ export default function UsernameForm({
 
   async function handleSubmit(e) {
     e.preventDefault();
+    let response; let data;
+    
+    if (button_Text === "Create Account"){
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: inputUn,
+          password: inputPw
+        }),
+      }
+      response = await fetch("https://time-table-server.onrender.com/register", options)
+      data = response.json()
+    }
+    else if (button_Text === "Login"){
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: inputUn,
+          password: inputPw
+        }),
+      }
+      response = await fetch("https://time-table-server.onrender.com/login", options)
+      data = await response.json()
+      console.log(data.token)
+    }
+    if (response.status == 200 || response.status == 201){
+      localStorage.setItem("token", data.token)
+      window.location.replace("http://localhost:5173/")
+    }else{
+      alert(data.error)
+    }
     console.log("Hi")
 
-    setUsername(inputUn);
-    setPassword(inputPw);
+    
 
   }
+  /*
+  function buttonText(){
+    if (document.body.classList.contains("login-page")){
+      console.log("true1")
+      return "Login"
+    }else if (document.body.classList.contains("signup-page")){
+      console.log("true2")
+      return "Create Account"
+    }
+  }
+  useEffect(() =>{
+    setButtonText(buttonText())
 
+  }, [])
+  */
   function revealPassword() {
     const x = document.getElementById("password");
     if (x.type === "password") {
@@ -40,7 +91,7 @@ export default function UsernameForm({
   }
 
   return (
-    <form id="login">
+    <form id="login" onSubmit={handleSubmit}>
       <label htmlFor="username" className="input-label">
         <i className="material-icons ikon" style = {{color: "#3C7F72"}}>person</i>
         <input
@@ -70,8 +121,8 @@ export default function UsernameForm({
           onClick={revealPassword}
         />
       </label> Show Password
-      <button className="loginButton" type="submit" onSubmit={handleSubmit}>
-        Login
+      <button className="loginButton" type="submit">
+      {button_Text}
       </button>
     </form>
   );

@@ -10,7 +10,7 @@ class Notes {
   }
 
   static async getAll() {
-    const response = await db.query("SELECT * FROM Notes;")
+    const response = await db.query("SELECT * FROM Notes ORDER BY datePosted;")
     try {
       if (response.rows.length === 0) {
           throw new Error("No Notes available")
@@ -29,6 +29,20 @@ class Notes {
       }
       return new Notes(response.rows[0])
     } catch (err) { 
+      throw new Error(err.message)
+    }
+  }
+  static async getAllByDate(data){
+    try{
+      const { datePosted } = data
+      const response = await db.query("SELECT * FROM Notes WHERE datePosted = $1", [datePosted])
+      if (response.rows.length == 0){
+        throw new Error("No notes for that day yet")
+      }
+      return new Notes(response.rows[0])
+
+
+    }catch(err){
       throw new Error(err.message)
     }
   }
