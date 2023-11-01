@@ -53,7 +53,7 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
     return (
         <div className = "flexbox-container tall-form" style = {{height: "570px"}}>
             <div className="flexbox-header">
-                {tempData}
+                CREATE NOTE: {tempData}
             </div>
             <form id = "Note" onSubmit={handleCreate}>
             <div className= "flex-options">

@@ -40,14 +40,13 @@ class Notes {
       const query = "SELECT * FROM Notes WHERE datePosted = $1 AND users_id = $2"
       const user = await User.getOneByToken(token)
       const values = [dateposted, user.users_id]
-      console.log(user, dateposted)
 
       const response = await db.query(query, values)
-
+      console.log(response.rows)
       if (response.rows.length == 0){
         return {note: "No notes for that date yet", topic: "N/A", dateposted: dateposted}
       }
-      return new Notes(response.rows[0])
+      return response.rows.map(note => new Notes(note))
 
 
     }catch(err){
