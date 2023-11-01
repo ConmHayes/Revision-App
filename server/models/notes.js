@@ -51,8 +51,9 @@ class Notes {
   static async createNote(data, token) {
     try {
       const user = await User.getOneByToken(token)
+      console.log(user)
       const { note, topic, dateposted } = data
-      const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, user])
+      const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, user.users_id])
       return new Notes(response.rows[0])
     } catch(err){ 
       throw new Error(err.message)
