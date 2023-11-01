@@ -3,9 +3,9 @@ import React from "react";
 export default function TimetableCard({ timetable }) {
   return (
     <div className="timetable-card">
-      <h2>{timetable.title}</h2>
+      <h2>{timetable.subject}</h2>
       <p>{timetable.description}</p>
-      {/* Add other timetable information as needed */}
+      <p>Date: {timetable.date}</p>
     </div>
   );
 }

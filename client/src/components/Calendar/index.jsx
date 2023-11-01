@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar"
 
 
-export default function schedule( ) {
+export default function schedule( {createEvent, setCreateEvent, tempData, setTempData}) {
   const [today, setToday] = useState("");
   const [date, setDate] = useState(new Date())
-
+  
   function dateReturn(d, m, y){
     const months = [
       "January",
@@ -54,6 +54,8 @@ export default function schedule( ) {
       dateString: selectedDate,
     }
     console.log(selectedDate)
+    setCreateEvent(true)
+    setTempData(selectedDate)
 
   }
   useEffect(() => {
@@ -68,7 +70,7 @@ export default function schedule( ) {
         <Calendar onChange = { setDate } value = { date } onClickDay={logi}/>
       </div>
       <p className = "text-center">
-        <span className = "bold"> { today }</span>
+        <span className = "bold" > { today }</span>
       </p>
     </div>
     

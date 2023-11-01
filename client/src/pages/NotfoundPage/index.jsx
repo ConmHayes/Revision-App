@@ -1,3 +1,7 @@
+import React from "react";
+
 export default function NotfoundPage() {
-  return <h1>Not Found Page</h1>;
+  return (
+   <h1>Not Found Page</h1>
+  );
 }

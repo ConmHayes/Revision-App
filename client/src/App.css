@@ -189,7 +189,9 @@ footer {
   margin-top: -80px;
 
 }
-
+.bold{
+  font-family: 'Courier New', Courier, monospace;
+}
 .ikon{
   color: #3C7F72;
   background-color: #3C7F72;
@@ -292,22 +294,82 @@ footer {
   margin-bottom: 20px;
 }
 
-.circle {
-  width: 50px;
-  height: 50px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  border-radius: 25px;
+.tall-form{
+  height: 500px;
+  width: 500px;
+  border-radius: 8px;
+  border: 2px;
+  border-color: #3C7F72;
   background-color: transparent;
   text-align: center;
-  color: white;
-  transform: scale(1);
-  transition: opacity 0.4s, transform 0.4s;
+  flex-direction: column;
 }
 
-.circle :hover {
-  transform: scale(1.2);
+.flexbox-header{
+  height: 50px;
+  width: 95%;
+  border-bottom: 3px solid #3C7F72;
+  border-bottom-right-radius: 8px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-family: 'Courier New', Courier, monospace;
+  color: #3C7F72
+
 }
+
+
+.flexbox-form{
+  height: 400px;
+  position: relative;
+  top: 10px;
+  width: 95%;
+  
+
+}
+.flex-options{
+  font-family: 'Courier New', Courier, monospace;
+  position: relative;
+  top: 5px
+}
+
+.select-option{
+  background-color: #3C7F72;
+  font-family: 'Courier New', Courier, monospace;
+
+}
+.button-box{
+  display: flex;
+  position: relative;
+  top: 70px;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.form-button{
+  width: 45%;
+  background-color: #3C7F72;
+  color: whitesmoke;
+  border-radius: 80px;
+
+  
+}
+
+.form-button:hover{
+  scale: 1.1;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+.event-input{
+  height: 450px;
+  background-color: #fff2d4;
+  width: 480px;
+  font-family: 'Courier New', Courier, monospace;
+  resize: none;
+  border-radius: 8px;
+  border-color: #3C7F72;
+}
+
 
 .pwicon {
   padding-right: 25px;
@@ -322,7 +384,7 @@ footer {
 }
 
 .dropdown-item:hover {
-  background-color: #444; 
+  background-color: #3C7F72; 
   color: lightgreen; 
 }
 
