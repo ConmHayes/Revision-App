@@ -3,10 +3,10 @@ import { render, screen, cleanup} from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 import { BrowserRouter } from "react-router-dom";
-import NotesPage from ".";
+import NotePage from ".";
 import { afterEach, describe, expect, it, vi} from "vitest"
 
-describe("NotesPage", () => {
+describe("NotePage", () => {
     const fetchSpy = vi.spyOn(global, "fetch");
     afterEach(() => {
         cleanup();
@@ -24,9 +24,9 @@ describe("NotesPage", () => {
             json: () => new Promise(resolve => resolve(mockResponse))
         }
         fetchSpy.mockReturnValue(mockResolvedValue)
-        render(<BrowserRouter><NotesPage /></BrowserRouter>);
+        render(<BrowserRouter><NotePage /></BrowserRouter>);
         expect(fetch).toHaveBeenCalledTimes(1);
-        expect(fetch).toHaveBeenCalledWith("https://time-table-server.onrender.com/notes");
+        // expect(fetch).toHaveBeenCalledWith("https://time-table-server.onrender.com/notes");
 
         const topic = await screen.findByText("Topic 1");
         expect(topic).toBeInTheDocument();

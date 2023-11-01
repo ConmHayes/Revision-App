@@ -4,10 +4,10 @@ import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 import { BrowserRouter } from "react-router-dom";
 
-import NotePage from "./NotePage"; 
-import { afterEach, describe, it, vi } from "vitest";
+import NotesPage from "."; 
+import { afterEach, describe, expect, it, vi } from "vitest";
 
-describe("NotePage", () => {
+describe("NotesPage", () => {
 
   const fetchSpy = vi.spyOn(global, "fetch");
   afterEach(() => {
@@ -17,6 +17,7 @@ describe("NotePage", () => {
 
 
   it("fetch note", async () => {
+    
     const mockResponse = {
       "note_id": 1,
       "note": "This is the note text 1",
@@ -31,10 +32,14 @@ describe("NotePage", () => {
    
     render(
       <BrowserRouter>
-        <NotePage />
+        <NotesPage />
       </BrowserRouter>
     );
 
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledWith(
+      "https://time-table-server.onrender.com/notes"
+    );
    
     const topic = await screen.findByText("Topic 1");
     expect(topic).toBeInTheDocument();
@@ -43,11 +48,6 @@ describe("NotePage", () => {
     const noteText = await screen.findByText("This is the note text 1");
     expect(noteText).toBeInTheDocument();
 
-  
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith(
-      "https://time-table-server.onrender.com/notes/1"
-    );
 
   });
 });
