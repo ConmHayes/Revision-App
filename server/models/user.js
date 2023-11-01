@@ -5,6 +5,8 @@ class User {
         this.users_id = users_id;
         this.username = username;
         this.password = password;
+        this.lastLoggedIn = lastLoggedIn
+        this.streak = streak
     }
 
     static async checkUsername (username){
@@ -14,6 +16,24 @@ class User {
         }
         return new User(response.rows[0])
     }
+
+    static async checkStreak (username) {
+        const response = await db.query("SELECT Streak, lastLoggedIn FROM users WHERE username = $1;", [username])
+        if (response.rows.length != 1){
+            throw new Error("Unable to locate user!")
+        }
+        return new User(response.rows[0])
+    }
+
+    static async updateStreak (username) {
+        const response = await db.query('UPDATE users SET lastLoggedIn CURRENT_TIMESTAMP, streak = streak + 1 WHERE username = $1 RETURNING *;', [username])
+        if (response.rows.length != 1){
+            throw new Error("Unable to locate user!")
+        }
+        return new User(response.rows[0])
+    }
+
+
 
     static async create(data) {
         try{
