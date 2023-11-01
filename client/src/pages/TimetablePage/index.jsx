@@ -9,9 +9,7 @@ export default function TimetablePage() {
   useEffect(() => {
     const fetchTimetable = async () => {
       try {
-        const response = await fetch(
-          `https://time-table-app.onrender.com/timetables/${id}`
-        );
+        const response = await fetch(`http://localhost:5173/timetables/${id}`);
         const data = await response.json();
         console.log(data);
         setTimetable(data);

@@ -3,15 +3,18 @@ import { render, screen, cleanup } from "@testing-library/react";
 import * as matchers from "@testing-library/jest-dom/matchers";
 expect.extend(matchers);
 import { BrowserRouter } from "react-router-dom";
+
 import NotePage from "./NotePage"; 
 import { afterEach, describe, it, vi } from "vitest";
 
 describe("NotePage", () => {
+
   const fetchSpy = vi.spyOn(global, "fetch");
   afterEach(() => {
     cleanup();
     fetchSpy.mockRestore();
   });
+
 
   it("fetch note", async () => {
     const mockResponse = {
@@ -45,5 +48,6 @@ describe("NotePage", () => {
     expect(fetch).toHaveBeenCalledWith(
       "https://time-table-server.onrender.com/notes/1"
     );
+
   });
 });

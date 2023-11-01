@@ -53,4 +53,109 @@ describe('user controller', () => {
         })
 
     })
+
+    describe ('logIn', () =>{
+        it ('should log in user, create a token, and return status 200', async ()=>{
+            const mockReq = {
+                body: {
+                    username: "existingUsername",
+                    password: "matchingPassword"
+                }
+            }
+
+            const userData = {
+                users_id:1,
+                username: "existingUsername",
+                password: "correctPasswordHashed"
+            }
+
+            const tokenData = {
+                token: "token test"
+            }
+
+            jest.spyOn(User,'checkUsername').mockResolvedValue(userData)
+            jest.spyOn(bcrypt, 'compare').mockResolvedValue(true)
+            jest.spyOn(Token, 'getByUser').mockResolvedValue({destroyToken: jest.fn()}) 
+            jest.spyOn(Token, 'create').mockResolvedValue(tokenData)
+
+            await userController.logIn(mockReq, mockRes)
+
+            expect(User.checkUsername).toHaveBeenCalledWith('existingUsername')
+            expect(bcrypt.compare).toHaveBeenCalledWith(mockReq.body.password, userData.password)
+            expect(Token.getByUser).toHaveBeenCalledWith(userData.users_id)
+            expect(mockStatus).toHaveBeenCalledWith(200)
+            expect(mockJson).toHaveBeenCalledWith({token: tokenData.token})
+
+        })
+
+        it('should identify incorrect password and return status 401', async () =>{
+            const mockReq = {
+                body:{
+                    username:'existingUsername',
+                    password:'incorrectPassword'
+                }
+            }
+
+            const userData = {
+                users_id:1,
+                username: 'existingUsername',
+                password: 'correctPasswordHashed'
+            }
+
+            jest.spyOn(User, 'checkUsername').mockResolvedValue(userData)
+            jest.spyOn(bcrypt, 'compare').mockResolvedValue(false)
+
+            await userController.logIn(mockReq, mockRes)
+
+            expect(User.checkUsername).toHaveBeenCalledWith(userData.username)
+            expect(bcrypt.compare).toHaveBeenCalledWith(mockReq.body.password, userData.password)
+            expect(mockStatus).toHaveBeenCalledWith(401)
+            expect(mockJson).toHaveBeenCalledWith({error: 'Username and password does not match'})
+        })
+
+       it ('should identify incorrect username and return status 401', async () =>{
+            const mockReq = {
+                body:{
+                    username: 'incorrectUser',
+                    password: 'correctPassword'
+                }
+            }
+
+            jest.spyOn(User, 'checkUsername').mockRejectedValue(new Error('User not found'))
+
+            await userController.logIn(mockReq, mockRes)
+
+            expect(User.checkUsername).toHaveBeenCalledWith(mockReq.body.username)
+            expect(mockStatus).toHaveBeenCalledWith(401)
+            expect(mockJson).toHaveBeenCalledWith({error: 'User not found'})
+
+       }) 
+    })
+
+    describe ('logOut', () =>{
+        it('should log out user, destroy token and return a status 204', async() =>{
+            
+            const tokenInstance = new Token({token: 'token test'})
+
+            const mockReq = {
+                body: {
+            
+                    token: 'awyaacszcisvvrixxkjkzgrhxmligzfvtibr'
+                }
+                
+          }
+
+            jest.spyOn(Token, 'getOneByToken').mockResolvedValue(tokenInstance)
+            jest.spyOn(tokenInstance, 'destroyToken').mockResolvedValue({message: 'Token destroyed'})
+
+            await userController.logOut(mockReq, mockRes)
+
+            expect (Token.getOneByToken).toHaveBeenCalledTimes(1)
+            expect(Token.getOneByToken).toHaveBeenCalledWith(mockReq.body.token)
+
+            expect(mockStatus).toHaveBeenCalledWith(204)
+
+            expect(mockJson).toHaveBeenCalledWith({message: 'Token destroyed'})
+        })
+    })
 })
