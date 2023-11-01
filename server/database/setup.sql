@@ -2,8 +2,8 @@ DROP TABLE IF EXISTS Subjects;
 DROP TABLE IF EXISTS timetable;
 DROP TABLE IF EXISTS Notes;
 DROP TABLE IF EXISTS Token;
-DROP TABLE IF EXISTS Badges;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS Badges;
 
 CREATE TABLE Badges(
     badges_id INT GENERATED ALWAYS AS IDENTITY,
@@ -24,16 +24,16 @@ CREATE TABLE users(
     users_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(200) UNIQUE NOT NULL,
     password VARCHAR(200) NOT NULL,
-    lastLoggedIn TIMESTAMP NOT NULL,
+    lastLoggedIn TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     streak INT NOT NULL DEFAULT 1,
     PRIMARY KEY (users_id),
     FOREIGN KEY (streak) REFERENCES Badges(streak)
 );
 
-INSERT INTO users (username, password, lastLoggedIn)
+INSERT INTO users (username, password)
 VALUES
-('1','1', CURRENT_TIMESTAMP),
-('2','2', CURRENT_TIMESTAMP);
+('1','1'),
+('2','2');
 
 CREATE TABLE Notes(
     note_id INT GENERATED ALWAYS AS IDENTITY,
