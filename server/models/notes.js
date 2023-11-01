@@ -15,7 +15,7 @@ class Notes {
           throw new Error("No Notes available")
       }
       return response.rows.map(notes => new Notes(notes))
-    } catch {
+    } catch (err) {
       throw new Error(err.message)
   }
 }
@@ -24,10 +24,10 @@ class Notes {
     try {
       const response = await db.query("SELECT * FROM Notes WHERE note_id = $1;", [id])
       if (response.rows.length != 1) {
-          throw new Error("unable to find that note")
+          throw new Error("Unable to find that note")
       }
       return new Notes(response.rows[0])
-    } catch { 
+    } catch (err) { 
       throw new Error(err.message)
     }
   }
@@ -42,26 +42,27 @@ class Notes {
     } 
   }
 
-  static async updateNote(id, data) {
+  static async updateNote(note_id, data) {
     try {
-      const { description, category, rating } = data;
-      const response = await db.query('UPDATE Notes SET note = $1, topic = $2, datePosted = $3 WHERE note_id = $4 RETURNING *;', [description, category, rating, id])
+      const { note, topic, datePosted } = data;
+      const response = await db.query('UPDATE Notes SET note = $1, topic = $2, datePosted = $3 WHERE note_id = $4 RETURNING *;', [note, topic, datePosted, note_id])
       return new Notes(response.rows[0])
     } catch(err) {
       throw new Error(err.message)
     }
   }
+
   async deleteNote() {
-    try {
+    try{
       const response = await db.query('DELETE FROM Notes WHERE note_id = $1 RETURNING *;', [this.note_id]);
-      if (response.rows.length === 0) {
-          throw new Error("Unable to delete note.");
+      if (response.rows.length ===0){
+        return null
       }
-      return new Notes(response.rows[0])
-    } catch(err) {
-      throw new Error(err.message)
-    }    
+      return new Notes(response.rows[0])  
+  } catch (err){
+    throw new Error (err.message)
   }
+}
 }
 
 module.exports = Notes
