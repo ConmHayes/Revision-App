@@ -31,10 +31,10 @@ CREATE TABLE users(
     FOREIGN KEY (streak) REFERENCES Badges(streak)
 );
 
-INSERT INTO users (username, password, lastLoggedIn)
+INSERT INTO users (username, password)
 VALUES
-('1','1', CURRENT_TIMESTAMP),
-('2','2', CURRENT_TIMESTAMP);
+('1','1'),
+('2','2');
 
 CREATE TABLE Notes(
     note_id INT GENERATED ALWAYS AS IDENTITY,
