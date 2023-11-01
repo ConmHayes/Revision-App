@@ -27,6 +27,8 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
+                Authorization: localStorage.token,
+
             },
             body: JSON.stringify({
                 note: noteText,
