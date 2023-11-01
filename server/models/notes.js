@@ -1,4 +1,5 @@
 const db = require('../database/connect')
+const User = require("./user")
 
 class Notes {
   constructor({note_id, note, topic, dateposted, users_id}) {
@@ -48,9 +49,11 @@ class Notes {
   }
 
   static async createNote(data) {
+    const token = req.headers["authorization"]
     try {
-      const { note, topic, dateposted, users_id } = data
-      const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, users_id])
+      const user = await User.getOneByToken(token)
+      const { note, topic, dateposted } = data
+      const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, user])
       return new Notes(response.rows[0])
     } catch(err){ 
       throw new Error(err.message)
