@@ -22,6 +22,9 @@ const showNote = async (req,res) => {
 
 const createNote = async (req, res) => {
     const token = req.headers["authorization"]
+    console.log("Hello")
+
+    console.log(`token ${token}`)
 
     try{
         const note = await Notes.createNote(req.body, token)

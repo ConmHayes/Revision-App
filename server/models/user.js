@@ -37,6 +37,7 @@ class User {
 
     static async getOneById(id){
         const response = await db.query("SELECT * FROM user_account WHERE user_id = $1", [id])
+        console.log("HereNow")
         if (response.rows.length != 1){
             throw new Error("Unable to locate user")
         }
@@ -44,7 +45,9 @@ class User {
     }
 
     static async getOneByToken(token){
-        const responseToken = db.query("SELECT users_id FROM Token WHERE token = $1", [token])
+        console.log("WHat'sup")
+        const responseToken = await db.query("SELECT users_id FROM Token WHERE token = $1", [token])
+        console.log(responseToken)
         if (responseToken.rows.length != 1){
             throw new Error ("Unable to locate user")
         }
