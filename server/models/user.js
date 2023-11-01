@@ -5,40 +5,37 @@ class User {
         this.users_id = users_id;
         this.username = username;
         this.password = password;
-        this.lastLoggedIn = lastLoggedIn
-        this.streak = streak
     }
 
     static async checkUsername (username){
         const response = await db.query("SELECT * FROM users WHERE username = $1;", [username])
+
+
+        const today = new Date(); const y = today.getFullYear(); const m = today.getMonth(); const d = today.getDate()
+        console.log(response.rows[0].lastloggedin)
+        const LLI = response.rows[0].lastloggedin
+        const year = LLI.getUTCFullYear();
+        const month = (LLI.getUTCMonth() + 1).toString().padStart(2, '0');
+        const day = LLI.getUTCDate().toString().padStart(2, '0');
+
+        console.log(day, month, year)
+
+        console.log(new Date(LLI))
+        const workingDate = new Date(y, m, d)
+        const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
+    
+        console.log(today, SQLTimestamp)
+
         if (response.rows.length != 1){
             throw new Error("Unable to locate username!")
         }
         return new User(response.rows[0])
     }
 
-    static async checkStreak (username) {
-        const response = await db.query("SELECT Streak, lastLoggedIn FROM users WHERE username = $1;", [username])
-        if (response.rows.length != 1){
-            throw new Error("Unable to locate user!")
-        }
-        return new User(response.rows[0])
-    }
-
-    static async updateStreak (username) {
-        const response = await db.query('UPDATE users SET lastLoggedIn CURRENT_TIMESTAMP, streak = streak + 1 WHERE username = $1 RETURNING *;', [username])
-        if (response.rows.length != 1){
-            throw new Error("Unable to locate user!")
-        }
-        return new User(response.rows[0])
-    }
-
-
-
     static async create(data) {
         try{
         const {username, password} = data;
-
+            
         let response = await db.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING users_id;", [username, password]) 
 
         if (response.rows.length === 0) {
