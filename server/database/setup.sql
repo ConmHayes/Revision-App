@@ -1,7 +1,9 @@
 DROP TABLE IF EXISTS Subjects;
+DROP TABLE IF EXISTS timetable;
 DROP TABLE IF EXISTS Notes;
 DROP TABLE IF EXISTS Token;
 DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users(
     users_id INT GENERATED ALWAYS AS IDENTITY,
@@ -20,13 +22,15 @@ CREATE TABLE Notes(
     note VARCHAR(255) NOT NULL,
     topic VARCHAR(255) NOT NULL,
     datePosted TIMESTAMP NOT NULL,
-    PRIMARY KEY (note_id)
+    users_id INT NOT NULL,
+    PRIMARY KEY (note_id),
+    FOREIGN KEY (users_id) REFERENCES users(users_id)
 );
 
-INSERT INTO Notes (note, topic, datePosted)
+INSERT INTO Notes (note, topic, datePosted, users_id)
 VALUES
-('This is the note text 1', 'Topic 1', CURRENT_TIMESTAMP),
-('This is the note text 2', 'Topic 2', '2002-01-23 13:50:25.789');
+('This is the note text 1', 'Topic 1', CURRENT_TIMESTAMP, 1),
+('This is the note text 2', 'Topic 2', '2024-01-23 13:50:25.789', 2);
 
 
 CREATE TABLE Token(
@@ -39,8 +43,8 @@ CREATE TABLE Token(
 
 CREATE TABLE Subjects(
     subject_id INT GENERATED ALWAYS AS IDENTITY,
-    subjectName VARCHAR(255) NOT NULL,
-    subjectDescription VARCHAR(255) NOT NULL,
+    subjectname VARCHAR(255) NOT NULL,
+    subjectdescription VARCHAR(255) NOT NULL,
     note_id INT NOT NULL,
     users_id INT NOT NULL,
     PRIMARY KEY (subject_id),
@@ -48,7 +52,7 @@ CREATE TABLE Subjects(
     FOREIGN KEY (users_id) REFERENCES users(users_id)
 );
 
-INSERT INTO Subjects (subjectName, subjectDescription, note_id, users_id)
+INSERT INTO Subjects (subjectname, subjectdescription, note_id, users_id)
 VALUES
 ('Topic 1','This is my first subject',1,1),
 ('Topic 2','This is my second subject',2,1),

@@ -1,11 +1,12 @@
 const db = require('../database/connect')
 
 class Notes {
-  constructor({note_id, note, topic, datePosted}) {
+  constructor({note_id, note, topic, dateposted, users_id}) {
     this.note_id = note_id
     this.note = note
     this.topic = topic
-    this.datePosted = datePosted
+    this.dateposted = dateposted
+    this.users_id = users_id
   }
 
   static async getAll() {
@@ -48,9 +49,9 @@ class Notes {
 
   static async createNote(data) {
     try {
-      const {note, topic, datePosted} = data
-      const response = await db.query("INSERT INTO Notes (note, topic, datePosted) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, datePosted])
-      return new Notes(response.rows)
+      const { note, topic, dateposted, users_id } = data
+      const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, users_id])
+      return new Notes(response.rows[0])
     } catch(err){ 
       throw new Error(err.message)
     } 
@@ -58,8 +59,8 @@ class Notes {
 
   static async updateNote(note_id, data) {
     try {
-      const { note, topic, datePosted } = data;
-      const response = await db.query('UPDATE Notes SET note = $1, topic = $2, datePosted = $3 WHERE note_id = $4 RETURNING *;', [note, topic, datePosted, note_id])
+      const { note, topic, dateposted, users_id } = data;
+      const response = await db.query('UPDATE Notes SET note = $1, topic = $2, dateposted = $3 users_id = $4 WHERE note_id = $5 RETURNING *;', [note, topic, dateposted, users_id, note_id])
       return new Notes(response.rows[0])
     } catch(err) {
       throw new Error(err.message)
