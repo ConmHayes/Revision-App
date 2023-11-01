@@ -57,7 +57,7 @@ const logIn = async (req,res) => {
 
 const logOut = async (req,res) => {
     try {
-        const token = req.body.token
+        const token = req.headers["authorization"]
         const fullToken = await Token.getOneByToken(token)
         const result = fullToken.destroyToken()
         res.status(204).json(result)
@@ -66,4 +66,15 @@ const logOut = async (req,res) => {
     }
 }
 
-module.exports = { logIn, register, logOut}
+const findByToken = async (req, res) => {
+    try{
+        const token = req.headers["authorization"]
+        console.log(token)
+        const user = await User.getOneByToken(token)
+        res.status(201).json(user)
+    }catch(err){
+        res.status(404).json({error: err.message})
+    }
+}
+
+module.exports = { logIn, register, logOut, findByToken}
