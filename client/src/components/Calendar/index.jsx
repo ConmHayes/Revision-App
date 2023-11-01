@@ -6,7 +6,23 @@ import Calendar from "react-calendar"
 export default function schedule( {createEvent, setCreateEvent, tempData, setTempData, timestamp, setTimestamp}) {
   const [today, setToday] = useState("");
   const [date, setDate] = useState(new Date())
+  const [username, setUsername] = useState("")
   
+  async function getUsername(){
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization : localStorage.token,
+      },
+    }
+    const response = await fetch("https://time-table-server.onrender.com/token", options)
+    const data = await response.json()
+
+    console.log(data)
+  }
+
   function dateReturn(d, m, y){
     const months = [
       "January",
@@ -65,8 +81,9 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
   }
   useEffect(() => {
     getToday();
+    getUsername();
   }, []);
-
+  
 
   return (
     <div className = "app">
