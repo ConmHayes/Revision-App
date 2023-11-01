@@ -8,8 +8,8 @@ export default function NotesPage() {
     async function getNotes() {
       const res = await fetch(`https://time-table-server.onrender.com/notes`);
       if(res.ok) {
-      const notes = await res.json();
-      setNotes([notes])
+      const notesData = await res.json();
+      setNotes(notesData)
       }else{
         setNotes([])
       }
@@ -31,16 +31,18 @@ export default function NotesPage() {
 
   function displayNotes() {
     if (Array.isArray(notes)) {
-      return notes.map((note) => (
+      return (
+       notes.map((note) => (
         <div key={note.id}>
           <h1>{note.topic}</h1>
           <p>{note.note}</p>
-          <button onClick={() => deleteNote(note.id)}>Delete</button>
+          <button onClick={() => deleteNote(note.id)}>Delete Note</button>
         </div>
-      ));
+      ))
+      );
     } else {
-      return <p>No notes available.</p>;
-    }
+      return <p>No notes available.</p>
+    }    
   }
 
   return (

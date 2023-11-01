@@ -1,4 +1,5 @@
 const db = require('../database/connect')
+const User = require("./user")
 
 class Notes {
   constructor({note_id, note, topic, dateposted, users_id}) {
@@ -10,7 +11,7 @@ class Notes {
   }
 
   static async getAll() {
-    const response = await db.query("SELECT * FROM Notes;")
+    const response = await db.query("SELECT * FROM Notes ORDER BY datePosted;")
     try {
       if (response.rows.length === 0) {
           throw new Error("No Notes available")
@@ -32,11 +33,27 @@ class Notes {
       throw new Error(err.message)
     }
   }
+  static async getAllByDate(data){
+    try{
+      const { datePosted } = data
+      const response = await db.query("SELECT * FROM Notes WHERE datePosted = $1", [datePosted])
+      if (response.rows.length == 0){
+        throw new Error("No notes for that day yet")
+      }
+      return new Notes(response.rows[0])
 
-  static async createNote(data) {
+
+    }catch(err){
+      throw new Error(err.message)
+    }
+  }
+
+  static async createNote(data, token) {
     try {
-      const { note, topic, dateposted, users_id } = data
-      const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, users_id])
+      const user = await User.getOneByToken(token)
+      console.log(user)
+      const { note, topic, dateposted } = data
+      const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, user.users_id])
       return new Notes(response.rows[0])
     } catch(err){ 
       throw new Error(err.message)

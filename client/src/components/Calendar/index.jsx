@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar"
 
 
-export default function schedule( {createEvent, setCreateEvent, tempData, setTempData}) {
+export default function schedule( {createEvent, setCreateEvent, tempData, setTempData, timestamp, setTimestamp}) {
   const [today, setToday] = useState("");
   const [date, setDate] = useState(new Date())
   
@@ -35,6 +35,11 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     }
 
     const date = `${d}${suffix} ${months[m]} ${y}`;
+    const workingDate = new Date(y, m, d)
+    const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
+    console.log(SQLTimestamp)
+    setTimestamp(SQLTimestamp)
+
     return date
   }
 

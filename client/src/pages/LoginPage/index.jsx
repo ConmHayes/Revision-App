@@ -5,18 +5,16 @@ import { Link } from "react-router-dom";
 
 import "./style.css";
 
-localStorage.clear();
-//document.body.style.backgroundImage = "url(../assets/start.svg)"
-
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
   const [inputUn, setInputUn] = useState("Username");
   const [inputPw, setInputPw] = useState("Password");
-  const [password, setPassword] = useState("");
+  const [button_Text, setButtonText] = useState("Login")
 
   useEffect(() => {
     document.body.classList.add("login-page");
     document.body.classList.remove("home-page");
+    document.body.classList.remove("signup-page")
+
     return () => {
       document.body.classList.remove("login-page");
     };
@@ -30,14 +28,12 @@ export default function LoginPage() {
           <div className="login-array">
             <h2>Login</h2>
             <UsernameForm
-              username={username}
-              setUsername={setUsername}
-              password={password}
-              setPassword={setPassword}
               inputUn={inputUn}
               setInputUn={setInputUn}
               inputPw={inputPw}
               setInputPw={setInputPw}
+              button_Text={button_Text}
+              setButtonText={setButtonText}
             />
             <p>
               Don't have an account?{" "}

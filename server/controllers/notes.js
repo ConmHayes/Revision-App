@@ -21,8 +21,13 @@ const showNote = async (req,res) => {
 }
 
 const createNote = async (req, res) => {
+    const token = req.headers["authorization"]
+    console.log("Hello")
+
+    console.log(`token ${token}`)
+
     try{
-        const note = await Notes.createNote(req.body)
+        const note = await Notes.createNote(req.body, token)
         res.status(200).json(note)
 
     }catch (err){
@@ -52,4 +57,16 @@ const deleteNote = async (req, res) => {
     }
 }
 
-module.exports = { index, showNote, createNote, updateNote, deleteNote }
+const showNotesByDate = async (req, res) => {
+    try{
+        const data = req.body
+        const notes = await Notes.getAllByDate(data)
+        res.status(200).json(notes)
+
+    }catch(err){
+        res.status(400).json({error: err.message})
+
+    }
+}
+
+module.exports = { index, showNote, createNote, updateNote, deleteNote, showNotesByDate }

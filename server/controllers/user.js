@@ -14,8 +14,9 @@ const register = async (req,res) => {
         data.password = hash
 
         const result = await User.create(data)
+        const token = await Token.create(result.users_id)
 
-        res.status(201).send(result)
+        res.status(201).json({authenticated: true, token: token.token})
 
     } catch (err){
         res.status(401).json({error: err.message})
@@ -46,8 +47,7 @@ const logIn = async (req,res) => {
             }finally{
                 const token = await Token.create(user.users_id)
                 // Sending a response to the client 
-                res.status(200).json({token:
-                token.token})
+                res.status(200).json({authenticated: true, token: token.token})
             }
             }
     } catch (err){

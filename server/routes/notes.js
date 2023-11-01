@@ -7,5 +7,6 @@ notesRouter.get("/:id", notesController.showNote)
 notesRouter.post("/", notesController.createNote)
 notesRouter.patch("/:id", notesController.updateNote)
 notesRouter.delete("/:id", notesController.deleteNote)
+notesRouter.get("/dates", notesController.showNotesByDate)
 
 module.exports = notesRouter
