@@ -27,10 +27,10 @@ CREATE TABLE Notes(
     FOREIGN KEY (users_id) REFERENCES users(users_id)
 );
 
-INSERT INTO Notes (note, topic, datePosted)
+INSERT INTO Notes (note, topic, datePosted, users_id)
 VALUES
-('This is the note text 1', 'Topic 1', CURRENT_TIMESTAMP),
-('This is the note text 2', 'Topic 2', '2002-01-23 13:50:25.789');
+('This is the note text 1', 'Topic 1', CURRENT_TIMESTAMP, 1),
+('This is the note text 2', 'Topic 2', '2024-01-23 13:50:25.789', 2);
 
 
 CREATE TABLE Token(
