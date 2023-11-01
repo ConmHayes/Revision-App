@@ -7,3 +7,4 @@ export { default as TimetableCard } from "./TimetableCard";
 export { default as EmailForm } from "./EmailForm";
 export { default as SearchForm } from "./SearchForm";
 export { default as EventForm } from "./EventForm"
+export { default as NotesByDate } from "./NotesByDate"
