@@ -19,7 +19,7 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     }
     const response = await fetch("https://time-table-server.onrender.com/token", options)
     const data = await response.json()
-
+    setUsername(data.username)
     console.log(data)
   }
 
@@ -87,7 +87,7 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
 
   return (
     <div className = "app">
-      <h1 className = "text-center">Your Calendar</h1>
+      <h1 className = "text-center">{username}'s Calendar</h1>
       <div className = "calendar-container">
         <Calendar onChange = { setDate } value = { date } onClickDay={logi}/>
       </div>
