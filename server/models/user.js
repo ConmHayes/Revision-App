@@ -36,7 +36,7 @@ class User {
     }
 
     static async getOneById(id){
-        const response = await db.query("SELECT * FROM user_account WHERE user_id = $1", [id])
+        const response = await db.query("SELECT * FROM users WHERE user_id = $1", [id])
         console.log("HereNow")
         if (response.rows.length != 1){
             throw new Error("Unable to locate user")
