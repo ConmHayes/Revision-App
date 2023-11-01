@@ -6,10 +6,9 @@ export default function TimetablesPage() {
   const [tempData, setTempData] = useState("")
   const [events, setEvents] = useState({
     id: 1,
-    date: new Date(),
-    description: "Revise Battle of Trafalgar",
-    subject: "History",
-    revision: true
+    note: "Revise Battle of Trafalgar",
+    topic: "History",
+    datePosted: tempData
   })
 
 
