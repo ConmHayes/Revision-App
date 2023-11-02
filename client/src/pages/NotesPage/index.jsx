@@ -13,7 +13,9 @@ export default function NotesPage() {
   useEffect(() => {
     async function getNotes() {
       const token = localStorage.token
+      console.log(token)
       if (token) {
+        console.log(token)
         const options = {
           method: "GET",
           headers: {
