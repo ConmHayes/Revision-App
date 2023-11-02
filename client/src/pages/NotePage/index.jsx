@@ -25,7 +25,7 @@ export default function NotePage() {
         }
       }
       console.log(options)
-      const res = await fetch(`${localapi}/notes/${id}`, options);
+      const res = await fetch(`${apiURL}/notes/${id}`, options);
       console.log(res)
       const note = await res.json();
       
@@ -42,7 +42,7 @@ export default function NotePage() {
 
   async function deleteNote() {
     try {
-      const res = await fetch(`${localURL}/notes/${id}`, {
+      const res = await fetch(`${siteURL}}/notes/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
