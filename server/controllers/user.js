@@ -14,9 +14,8 @@ const register = async (req,res) => {
         data.password = hash
 
         const result = await User.create(data)
-        const token = await Token.create(result.users_id)
 
-        res.status(201).json({authenticated: true, token: token.token})
+        res.status(201).send(result)
 
     } catch (err){
         res.status(401).json({error: err.message})
@@ -31,23 +30,19 @@ const logIn = async (req,res) => {
         const user = await User.checkUsername(username)
         // Compare passwords using bcrypt 
         const legit = await bcrypt.compare(password, user.password)
-
-        // Checking if the password is correct
+        // Checking if the password is correct 
         if (!legit){
             throw new Error ("Username and password does not match")
         } else {
-
             try {
                 const prevToken = await Token.getByUser(user.users_id)
-
-                console.log(lastLoggedIn)
-
                 const result = await prevToken.destroyToken()
             } catch (err) {
             }finally{
                 const token = await Token.create(user.users_id)
                 // Sending a response to the client 
-                res.status(200).json({authenticated: true, token: token.token})
+                res.status(200).json({token:
+                token.token})
             }
             }
     } catch (err){
