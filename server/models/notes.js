@@ -23,9 +23,10 @@ class Notes {
   }
 }
 
-  static async getOneById(id) {
+  static async getOneById(id,token) {
     try {
-      const response = await db.query("SELECT * FROM Notes WHERE note_id = $1;", [id])
+      const user = await User.getOneByToken(token)
+      const response = await db.query("SELECT * FROM Notes WHERE note_id = $1 AND users_id = $2;", [id,user.users_id])
       if (response.rows.length != 1) {
           throw new Error("Unable to find that note")
       }
@@ -37,12 +38,9 @@ class Notes {
   static async getAllByDate(data, token){
     try{
       const { dateposted } = data
-      const query = "SELECT * FROM Notes WHERE datePosted = $1 AND users_id = $2"
       const user = await User.getOneByToken(token)
-      const values = [dateposted, user.users_id]
-
-      const response = await db.query(query, values)
-      console.log(response.rows)
+      const response = await db.query ("SELECT * FROM Notes WHERE datePosted = $1 AND users_id = $2", [dateposted, user.users_id])
+      
       if (response.rows.length == 0){
         return {note: "No notes for that date yet", topic: "N/A", dateposted: dateposted}
       }
@@ -57,7 +55,6 @@ class Notes {
   static async createNote(data, token) {
     try {
       const user = await User.getOneByToken(token)
-      console.log(user)
       const { note, topic, dateposted } = data
       const response = await db.query("INSERT INTO Notes (note, topic, dateposted, users_id) VALUES ($1,$2,$3,$4) RETURNING *;", [note, topic, dateposted, user.users_id])
       return new Notes(response.rows[0])
@@ -66,10 +63,11 @@ class Notes {
     } 
   }
 
-  static async updateNote(note_id, data) {
+  static async updateNote(note_id, data, token) {
     try {
+      const user = await User.getOneByToken(token)
       const { note, topic, dateposted, users_id } = data;
-      const response = await db.query('UPDATE Notes SET note = $1, topic = $2, dateposted = $3 users_id = $4 WHERE note_id = $5 RETURNING *;', [note, topic, dateposted, users_id, note_id])
+      const response = await db.query('UPDATE Notes SET note = $1, topic = $2, dateposted = $3 WHERE note_id = $4 AND users_id = $5  RETURNING *;', [note, topic, dateposted, note_id, user.users_id])
       return new Notes(response.rows[0])
     } catch(err) {
       throw new Error(err.message)

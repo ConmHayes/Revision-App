@@ -10,8 +10,8 @@ describe ('Notes model', () =>{
     describe('getAll', ()=> {
         it('resolves with notes on success', async () =>{
             jest.spyOn(db, 'query').mockResolvedValueOnce({
-                rows: [{note: 'sample note 1', topic:'sample topic 1', datePosted:'2023-10-30T12:00:00.000Z'}, 
-                {note: 'sample note 2', topic:'sample topic 2', datePosted:'2023-11-30T12:00:00.000Z'}
+                rows: [{note: 'sample note 1', topic:'sample topic 1', dateposted:'2023-10-30T12:00:00.000Z'}, 
+                {note: 'sample note 2', topic:'sample topic 2', dateposted:'2023-11-30T12:00:00.000Z'}
             ]
             })
 
@@ -40,7 +40,7 @@ describe ('Notes model', () =>{
                     note_id: 1,
                     note: 'Sample note 1',
                     topic: 'Sample topic 1',
-                    datePosted: '2023-10-30T12:00:00.000Z'
+                    dateposted: '2023-10-30T12:00:00.000Z'
 
                 }]
             })
@@ -50,7 +50,7 @@ describe ('Notes model', () =>{
             expect(notes).toHaveProperty('note_id', noteId)
             expect(notes).toHaveProperty('note', 'Sample note 1')
             expect(notes).toHaveProperty('topic', 'Sample topic 1')
-            expect(notes).toHaveProperty('datePosted', '2023-10-30T12:00:00.000Z')
+            expect(notes).toHaveProperty('dateposted', '2023-10-30T12:00:00.000Z')
         })
 
         it ('should throw an Error on database query error', async () =>{
@@ -59,7 +59,7 @@ describe ('Notes model', () =>{
                     note_id: 1,
                     note: 'Sample note 1',
                     topic: 'Sample topic 1',
-                    datePosted: '2023-10-30T12:00:00.000Z'
+                    dateposted: '2023-10-30T12:00:00.000Z'
 
                 }]
             })
@@ -80,7 +80,7 @@ describe ('Notes model', () =>{
                 note_id: 1,
                 note: 'Sample note 1',
                 topic: 'Sample topic 1',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             }
 
             jest.spyOn(db, 'query').mockResolvedValueOnce({
@@ -92,7 +92,7 @@ describe ('Notes model', () =>{
             expect(createdNote).toHaveProperty('note_id', newNote.note_id)
             expect(createdNote).toHaveProperty('note', newNote.note)
             expect(createdNote).toHaveProperty('topic', newNote.topic)
-            expect(createdNote).toHaveProperty('datePosted', newNote.datePosted)
+            expect(createdNote).toHaveProperty('dateposted', newNote.dateposted)
         })
 
         it ('should throw an Error on database query error', async () =>{
@@ -102,7 +102,7 @@ describe ('Notes model', () =>{
                 note_id: 1,
                 note: 'Sample note 1',
                 topic: 'Sample topic 1',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             }
 
             await expect(Notes.createNote(newNote)).rejects.toThrowError('Failed to create new note')
@@ -115,7 +115,7 @@ describe ('Notes model', () =>{
             const updatedNoteInput = {
                 note: 'Updated note 1',
                 topic: 'Updated topic 1',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             }
 
             jest.spyOn(db, 'query').mockResolvedValueOnce({
@@ -123,7 +123,7 @@ describe ('Notes model', () =>{
                     note_id: noteId,
                     note: updatedNoteInput.note,
                     topic: updatedNoteInput.topic,
-                    datePosted: updatedNoteInput.datePosted
+                    dateposted: updatedNoteInput.dateposted
                 }]
             })
 
@@ -132,7 +132,7 @@ describe ('Notes model', () =>{
             expect(updatedNote).toHaveProperty('note_id', noteId);
             expect(updatedNote).toHaveProperty('note', updatedNoteInput.note);
             expect(updatedNote).toHaveProperty('topic', updatedNoteInput.topic);
-            expect(updatedNote).toHaveProperty('datePosted', updatedNoteInput.datePosted);
+            expect(updatedNote).toHaveProperty('dateposted', updatedNoteInput.dateposted);
         })
         
         it ('should throw an Error on database query error', async () =>{
@@ -142,7 +142,7 @@ describe ('Notes model', () =>{
             const updatedNoteInput = {
                 note: 'Updated note 1',
                 topic: 'Updated topic 1',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             }
 
             await expect(Notes.updateNote(noteId, updatedNoteInput)).rejects.toThrowError('Failure to update note')
@@ -156,7 +156,7 @@ describe ('Notes model', () =>{
                 note_id: noteId,
                 note: 'Delete note test',
                 topic: 'Delete note topic',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             })
 
             jest.spyOn(db, 'query').mockResolvedValueOnce({
@@ -168,7 +168,25 @@ describe ('Notes model', () =>{
             expect(deletedNote).toHaveProperty('note_id', noteId);
             expect(deletedNote).toHaveProperty('note', 'Delete note test');
             expect(deletedNote).toHaveProperty('topic', 'Delete note topic');
-            expect(deletedNote).toHaveProperty('datePosted', '2023-10-30T12:00:00.000Z');
+            expect(deletedNote).toHaveProperty('dateposted', '2023-10-30T12:00:00.000Z');
+        })
+
+        it ('should thrown an error Error on database query error', async ()=>{
+
+            const noteId = 1
+            const deletedNoteInput = new Notes({
+                note_id: noteId,
+                note: 'Delete note test',
+                topic: 'Delete note topic',
+                dateposted: '2023-10-30T12:00:00.000Z'
+            })
+
+            jest.spyOn(db,'query').mockRejectedValueOnce(new Error('Failure to delete note'))
+
+            await expect(deletedNoteInput.deleteNote()).rejects.toThrowError('Failure to delete note')
+
+
+
         })
     })
 })
