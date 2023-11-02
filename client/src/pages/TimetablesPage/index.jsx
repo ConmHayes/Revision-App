@@ -5,7 +5,6 @@ import {
   NotesByDate,
 } from "../../components";
 import { useState, useEffect } from "react";
-import "./style.css";
 
 export default function TimetablesPage() {
   const [createEvent, setCreateEvent] = useState(false);
