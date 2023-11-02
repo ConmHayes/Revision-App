@@ -38,17 +38,20 @@ export default function NotesPage() {
         Authorization: localStorage.token
       },
     };
-    await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
-    const updatedNotes = notes.filter((note) => note.note_id !== id);
+
+    await fetch(`${apiURL}/notes/${id}`, options);
+    const updatedNotes = notes.filter((note) => note.id !== id);
+
     setNotes(updatedNotes);
   }
 
   function displayNotes() {
     if (Array.isArray(notes)) {
+      console.log(notes)
       return (
-       notes.map((note) => (
+       notes.map((note, i) => (
         <NoteCard 
-        key={note.note_id} 
+        key={i} 
         id={note.note_id} 
         topic={note.topic} 
         note={note.note} 

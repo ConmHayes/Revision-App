@@ -2,6 +2,10 @@ import React, {useState, useEffect} from "react";
 import { Link, useParams} from "react-router-dom";
 
 
+const apiURL = "https://time-table-server.onrender.com"
+const siteURL = "https://time-table-app.onrender.com/"
+const localURL = "http://localhost:5173/"
+const localapi = "http://localhost:3003"
 
 export default function NotePage() {
   const { id } = useParams();
@@ -11,7 +15,8 @@ export default function NotePage() {
   useEffect(() => { 
     async function loadNote() {
       try {
-      const res = await fetch(`https://time-table-server.onrender.com/notes/${id}`);
+      const res = await fetch(`${apiURL}/notes/${id}`);
+
       const note = await res.json();
       setNote(note);
       setLoading(false);
