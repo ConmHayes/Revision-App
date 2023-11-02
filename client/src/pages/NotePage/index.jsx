@@ -15,6 +15,12 @@ export default function NotePage() {
   useEffect(() => { 
     async function loadNote() {
       try {
+      const options = {
+        method: "GET",
+        Headers: {
+          Authorization: localStorage.token
+        }
+      }
       const res = await fetch(`${apiURL}/notes/${id}`);
 
       const note = await res.json();
