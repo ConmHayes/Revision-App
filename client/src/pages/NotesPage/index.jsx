@@ -32,7 +32,7 @@ export default function NotesPage() {
       },
     };
     await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
-    const updatedNotes = notes.filter((note) => note.id !== id);
+    const updatedNotes = notes.filter((note) => note.note_id !== id);
     setNotes(updatedNotes);
   }
 
@@ -41,11 +41,11 @@ export default function NotesPage() {
       return (
        notes.map((note) => (
         <NoteCard 
-        key={note.id} 
-        id={note.id} 
+        key={note.note_id} 
+        id={note.note_id} 
         topic={note.topic} 
         note={note.note} 
-        deleteNote={deleteNote} />
+        deleteNote={() => deleteNote(note.note_id)} />
        
       ))
       )

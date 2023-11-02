@@ -56,9 +56,11 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         return <li>TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>
     }
 
+   
+
     function multipleReturn(){
-        return notesDated.map((note, i) => {
-            <li key = {i}>TOPIC: {note.topic}<br></br>NOTE: {note.note}</li>})
+        console.log(notesDated)
+        return <li key = {notesDated.note_id}>TOPIC: {notesDated.topic}<br></br>NOTE: {notesDated.note}</li>
     }
 
 
