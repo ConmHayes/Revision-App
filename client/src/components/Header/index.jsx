@@ -26,7 +26,7 @@ export default function Header() {
           </NavLink>
           <NavLink
             className="yellow"
-            to="/login"
+            to="/"
             style={styles}
             onClick={handleClick}
           >
