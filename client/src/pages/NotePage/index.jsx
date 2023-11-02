@@ -17,17 +17,19 @@ export default function NotePage() {
       try {
       const options = {
         method: "GET",
-        Headers: {
+        headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
           Authorization: localStorage.token
 
         }
       }
-      const res = await fetch(`${siteURL}/notes/${id}`, options);
+      console.log(options)
+      const res = await fetch(`${apiURL}/notes/${id}`, options);
       console.log(res)
-
       const note = await res.json();
+      
+      console.log(note)
       setNote(note);
       setLoading(false);
       } catch (error) {
@@ -40,7 +42,7 @@ export default function NotePage() {
 
   async function deleteNote() {
     try {
-      const res = await fetch(`${siteURL}/notes/${id}`, {
+      const res = await fetch(`${siteURL}}/notes/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

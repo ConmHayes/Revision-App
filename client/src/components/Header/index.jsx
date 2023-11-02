@@ -14,7 +14,7 @@ export default function Header() {
       <header>
         <nav className="navbar">
           <img src="../../../logo.png" alt="logo" />
-          <NavLink className="white" to="/" style={styles}>
+          <NavLink className="white" to="/Home" style={styles}>
             {" "}
             🏡 Home{" "}
           </NavLink>
