@@ -9,7 +9,7 @@ export default function HomePage() {
   return (
     <div className="container">
       <h1 className="heading animate__animated animate__bounce">
-        Unleash Your Productivity
+        Stay Productivity
       </h1>
       {/* <span>Manage Your Schedule and Note Your Way to Success!</span> */}
       <ul className="notes-timetables">

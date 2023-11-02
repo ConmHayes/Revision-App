@@ -35,10 +35,13 @@ export default function NotesPage() {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: localStorage.token
       },
     };
+
     await fetch(`${apiURL}/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.id !== id);
+
     setNotes(updatedNotes);
   }
 
@@ -52,7 +55,7 @@ export default function NotesPage() {
         id={note.note_id} 
         topic={note.topic} 
         note={note.note} 
-        deleteNote={deleteNote} />
+        deleteNote={() => deleteNote(note.note_id)} />
        
       ))
       )
