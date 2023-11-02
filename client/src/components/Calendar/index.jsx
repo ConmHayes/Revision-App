@@ -2,6 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar"
 
+const apiURL = "https://time-table-server.onrender.com"
+const siteURL = "https://time-table-app.onrender.com/"
+const localURL = "http://localhost:5173/"
+const localapi = "http://localhost:3003"
 
 export default function schedule( {createEvent, setCreateEvent, tempData, setTempData, timestamp, setTimestamp}) {
   const [today, setToday] = useState("");
@@ -17,10 +21,9 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
         Authorization : localStorage.token,
       },
     }
-    const response = await fetch("https://time-table-server.onrender.com/token", options)
+    const response = await fetch(`${apiURL}/token`, options)
     const data = await response.json()
     setUsername(data.username)
-    console.log(data)
   }
 
   function dateReturn(d, m, y){
@@ -53,7 +56,6 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     const date = `${d}${suffix} ${months[m]} ${y}`;
     const workingDate = new Date(y, m, d)
     const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
-    console.log(SQLTimestamp)
     setTimestamp(SQLTimestamp)
 
     return date
@@ -74,7 +76,6 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     const data = {
       dateString: selectedDate,
     }
-    console.log(selectedDate)
     setCreateEvent(true)
     setTempData(selectedDate)
 

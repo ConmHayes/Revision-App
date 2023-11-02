@@ -5,26 +5,43 @@ class User {
         this.users_id = users_id;
         this.username = username;
         this.password = password;
+        this.lastLoggedIn = lastLoggedIn;
+        this.streak = streak;
     }
 
     static async checkUsername (username){
         const response = await db.query("SELECT * FROM users WHERE username = $1;", [username])
 
-
         const today = new Date(); const y = today.getFullYear(); const m = today.getMonth(); const d = today.getDate()
-        console.log(response.rows[0].lastloggedin)
         const LLI = response.rows[0].lastloggedin
+
         const year = LLI.getUTCFullYear();
-        const month = (LLI.getUTCMonth() + 1).toString().padStart(2, '0');
+        const month = (LLI.getUTCMonth()).toString().padStart(2, '0');
         const day = LLI.getUTCDate().toString().padStart(2, '0');
 
-        console.log(day, month, year)
-
-        console.log(new Date(LLI))
+        const lastLogIn = new Date(year, month, day)
         const workingDate = new Date(y, m, d)
-        const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
-    
-        console.log(today, SQLTimestamp)
+
+        const date_UTC = Date.UTC(workingDate.getUTCFullYear(), workingDate.getUTCMonth(), workingDate.getUTCDate(), 0, 0, 0)
+        const LLI_UTC = Date.UTC(lastLogIn.getUTCFullYear(), lastLogIn.getUTCMonth(), lastLogIn.getUTCDate(), 0, 0, 0)
+
+        
+        let newStreak = response.rows[0].streak
+        const newLLI = workingDate.toISOString().slice(0, 19).replace("T", " ")
+        const query = "UPDATE users SET streak = $1, lastloggedin = $2 WHERE username = $3 RETURNING *"
+
+        if((date_UTC - LLI_UTC) ==  86400000){
+            newStreak++
+            const values = [newStreak, newLLI, username]
+            const streakResponse = await db.query(query, values)
+        }else if((date_UTC - LLI_UTC) ==  0){
+            console.log("Same Day")
+        }else{
+            newStreak = 1
+            const values = [newStreak, newLLI, username]
+            const streakResponse = await db.query(query, values)
+        }
+        
 
         if (response.rows.length != 1){
             throw new Error("Unable to locate username!")
