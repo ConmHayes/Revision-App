@@ -48,8 +48,8 @@ export default function NotesPage() {
       return (
        notes.map((note) => (
         <NoteCard 
-        key={note.id} 
-        id={note.id} 
+        key={note.note_id} 
+        id={note.note_id} 
         topic={note.topic} 
         note={note.note} 
         deleteNote={deleteNote} />
