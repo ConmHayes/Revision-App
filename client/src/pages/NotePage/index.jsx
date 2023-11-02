@@ -17,13 +17,14 @@ export default function NotePage() {
       try {
       const options = {
         method: "GET",
-        Headers: {
+        headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          authorization: localStorage.token
+          Authorization: localStorage.token
 
         }
       }
+      console.log(options)
       const res = await fetch(`${localapi}/notes/${id}`, options);
       console.log(res)
       const note = await res.json();
