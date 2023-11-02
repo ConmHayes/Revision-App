@@ -21,7 +21,7 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
         Authorization : localStorage.token,
       },
     }
-    const response = await fetch(`${apiURL}/token`, options)
+    const response = await fetch(`${localapi}/token`, options)
     const data = await response.json()
     setUsername(data.username)
   }
