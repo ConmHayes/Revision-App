@@ -37,7 +37,9 @@ export default function UsernameForm({
         }),
       }
       response = await fetch("https://time-table-server.onrender.com/register", options)
-      data = response.json()
+      data = await response.json()
+
+      console.log(data)
     }
     else if (button_Text === "Login"){
       const options = {
@@ -55,9 +57,11 @@ export default function UsernameForm({
       data = await response.json()
       console.log(data.token)
     }
+    console.log(data.token)
+
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
-      window.location.replace("http://localhost:5173/")
+      window.location.replace("https://time-table-app.onrender.com/")
     }else{
       alert(data.error)
     }
@@ -66,21 +70,7 @@ export default function UsernameForm({
     
 
   }
-  /*
-  function buttonText(){
-    if (document.body.classList.contains("login-page")){
-      console.log("true1")
-      return "Login"
-    }else if (document.body.classList.contains("signup-page")){
-      console.log("true2")
-      return "Create Account"
-    }
-  }
-  useEffect(() =>{
-    setButtonText(buttonText())
 
-  }, [])
-  */
   function revealPassword() {
     const x = document.getElementById("password");
     if (x.type === "password") {

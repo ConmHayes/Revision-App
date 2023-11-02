@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 
 import "./style.css";
 
-localStorage.clear();
-//document.body.style.backgroundImage = "url(../assets/start.svg)"
-
 export default function LoginPage() {
   const [inputUn, setInputUn] = useState("Username");
   const [inputPw, setInputPw] = useState("Password");

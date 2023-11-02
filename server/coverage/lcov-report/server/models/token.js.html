@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">36.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/30</span>
+                <span class='fraction'>11/30</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">10% </span>
+                <span class="strong">36.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/30</span>
+                <span class='fraction'>11/30</span>
             </div>
         
             
@@ -148,22 +148,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,25 +223,25 @@
 const { v4: uuidv4 } = require("uuid");
 &nbsp;
 class Token {
-<span class="fstat-no" title="function not covered" >    co</span>nstructor({token_id, users_id, token})
+    constructor({token_id, users_id, token})
 &nbsp;
     {
-<span class="cstat-no" title="statement not covered" >        this.token_id = token_id</span>
-<span class="cstat-no" title="statement not covered" >        this.users_id = users_id</span>
-<span class="cstat-no" title="statement not covered" >        this.token = token</span>
+        this.token_id = token_id
+        this.users_id = users_id
+        this.token = token
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async create(users_id){
+    static async create(users_id){
         // UUID4 &gt; generates 36 character random string
-        const token = <span class="cstat-no" title="statement not covered" >uuidv4();</span>
+        const token = uuidv4();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        console.log("Users id &gt;");</span>
-<span class="cstat-no" title="statement not covered" >        console.log(users_id)</span>
+        console.log("Users id &gt;");
+        console.log(users_id)
         
-<span class="cstat-no" title="statement not covered" >        console.log("Entering SQL query")</span>
+        console.log("Entering SQL query")
 &nbsp;
         // Inserting the new token into the database for the corresponding user ID
-        const response = <span class="cstat-no" title="statement not covered" >await db.query("INSERT INTO token (users_id, token) VALUES ($1, $2) RETURNING token_id;",</span>
+        const response = await db.query("INSERT INTO token (users_id, token) VALUES ($1, $2) RETURNING token_id;",
             [users_id, token]);
 &nbsp;
         // Return the new information inserted into the table
@@ -286,8 +286,8 @@ class Token {
         }
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    st</span>atic async getByUser(user_id) {
-        const response = <span class="cstat-no" title="statement not covered" >await db.query("SELECT * FROM token WHERE users_id = $1", [user_id]);</span>
+<span class="fstat-no" title="function not covered" >    st</span>atic async getByUser(users_id) {
+        const response = <span class="cstat-no" title="statement not covered" >await db.query("SELECT * FROM token WHERE users_id = $1", [users_id]);</span>
 <span class="cstat-no" title="statement not covered" >        if (response.rows.length != 1) {</span>
 <span class="cstat-no" title="statement not covered" >            throw new Error("Unable to locate token.");</span>
         } else {
@@ -304,7 +304,7 @@ module.exports = Token</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-31T16:32:20.086Z
+                at 2023-11-01T22:13:40.753Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

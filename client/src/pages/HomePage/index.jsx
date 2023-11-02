@@ -4,6 +4,8 @@ export default function HomePage() {
   const linkStyle = {
     color: "white",
   };
+
+  const token = localStorage.getItem("token")
   return (
     <>
       <h1>Unleash Your Productivity</h1>

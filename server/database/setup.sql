@@ -3,13 +3,32 @@ DROP TABLE IF EXISTS timetable;
 DROP TABLE IF EXISTS Notes;
 DROP TABLE IF EXISTS Token;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS Badges;
 
+
+CREATE TABLE Badges(
+    badges_id INT GENERATED ALWAYS AS IDENTITY,
+    streak INT UNIQUE NOT NULL,
+    badge_link VARCHAR(200) NOT NULL,
+    PRIMARY KEY (badges_id)
+);
+
+INSERT INTO Badges (streak, badge_link)
+VALUES
+(1,'calendar-date-1.png'),
+(2,'calendar-date-2.png'),
+(3,'calendar-date-3.png'),
+(4,'calendar-date-4.png'),
+(5,'calendar-date-5.png');
 
 CREATE TABLE users(
     users_id INT GENERATED ALWAYS AS IDENTITY,
     username VARCHAR(200) UNIQUE NOT NULL,
     password VARCHAR(200) NOT NULL,
-    PRIMARY KEY (users_id)
+    lastLoggedIn TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    streak INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (users_id),
+    FOREIGN KEY (streak) REFERENCES Badges(streak)
 );
 
 INSERT INTO users (username, password)

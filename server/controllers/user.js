@@ -14,9 +14,10 @@ const register = async (req,res) => {
         data.password = hash
 
         const result = await User.create(data)
-        const token = await Token.create(result.id)
+        const token = await Token.create(result.users_id)
 
         res.status(201).json({authenticated: true, token: token.token})
+        res.status(201).send(result)
 
     } catch (err){
         res.status(401).json({error: err.message})
@@ -26,18 +27,15 @@ const register = async (req,res) => {
 const logIn = async (req,res) => {
     try{
         // Storing the data from req.body
-        const {username,password} = req.body
-
+        const {username,password,lastLoggedIn,streak} = req.body
         // Check if username exists 
         const user = await User.checkUsername(username)
         // Compare passwords using bcrypt 
         const legit = await bcrypt.compare(password, user.password)
-
-        // Checking if the password is correct
+        // Checking if the password is correct 
         if (!legit){
             throw new Error ("Username and password does not match")
         } else {
-
             try {
                 const prevToken = await Token.getByUser(user.users_id)
                 const result = await prevToken.destroyToken()
@@ -45,7 +43,8 @@ const logIn = async (req,res) => {
             }finally{
                 const token = await Token.create(user.users_id)
                 // Sending a response to the client 
-                res.status(200).json({authenticated: true, token: token.token})
+                res.status(200).json({token:
+                token.token})
             }
             }
     } catch (err){
@@ -55,7 +54,7 @@ const logIn = async (req,res) => {
 
 const logOut = async (req,res) => {
     try {
-        const token = req.body.token
+        const token = req.headers["authorization"]
         const fullToken = await Token.getOneByToken(token)
         const result = fullToken.destroyToken()
         res.status(204).json(result)
@@ -64,4 +63,15 @@ const logOut = async (req,res) => {
     }
 }
 
-module.exports = { logIn, register, logOut}
+const findByToken = async (req, res) => {
+    try{
+        const token = req.headers["authorization"]
+        console.log(token)
+        const user = await User.getOneByToken(token)
+        res.status(201).json(user)
+    }catch(err){
+        res.status(404).json({error: err.message})
+    }
+}
+
+module.exports = { logIn, register, logOut, findByToken}
