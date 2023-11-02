@@ -89,12 +89,11 @@ describe('api server', ()=> {
             .expect(200,done)
     })
 
-
+    it('responds to DELETE /notes/:id with a 200', (done) =>{
+        request (api)
+        .delete('/notes/1')
+        .set('authorization', 'tokenTest1')
+        .expect(200,done)
+    })
 
 })
-
-
-
-
-
-// notesRouter.post("/", notesController.createNote)

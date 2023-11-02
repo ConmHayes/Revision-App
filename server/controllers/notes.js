@@ -47,9 +47,10 @@ const updateNote = async (req, res) => {
 
 const deleteNote = async (req, res) => {
     try{
+        const token = req.headers["authorization"]
         const id = req.params.id
-        const note = await Notes.getOneById(id)
-        const result = await note.deleteNote()
+        const note = await Notes.getOneById(id, token)
+        const result = await note.deleteNote(token)
         res.status(200).json(result)
     }catch(err){
         res.status(404).json({error:err.message})
