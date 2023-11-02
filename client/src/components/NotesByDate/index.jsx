@@ -68,16 +68,12 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 console.log("whoops")
                 return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
 
-            }else{
-                return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
+   
 
-            }
-        }else{
-        return notesDated.map((note, i) => (
-            <Link to = {`${siteURL}/notes/${note.note_id}`} key = {i}><li className="listed-note">
-                TOPIC: {note.topic}<br></br>NOTE: {note.note}
-            </li></Link>))
-        }
+    function multipleReturn(){
+        console.log(notesDated)
+        return <li key = {notesDated.note_id}>TOPIC: {notesDated.topic}<br></br>NOTE: {notesDated.note}</li>
+
     }
 
     //useEffect(() => {
