@@ -11,19 +11,28 @@ export default function NotesPage() {
 
   useEffect(() => {
     async function getNotes() {
-      const options = {
-        method: "GET",
-        headers: {
-          Authorization: localStorage.token,
-        },
-      };
-      const res = await fetch(`${apiURL}/notes`, options);
-      console.log(res);
-      if (res.ok) {
-        const notesData = await res.json();
-        setNotes(notesData);
+
+      const token = localStorage.token
+      console.log(token)
+      if (token) {
+        console.log(token)
+        const options = {
+          method: "GET",
+          headers: {
+            Authorization: localStorage.token
+          }
+        }
+        const res = await fetch("https://time-table-server.onrender.com/notes", options);
+        console.log(res)
+        if(res.ok) {
+          const notesData = await res.json();
+          setNotes(notesData)
+        }else{
+          setNotes([])
+        }
       } else {
-        setNotes([]);
+        console.log('sad')
+
       }
     }
     getNotes();
@@ -34,24 +43,32 @@ export default function NotesPage() {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: localStorage.token
       },
     };
+
     await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.note_id !== id);
+
     setNotes(updatedNotes);
   }
 
   function displayNotes() {
     if (Array.isArray(notes)) {
-      return notes.map((note) => (
-        <NoteCard
-          key={note.note_id}
-          id={note.note_id}
-          topic={note.topic}
-          note={note.note}
-          deleteNote={() => deleteNote(note.note_id)}
-        />
-      ));
+
+      console.log(notes)
+      return (
+       notes.map((note, i) => (
+        <NoteCard 
+        key={i} 
+        id={note.note_id} 
+        topic={note.topic} 
+        note={note.note} 
+        deleteNote={() => deleteNote(note.note_id)} />
+       
+      ))
+      )
+
     } else {
       return <p>No notes available.</p>;
     }

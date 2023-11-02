@@ -21,13 +21,13 @@ describe('notes controller', () => {
                   note_id: 1,
                   note: 'Sample note 1',
                   topic: 'Topic 1',
-                  datePosted: '2023-10-30T12:00:00.000Z'
+                  dateposted: '2023-10-30T12:00:00.000Z'
                 },
                 {
                   note_id: 2,
                   note: 'Sample note 2',
                   topic: 'Topic 2',
-                  datePosted: '2023-10-30T13:00:00.000Z'
+                  dateposted: '2023-10-30T13:00:00.000Z'
                 }
               ];
               
@@ -59,7 +59,7 @@ describe('notes controller', () => {
                 note_id: noteId,
                 note: 'Test Note',
                 topic: 'Test topic',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             }
             // spyon basically gets the getOneById in the Notes.
             jest.spyOn(Notes, 'getOneById').mockResolvedValue(testNote);
@@ -98,7 +98,7 @@ describe('notes controller', () => {
             const reqBody = {
                 note: 'test note',
                 topic: 'test topic',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             }
 
             const createdNote = {
@@ -122,7 +122,7 @@ describe('notes controller', () => {
             const reqBody = {
                 note: 'test note',
                 topic: 'test topic',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             }
 
             const err = 'Failure to create note'
@@ -146,7 +146,7 @@ describe('notes controller', () => {
             const reqBody = {
                 note: 'Update note test',
                 topic: 'Update topic test',
-                datePosted: '2023-10-30T14:00:00.000Z'
+                dateposted: '2023-10-30T14:00:00.000Z'
             }
 
             const updatedNote = {
@@ -171,7 +171,7 @@ describe('notes controller', () => {
             const reqBody = {
                 note: 'Update note test',
                 topic: 'Updated topic test',
-                datePosted: '2023-10-30T14:00:00.000Z'
+                dateposted: '2023-10-30T14:00:00.000Z'
             }
 
             const err = 'Failed to update note';
@@ -198,7 +198,7 @@ describe('notes controller', () => {
                 note_id: noteId,
                 note: 'deleted note',
                 topic: 'deleted note',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             })
 
             jest.spyOn(Notes, 'getOneById').mockResolvedValue(deletedNote)
@@ -222,7 +222,7 @@ describe('notes controller', () => {
                 note_id: noteId,
                 note: 'deleted note',
                 topic: 'deleted note',
-                datePosted: '2023-10-30T12:00:00.000Z'
+                dateposted: '2023-10-30T12:00:00.000Z'
             })
 
             const err = 'Failed to delete note'
