@@ -10,8 +10,9 @@ class Notes {
     this.users_id = users_id
   }
 
-  static async getAll() {
-    const response = await db.query("SELECT * FROM Notes ORDER BY datePosted;")
+  static async getAll(token) {
+    const user = await User.getOneByToken(token).users_id
+    const response = await db.query("SELECT * FROM Notes WHERE users_id = $1 ORDER BY datePosted;", [user])
     try {
       if (response.rows.length === 0) {
           throw new Error("No Notes available")
@@ -33,14 +34,19 @@ class Notes {
       throw new Error(err.message)
     }
   }
-  static async getAllByDate(data){
+  static async getAllByDate(data, token){
     try{
-      const { datePosted } = data
-      const response = await db.query("SELECT * FROM Notes WHERE datePosted = $1", [datePosted])
+      const { dateposted } = data
+      const query = "SELECT * FROM Notes WHERE datePosted = $1 AND users_id = $2"
+      const user = await User.getOneByToken(token)
+      const values = [dateposted, user.users_id]
+
+      const response = await db.query(query, values)
+      console.log(response.rows)
       if (response.rows.length == 0){
-        throw new Error("No notes for that day yet")
+        return {note: "No notes for that date yet", topic: "N/A", dateposted: dateposted}
       }
-      return new Notes(response.rows[0])
+      return response.rows.map(note => new Notes(note))
 
 
     }catch(err){
