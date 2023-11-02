@@ -20,14 +20,15 @@ export default function NotePage() {
         Headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: localStorage.token
+          authorization: localStorage.token
 
         }
       }
-      const res = await fetch(`${localURL}/notes/${id}`, options);
+      const res = await fetch(`${localapi}/notes/${id}`, options);
       console.log(res)
-
       const note = await res.json();
+      
+      console.log(note)
       setNote(note);
       setLoading(false);
       } catch (error) {

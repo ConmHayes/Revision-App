@@ -64,7 +64,7 @@ export default function UsernameForm({
 
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
-      window.location.replace(`${localURL}home`)
+      window.location.replace(`home`)
     }else{
       alert(data.error)
     }

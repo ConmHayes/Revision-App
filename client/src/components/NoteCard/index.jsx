@@ -15,7 +15,7 @@ export default function NoteCard({ id, topic, note, deleteNote }) {
 
     return (
         <div>
-            <h3><Link to={`${localURL}notes/${id}`} >{note}</Link></h3>
+            <h3><Link to={`${id}`} >{note}</Link></h3>
             <h1>{topic}</h1>
             <p>{note}</p>
 

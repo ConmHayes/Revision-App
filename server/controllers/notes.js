@@ -14,6 +14,7 @@ const showNote = async (req,res) => {
     try{
         const id = req.params.id
         const token = req.headers["authorization"]
+        console.log(`ShowNote Token: ${token}`)
         const note = await Notes.getOneById(id,token)
         res.status(200).json(note)
 
