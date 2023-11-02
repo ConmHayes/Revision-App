@@ -67,7 +67,9 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
             if (notesDated.note == "No notes for that date yet"){
                 console.log("whoops")
                 return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
-
+            }
+        }
+    }
    
 
     function multipleReturn(){
@@ -97,7 +99,3 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         </div>
     )
 }
-
-/*
- : 
-*/
