@@ -39,10 +39,9 @@ export default function UsernameForm({
           password: inputPw
         }),
       }
-      response = await fetch(`${apiURL}/register`, options)
+      response = await fetch(`${localapi}/register`, options)
       data = await response.json()
 
-      console.log(data)
     }
     else if (button_Text === "Login"){
       const options = {
@@ -56,17 +55,14 @@ export default function UsernameForm({
           password: inputPw
         }),
       }
-      response = await fetch(`${apiURL}/login`, options)
+      response = await fetch(`${localapi}/login`, options)
       data = await response.json()
-      console.log(data.token)
     }
     console.log(data.token)
 
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
-
-      window.location.replace(`${siteURL}home`)
-
+      window.location.replace(`${localURL}home`)
     }else{
       alert(data.error)
     }

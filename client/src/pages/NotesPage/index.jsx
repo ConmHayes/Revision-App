@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NoteCard } from "../../components";
+import LoginPage from "../LoginPage";
 
 const apiURL = "https://time-table-server.onrender.com";
 const siteURL = "https://time-table-app.onrender.com/";
@@ -10,6 +11,19 @@ export default function NotesPage() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
+    document.body.classList.add("notes-page");
+    document.body.classList.remove("home-page");
+    document.body.classList.remove("signup-page");
+    document.body.classList.remove("login-page")
+
+    return () => {
+      document.body.classList.remove("notes-page");
+    };
+  }, []);
+
+
+
+  useEffect(() => {
     async function getNotes() {
         const options = {
           method: "GET",
@@ -17,7 +31,7 @@ export default function NotesPage() {
             Authorization: localStorage.token
           }
         }
-        const res = await fetch(`${apiURL}/notes`, options);
+        const res = await fetch(`${localapi}/notes`, options);
         console.log(res)
         if(res.ok) {
           const notesData = await res.json();
@@ -38,7 +52,7 @@ export default function NotesPage() {
       },
     };
 
-    await fetch(`${apiURL}/notes/${id}`, options);
+    await fetch(`${localapi}/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.note_id !== id);
 
     setNotes(updatedNotes);

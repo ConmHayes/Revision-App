@@ -4,6 +4,16 @@ import { Routes, Route } from "react-router-dom";
 import { Header, Footer } from "./components";
 
 function App() {
+
+    // Create a separate layout component with the Header
+  function LayoutWithHeader({ children }) {
+    return (
+      <div>
+        <Header />
+        {children}
+      </div>
+    );
+  }
   return (
     <div>
       <Routes>
@@ -12,7 +22,6 @@ function App() {
         {/* Create a layout for the rest of the routes that includes the Header */}
         <Route element={<LayoutWithHeader />}>
           <Route path = "home" element={<Pages.HomePage />} />
-
           <Route path="timetables">
             <Route index element={<Pages.TimetablesPage />} />
             <Route path=":id" element={<Pages.TimetablePage />} />
@@ -27,14 +36,6 @@ function App() {
   );
 }
 
-// Create a separate layout component with the Header
-function LayoutWithHeader({ children }) {
-  return (
-    <div>
-      <Header />
-      {children}
-    </div>
-  );
-}
+
 
 export default App;
