@@ -11,7 +11,7 @@ class User {
 
     static async checkUsername (username){
         const response = await db.query("SELECT * FROM users WHERE username = $1;", [username])
-     
+
         const today = new Date(); const y = today.getFullYear(); const m = today.getMonth(); const d = today.getDate()
         const LLI = response.rows[0].lastloggedin
 
@@ -21,15 +21,15 @@ class User {
 
         const lastLogIn = new Date(year, month, day)
         const workingDate = new Date(y, m, d)
-        console.log(workingDate, lastLogIn)
 
         const date_UTC = Date.UTC(workingDate.getUTCFullYear(), workingDate.getUTCMonth(), workingDate.getUTCDate(), 0, 0, 0)
         const LLI_UTC = Date.UTC(lastLogIn.getUTCFullYear(), lastLogIn.getUTCMonth(), lastLogIn.getUTCDate(), 0, 0, 0)
 
-        console.log(date_UTC - LLI_UTC)
+        
         let newStreak = response.rows[0].streak
         const newLLI = workingDate.toISOString().slice(0, 19).replace("T", " ")
         const query = "UPDATE users SET streak = $1, lastloggedin = $2 WHERE username = $3 RETURNING *"
+
         if((date_UTC - LLI_UTC) ==  86400000){
             newStreak++
             const values = [newStreak, newLLI, username]
@@ -42,6 +42,7 @@ class User {
             const streakResponse = await db.query(query, values)
         }
         
+
         if (response.rows.length != 1){
             throw new Error("Unable to locate username!")
         }
@@ -86,16 +87,7 @@ class User {
         return user
     }
 
-    static async updateStreak(username) {
-        try {
-          const response = await db.query('UPDATE users SET streak = streak + 1 WHERE username = $1 RETURNING *;', [username])
-          return new Notes(response.rows[0])
-        } catch(err) {
-          throw new Error(err.message)
-        }
-      }
-
-
+    
 }
 
 module.exports = User

@@ -23,8 +23,8 @@ export default function LoginPage() {
   return (
     <>
       <div className="flexbox-container">
-        <div className="flexbox-item flexbox-image-login"></div>
-        <div className="flexbox-item flexbox-login-array">
+        <div className="flexbox-item-login flexbox-image-login"></div>
+        <div className="flexbox-item-login flexbox-login-array">
           <div className="login-array">
             <h2>Login</h2>
             <UsernameForm
