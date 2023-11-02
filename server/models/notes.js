@@ -11,7 +11,7 @@ class Notes {
   }
 
   static async getAll(token) {
-    const user = await User.getOneByToken(token).users_id
+    const user = await User.getOneByToken(token)
     const response = await db.query("SELECT * FROM Notes WHERE users_id = $1 ORDER BY datePosted;", [user])
     try {
       if (response.rows.length === 0) {

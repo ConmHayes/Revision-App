@@ -1,6 +1,11 @@
 const request = require('supertest');
 const app = require('../../app');
 
+const User = require('../../')
+const userController = require('../../')
+ 
+const Token = require('../../models/token')
+
 
 describe('api server', ()=> {
     let api
@@ -31,7 +36,7 @@ describe('api server', ()=> {
         request (api)
             .post('/notes')
             .send({
-                
+
             })
             .expect(200,done)
     })
