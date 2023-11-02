@@ -17,7 +17,7 @@ const register = async (req,res) => {
         const token = await Token.create(result.users_id)
 
         res.status(201).json({authenticated: true, token: token.token})
-        res.status(201).send(result)
+        // res.status(201).send(result)
 
     } catch (err){
         res.status(401).json({error: err.message})
@@ -58,7 +58,7 @@ const logOut = async (req,res) => {
     try {
         const token = req.headers["authorization"]
         const fullToken = await Token.getOneByToken(token)
-        const result = fullToken.destroyToken()
+        const result = await fullToken.destroyToken()
         res.status(204).json(result)
     } catch (err) {
         res.status(404).json({error: err.message})

@@ -18,6 +18,7 @@ export default function NoteCard({ id, topic, note, deleteNote }) {
             <h3><Link to={`${siteURL}notes/${id}`} >{note}</Link></h3>
             <h1>{topic}</h1>
             <p>{note}</p>
+
             <button onClick={handleDelete}>Delete</button>
             <Link to="/notes">Back</Link>
         </div>

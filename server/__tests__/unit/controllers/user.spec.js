@@ -52,6 +52,27 @@ describe('user controller', () => {
 
         })
 
+        it ('should handle errors and return a status code 401 with an error message', async () =>{
+            const mockReq = {
+                body: {
+                username: "newUser",
+                password: "newPassword"}
+            }
+
+            jest.spyOn(bcrypt, 'genSalt').mockRejectedValue(new Error ("Bcrypt error"))
+
+            await userController.register(mockReq,mockRes)
+
+            expect(bcrypt.genSalt).toHaveBeenCalledWith(parseInt(process.env.BCRYPT_SALT_ROUNDS))
+
+            expect(bcrypt.hash).not.toHaveBeenCalled()
+            expect(User.create).not.toHaveBeenCalled()
+
+            expect(mockStatus).toHaveBeenCalledWith(401)
+            expect(mockJson).toHaveBeenCalledWith({error: "Bcrypt error"})
+
+        })
+
     })
 
     describe ('logIn', () =>{
@@ -135,27 +156,55 @@ describe('user controller', () => {
     describe ('logOut', () =>{
         it('should log out user, destroy token and return a status 204', async() =>{
             
-            const tokenInstance = new Token({token: 'token test'})
+            const tokenSet = 'awyaacszcisvvrixxkjkzgrhxmligzfvtibr'
+            const tokenInstance = new Token({
+                token_id: 1,
+                users_id:1,
+                token: tokenSet
+            })
 
-            const mockReq = {
-                body: {
-            
-                    token: 'awyaacszcisvvrixxkjkzgrhxmligzfvtibr'
-                }
-                
-          }
+            const mockReq = {body:{token:tokenSet}}
+
 
             jest.spyOn(Token, 'getOneByToken').mockResolvedValue(tokenInstance)
-            jest.spyOn(tokenInstance, 'destroyToken').mockResolvedValue({message: 'Token destroyed'})
+            jest.spyOn(tokenInstance, 'destroyToken').mockResolvedValue({message:'Token destroyed'})
 
             await userController.logOut(mockReq, mockRes)
 
             expect (Token.getOneByToken).toHaveBeenCalledTimes(1)
-            expect(Token.getOneByToken).toHaveBeenCalledWith(mockReq.body.token)
+            expect(Token.getOneByToken).toHaveBeenCalledWith(tokenSet)
+            expect(tokenInstance.destroyToken).toHaveBeenCalledTimes(1)
 
             expect(mockStatus).toHaveBeenCalledWith(204)
 
-            expect(mockJson).toHaveBeenCalledWith({message: 'Token destroyed'})
+            expect(mockJson).toHaveBeenCalledWith({message:'Token destroyed'})
+        })
+
+        it ('should handle errors and return status code 404', async () =>{
+            const tokenSet = 'awyaacszcisvvrixxkjkzgrhxmligzfvtibr'
+
+            const tokenInstance = new Token({
+                token_id: 1,
+                users_id:1,
+                token: tokenSet
+            })
+
+            const mockReq = {body:{token:tokenSet}}
+
+            jest.spyOn(Token, 'getOneByToken').mockResolvedValue(tokenInstance)
+            jest.spyOn(tokenInstance, 'destroyToken').mockRejectedValue(new Error("Failed to delete token"))
+
+
+            await userController.logOut(mockReq, mockRes)
+
+            expect(Token.getOneByToken).toHaveBeenCalledTimes(1)
+            expect(Token.getOneByToken).toHaveBeenCalledWith(tokenSet)
+
+            expect(mockStatus).toHaveBeenCalledWith(404)
+            expect(mockJson).toHaveBeenCalledWith({error: "Failed to delete token"})
+
         })
     })
+
+
 })
