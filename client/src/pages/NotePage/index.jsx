@@ -18,7 +18,7 @@ export default function NotePage() {
       const options = {
         method: "GET",
         Headers: {
-          Authorization: localStorage.token
+          authorization: localStorage.token
         }
       }
       const res = await fetch(`${apiURL}/notes/${id}`, options);
