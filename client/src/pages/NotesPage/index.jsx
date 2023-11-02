@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
-import {NoteCard} from "../../components";
+import { NoteCard } from "../../components";
 
-const apiURL = "https://time-table-server.onrender.com"
-const siteURL = "https://time-table-app.onrender.com/"
-const localURL = "http://localhost:5173/"
-const localapi = "http://localhost:3003"
-
+const apiURL = "https://time-table-server.onrender.com";
+const siteURL = "https://time-table-app.onrender.com/";
+const localURL = "http://localhost:5173/";
+const localapi = "http://localhost:3003";
 
 export default function NotesPage() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     async function getNotes() {
-      const options = {
-        method: "GET",
-        headers: {
-          Authorization: localStorage.token
+        const options = {
+          method: "GET",
+          headers: {
+            Authorization: localStorage.token
+          }
         }
-      }
-      const res = await fetch(`${apiURL}/notes`, options);
-      console.log(res)
-      if(res.ok) {
-      const notesData = await res.json();
-      setNotes(notesData)
-      }else{
-        setNotes([])
-      }
+        const res = await fetch(`${apiURL}/notes`, options);
+        console.log(res)
+        if(res.ok) {
+          const notesData = await res.json();
+          setNotes(notesData)
+        }else{
+          setNotes([])
+        }
     }
     getNotes();
   }, []);
@@ -35,19 +34,24 @@ export default function NotesPage() {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: localStorage.token
       },
     };
-    await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
+
+    await fetch(`${apiURL}/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.note_id !== id);
+
     setNotes(updatedNotes);
   }
 
   function displayNotes() {
     if (Array.isArray(notes)) {
+
+      console.log(notes)
       return (
-       notes.map((note) => (
+       notes.map((note, i) => (
         <NoteCard 
-        key={note.note_id} 
+        key={i} 
         id={note.note_id} 
         topic={note.topic} 
         note={note.note} 
@@ -55,71 +59,16 @@ export default function NotesPage() {
        
       ))
       )
+
     } else {
-      return <p>No notes available.</p>
+      return <p>No notes available.</p>;
     }
-       
   }
 
   return (
     <>
-      <h1>Notes Page</h1>
+      <h1>Notes</h1>
       <div>{displayNotes()}</div>
     </>
   );
 }
-
-
-// import React, { useEffect, useState } from "react";
-
-
-// export default function NotesPage() {
-//   const [notes, setNotes] = useState([]);
-
-//   useEffect(() => { 
-//     async function getNotes() {
-//       const res = await fetch(`https://time-table-server.onrender.com/notes`);
-//       const notes = await res.json();
-//       setNotes(notes);
-//     }
-//     getNotes();
-//   }, []);
-
-//   function displayNotes() {
-//     return notes.map((note) => {
-//       return (
-//         <div key={note.id}>
-//           <h1>{note.topic}</h1>
-//           <p>{note.note}</p>          
-//           <button onClick={deleteNote}>Delete</button>
-//         </div>
-//       );
-//     });
-//   }
-
-//   async function deleteNote(id) {
-//     const options = {
-//       method: "DELETE",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     };
-//     await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
-//     const updatedNotes = notes.filter((note) => note.id !== id);
-//     setNotes(updatedNotes);
-    
-//   } 
-
-
-  
-//   return (
-//   <>
-
-
-//   <h1>Notes Page</h1>
-//   <div>{displayNotes()}</div>
-//   </>
-
-//   );
-// }
-

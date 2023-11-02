@@ -5,6 +5,12 @@ import { Link } from "react-router-dom";
 
 import "./style.css";
 
+const apiURL = "https://time-table-server.onrender.com"
+const siteURL = "https://time-table-app.onrender.com/"
+const localURL = "http://localhost:5173/"
+const localapi = "http://localhost:3003"
+
+
 export default function LoginPage() {
   const [inputUn, setInputUn] = useState("Username");
   const [inputPw, setInputPw] = useState("Password");
@@ -38,7 +44,7 @@ export default function LoginPage() {
             <p>
               Don't have an account?{" "}
               <Link
-                to="/signup"
+                to={`/signup`}
                 className="inline-link"
                 style={{ color: "#3C7F72" }}
               >
