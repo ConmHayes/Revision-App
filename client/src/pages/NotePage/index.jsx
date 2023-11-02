@@ -21,7 +21,7 @@ export default function NotePage() {
           Authorization: localStorage.token
         }
       }
-      const res = await fetch(`${apiURL}/notes/${id}`);
+      const res = await fetch(`${apiURL}/notes/${id}`, options);
 
       const note = await res.json();
       setNote(note);
