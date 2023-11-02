@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1698961402127" clover="3.2.0">
-  <project timestamp="1698961402127" name="All files">
-    <metrics statements="279" coveredstatements="223" conditionals="36" coveredconditionals="15" methods="34" coveredmethods="25" elements="349" coveredelements="263" complexity="0" loc="279" ncloc="279" packages="6" files="11" classes="11"/>
+<coverage generated="1698962013196" clover="3.2.0">
+  <project timestamp="1698962013197" name="All files">
+    <metrics statements="271" coveredstatements="221" conditionals="36" coveredconditionals="15" methods="33" coveredmethods="25" elements="340" coveredelements="261" complexity="0" loc="271" ncloc="271" packages="6" files="11" classes="11"/>
     <package name="server">
       <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="C:\Users\Constantinos\OneDrive\LA_FOSSE\Week_9\PROJECT\Revision-App\server\app.js">
@@ -20,7 +20,7 @@
       </file>
     </package>
     <package name="server.controllers">
-      <metrics statements="84" coveredstatements="77" conditionals="2" coveredconditionals="2" methods="10" coveredmethods="9"/>
+      <metrics statements="77" coveredstatements="76" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="9"/>
       <file name="notes.js" path="C:\Users\Constantinos\OneDrive\LA_FOSSE\Week_9\PROJECT\Revision-App\server\controllers\notes.js">
         <metrics statements="43" coveredstatements="42" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
         <line num="1" count="2" type="stmt"/>
@@ -68,7 +68,7 @@
         <line num="73" count="2" type="stmt"/>
       </file>
       <file name="user.js" path="C:\Users\Constantinos\OneDrive\LA_FOSSE\Week_9\PROJECT\Revision-App\server\controllers\user.js">
-        <metrics statements="41" coveredstatements="35" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+        <metrics statements="34" coveredstatements="34" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -102,14 +102,7 @@
         <line num="61" count="2" type="stmt"/>
         <line num="62" count="1" type="stmt"/>
         <line num="64" count="1" type="stmt"/>
-        <line num="68" count="2" type="stmt"/>
-        <line num="69" count="0" type="stmt"/>
-        <line num="70" count="0" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="72" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="75" count="0" type="stmt"/>
-        <line num="80" count="2" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
       </file>
     </package>
     <package name="server.database">
@@ -304,7 +297,7 @@
       </file>
     </package>
     <package name="server.routes">
-      <metrics statements="20" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="19" coveredstatements="19" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="notes.js" path="C:\Users\Constantinos\OneDrive\LA_FOSSE\Week_9\PROJECT\Revision-App\server\routes\notes.js">
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -319,7 +312,7 @@
         <line num="12" count="1" type="stmt"/>
       </file>
       <file name="user.js" path="C:\Users\Constantinos\OneDrive\LA_FOSSE\Week_9\PROJECT\Revision-App\server\routes\user.js">
-        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -328,7 +321,6 @@
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
       </file>
     </package>
