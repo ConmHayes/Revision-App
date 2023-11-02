@@ -40,9 +40,9 @@ const logIn = async (req,res) => {
         const m = today.getMonth() 
         const d = today.getDate()
 
-        const year = LLI.getUTCFullYear();
-        const month = (LLI.getUTCMonth() + 1).toString().padStart(2, '0');
-        const day = LLI.getUTCDate().toString().padStart(2, '0');
+        // const year = LLI.getUTCFullYear();
+        // const month = (LLI.getUTCMonth() + 1).toString().padStart(2, '0');
+        // const day = LLI.getUTCDate().toString().padStart(2, '0');
 
         // console.log(day, month, year)
 
