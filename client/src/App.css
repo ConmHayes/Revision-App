@@ -1,6 +1,16 @@
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Jost&display=swap");
 
+/* General Styles */
+body {
+  font-family: "Jost", sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff2d4;
+}
+
 h1 {
   color: #3c7f72;
   font-size: 30px;
@@ -10,65 +20,37 @@ h1 {
   font-weight: bold;
 }
 
-body.loginPage {
-  background-image: url("../src/assets/start.svg");
-  background-size: cover;
-  background-position: center;
-  /* Other styles for the login page */
-}
-
-/* Your existing .navbar class */
 .navbar {
-  color: #3c7f72;
-  background-color: #ff724b;
+  background-color: #3c7f72;
+  color: #fffbed;
 }
 
-/* Style for the links within the navbar */
 .navbar a {
-  color: #3c7f72;
   font-weight: bold;
+  font-size: large;
+  padding-right: 30px;
+  text-decoration: none;
+  color: #fffbed;
 }
 
-/* Link Styles */
+.navbar a:hover {
+  text-decoration: none;
+  color: #ff724b;
+  font-weight: bolder;
+}
+
+/* Page-Specific Styles */
+.yellow {
+  color: #ffcb2f; /* Color for Home and Logout links */
+}
+
+.white {
+  color: #fffbed; /* Color for Login link */
+}
+
 .link {
   color: #ff724b;
   text-decoration: none;
-}
-.navbar li {
-  margin: 0 30px;
-}
-
-body {
-  /*background-image: url("./assets/start.svg");*/
-  background-size: cover;
-  min-height: 100%;
-  font-family: "Jost", sans-serif;
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-}
-
-footer {
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.input-label {
-  position: relative;
-  width: 100%;
-  color: #3C7F72 
-}
-
-.input-label i {
-  position: absolute;
-  left: 10px;
-  top: 35%;
-  line-height: 0;
-  color: #3C7F72
-;
-  font-size: 20px;
 }
 
 /* Container Styles */
@@ -78,49 +60,83 @@ footer {
   margin: 10px auto;
 }
 
-/* Flexbox and Layout Styles */
-.flexbox-image-login,
-.flexbox-login-array,
-.flexbox-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Update sizes and properties as needed */
+/* Footer Styles */
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
+/* Input Field Styles */
+.input-label {
+  position: relative;
+  width: 100%;
+  color: #3c7f72;
+}
 
-
-.logo {
-  line-height: 0px;
-  color: rgb(255, 255, 255);
+.input-label i {
+  position: absolute;
+  left: 10px;
+  top: 35%;
+  line-height: 0;
+  color: #3c7f72;
   font-size: 20px;
 }
 
-.navbar {
-  color: green;
-} 
-
- .mailInput::placeholder::before,
-.passwordInput::placeholder::before {
-  content: "\00a0";
+.Input,
+.passwordInput {
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #3c7f72;
+  margin-bottom: 20px;
+  color: #3c7f72;
 }
 
-.mailInput::placeholder::before {
-  content: "\f0e0";
+.passwordInput {
+  color: white;
 }
 
-.passwordInput::placeholder::before {
-  content: "\f023";
-}
-
-.container {
+.showPassword {
+  height: 20px;
+  width: 20px;
   position: relative;
-  width: 50%;
-  margin: 10px 700px;
+  top: 5px;
+  margin-bottom: 20px;
 }
 
-.inline-link{
-  color: #3C7F72
+/* Flexbox and Layout Styles */
+.flexbox-image-login,
+.flexbox-login-array,
+.flexbox-container,
+.flexbox-item,
+.login-array,
+.flexbox-form,
+.flexbox-header,
+.flexbox-header-left,
+.flexbox-form-list,
+.flex-options,
+.button-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexbox-image-login,
+.flexbox-login-array,
+.flexbox-login-array,
+.login-array,
+.flexbox-form,
+.flexbox-header,
+.flexbox-header-left,
+.flexbox-form-list,
+.flex-options {
+  position: relative;
 }
 
 .flexbox-item {
@@ -133,95 +149,21 @@ footer {
   justify-content: flex-end;
 }
 
-.logo {
-  height: 600px;
-  width: 600px;
-  max-width: 600px;
-  max-height: 600px;
-}
-
-/* Input Field Styles */
-
-.flexbox-image-login {
-  height: 600px;
-  width: 600px;
-  max-width: 600px;
-  max-height: 600px;
-}
-
-.Input,
-.passwordInput{
-  height: 50px;
-  width: 90%;
-  color: #3C7F72;
-}
-
-.flexbox-login-array {
-  width: 500px;
-  height: 600px;
-  margin-top: 25px;
-  max-width: 500px;
-  max-height: 600px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-
-}
-
-.flexbox-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-}
-
-.login-array {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  background: transparent;
-  color: #D34A24;
-  width: 500px;
-  height: 400px;
-  max-width: 500px;
-  max-height: 400px;
-  margin-top: -80px;
-
-}
-.bold{
-  font-family: 'Courier New', Courier, monospace;
-}
-.ikon{
-  color: #3C7F72;
-  background-color: #3C7F72;
-}
-
-.Input {
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  text-align: center;
-  width: 100%;
-  border-bottom: 1px solid #3C7F72;
-  margin-bottom: 20px;
-  color: #3C7F72
-  ;
+.container {
+  width: 50%;
+  margin: 10px auto;
 }
 
 /* Button Styles */
-.loginButton {
+.loginButton,
+.form-button {
   border-radius: 8px;
-  border-color: #fffbed;
   height: 40px;
   width: 100%;
   background-color: #fffbed;
-  color: #ff724b;
+  color: #3c7f72;
   border-bottom: 1px solid white;
   margin-bottom: 20px;
-  color: #3C7F72 ;
   justify-content: left;
 }
 
@@ -229,175 +171,18 @@ footer {
   color: transparent;
 }
 
-.custom-navbar .navbar-toggler-icon {
-  color: white;
+/* Other Miscellaneous Styles */
+.inline-link {
+  color: #3c7f72;
 }
 
-.custom-navbar .nav-link {
-  color: white; 
+.bold {
+  font-family: "Courier New", Courier, monospace;
 }
 
-::placeholder {
-  color: #3C7F72 ;
-}
-
-.loginButton {
-  border-radius: 8px;
-  border-color: white;
-  height: 40px;
-  width: 100%;
-  width: 100%;
-  background-color: #ffffff;
-  color: rgb(29, 113, 37);
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-/* Hover Effect on Icons */
-.ikon a:hover {
-  color: black;
-  background-color: #fffbed;
-  border-radius: 8px;
-}
-
-/* Hover Effect on Dropdown */
-.dropdown-item:hover {
-  background-color: #444;
-  color: #ffcb2f;
-}
-
-/* Reset Default Styles */
-* {
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  }
-
-.passwordInput {
-  font-weight: bold; 
-  font-size: 1.2rem;
-  padding: 10px; 
-  border: none; 
-  background-color: transparent; 
-  text-align: center;
-  width: 100%;
-  border-bottom: 1px solid white;
-  margin-bottom: 20px;
-  color: white;
-}
-
-.showPassword {
-  height: 20px;
-  width: 20px;
-  position: relative;
-  top: 5px;
-  margin-bottom: 20px;
-}
-
-.tall-form{
-  height: 500px;
-  width: 500px;
-  border-radius: 8px;
-  border: 2px;
-  border-color: #3C7F72;
-  background-color: transparent;
-  text-align: center;
-  flex-direction: column;
-}
-
-.flexbox-header{
-  height: 50px;
-  width: 95%;
-  border-bottom: 3px solid #3C7F72;
-  border-bottom-right-radius: 8px;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-family: 'Courier New', Courier, monospace;
-  color: #3C7F72
-
-}
-.flexbox-header-left{
-  height: 50px;
-  width: 95%;
-  border-bottom: 3px solid #3C7F72;
-  border-bottom-left-radius: 8px;
-  align-items: flex-end;
-  justify-content: flex-end;
-  font-family: 'Courier New', Courier, monospace;
-  color: #3C7F72
-
-}
-
-.flexbox-form{
-  height: 400px;
-  position: relative;
-  top: 10px;
-  width: 95%;
-}
-
-.flexbox-form-list{
-  height: 450px;
-  position: relative;
-  top: 10px;
-  width: 480px;
-
-  font-family: 'Courier New', Courier, monospace;
-  resize: none;
-  border-radius: 8px;
-  border-color: #3C7F72;
-  border: 4px solid #3C7F72
-
-}
-
-.flex-options{
-  font-family: 'Courier New', Courier, monospace;
-  position: relative;
-  top: 5px
-}
-
-.select-option{
-  background-color: #3C7F72;
-  font-family: 'Courier New', Courier, monospace;
-
-}
-.button-box{
-  display: flex;
-  position: relative;
-  top: 70px;
-  align-items: center;
-  justify-content: space-between;
-
-}
-
-.form-button{
-  width: 45%;
-  background-color: #3C7F72;
-  color: whitesmoke;
-  border-radius: 80px;
-
-  
-}
-
-.form-button:hover{
-  scale: 1.1;
-  opacity: 0.7;
-  transition: 0.5s;
-}
-.event-input{
-  height: 450px;
-  background-color: #fff2d4;
-  width: 480px;
-  font-family: 'Courier New', Courier, monospace;
-  resize: none;
-  border-radius: 8px;
-  border: 4px solid #3C7F72
-}
-
-
-.pwicon {
-  padding-right: 25px;
-  font-family: "FontAwesome";
-  content: "/f070";
+.ikon {
+  color: #3c7f72;
+  background-color: #3c7f72;
 }
 
 .welcomeHeader {
@@ -406,77 +191,7 @@ footer {
   padding-bottom: 20px;
 }
 
-.dropdown-item:hover {
-  background-color: #3C7F72; 
-  color: lightgreen; 
-}
-
-* {
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-body,
-html {
-  height: 100%;
-}
-
-body {
-  min-height: 100vh;
-  font-family: "Jost", sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  /* background-color: #fffbed */
-  background-color: #fff2d4;
-}
-
-.custom-navbar {
-  background: linear-gradient(
-    109.6deg,
-    rgb(255, 251, 237) 0%,
-    rgb(255, 203, 47) 20%,
-    rgb(211, 74, 36) 80%
-  );
-  color: #36454f;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
-  background-color: #ffcb2f;
-}
-
-li {
-  margin: 0 10px;
-}
-
-.link {
-  color: #36454f;
-  text-decoration: none;
-}
-
-/* Updated styles for the navbar links */
-.navbar {
-  background: linear-gradient(
-    109.6deg,
-    rgb(255, 251, 237) 0%,
-    rgb(253, 217, 109) 20%,
-    rgb(244, 196, 183) 80%
-  );
-}
-
-/* Font style for the notes and note */
+/* Specific Sections Styles */
 .notes-section h1,
 .note-section h1 {
   font-family: "Jost", sans-serif;
@@ -485,17 +200,8 @@ li {
   margin: 20px;
 }
 
-ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  background-color: #ff724b;
-  color: black;
-  border-radius: 50px;
-}
-
-.react-calendar { 
+/* Calendar Styles */
+.react-calendar {
   width: 400px;
   max-width: 100%;
   background-color: #fff;
@@ -504,7 +210,8 @@ ul {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
   font-family: "Courier New", Courier, monospace;
   line-height: 1.125em;
- }
+}
+
 .react-calendar--doubleView {
   width: 700px;
 }
@@ -519,356 +226,62 @@ ul {
   margin: 0.5em;
 }
 
-.react-calendar,
-.react-calendar *,
-.react-calendar *:before,
-.react-calendar *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+/* Responsive Calendar Styles */
+@media (max-width: 768px) {
+  .react-calendar {
+    width: 300px;
+  }
+
+  .react-calendar--doubleView {
+    width: 500px;
+  }
 }
 
-.react-calendar button {
-  margin: 0;
-  border: 0;
-  outline: none;
-}
-
-.react-calendar button:enabled:hover {
-  cursor: pointer;
-}
-
-.react-calendar__navigation {
+ul.notes-timetables {
   display: flex;
-  height: 44px;
-  margin-bottom: 1em;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  /* color: #d34a24; */
+  padding: 0;
 }
 
-.react-calendar__navigation button {
-  color: #d10000;
-  min-width: 44px;
-  background: none;
-  font-size: 16px;
-  margin-top: 8px;
- }
-
- .react-calendar__navigation button[disabled] {
-  background-color: #f0f0f0;
- }
-
-.react-calendar__navigation button:enabled:hover,
-.react-calendar__navigation button:enabled:focus {
- background-color: #f8f8fa;
+ul.notes-timetables li {
+  width: 400px;
+  height: 300px;
+  margin: 20px;
+  background-color: #ff724b;
+  border-radius: 50px;
+  /* box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 10px solid #ffcb2f;
+  outline: 10px solid #d34a24;
 }
 
-abbr[title] {
+/* ul.notes-timetables li a {
   text-decoration: none;
- }
+  color: #fffbed;
+  font-weight: bolder;
+  padding: 20px;
+} */
 
-.react-calendar__month-view__weekdays {
+/* Footer.css */
+
+.site-footer {
+  background-color: #3c7f72;
+  color: #fff;
   text-align: center;
-  text-transform: uppercase;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.75em;
-  font-weight: bold;
+  padding: 20px 0;
 }
 
-.react-calendar__month-view__weekdays__weekday {
-  padding: 0.5em;
-}
-
-.react-calendar__month-view__weekNumbers .react-calendar__tile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.75em;
-  font-weight: bold;
-}
-
-.react-calendar__month-view__days__day--weekend {
-  color: #d10000;
-}
-
-.react-calendar__month-view__days__day--neighboringMonth {
-  color: #757575;
-}
-
-.react-calendar__year-view .react-calendar__tile,
-.react-calendar__decade-view .react-calendar__tile,
-.react-calendar__century-view .react-calendar__tile {
-  padding: 2em 0.5em;
-}
-
-.react-calendar__tile {
-  max-width: 100%;
-  padding: 10px 6.6667px;
-  background: none;
-  text-align: center;
-  line-height: 16px;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.833em;
-}
-
-.react-calendar__tile:disabled {
-  background-color: #f0f0f0;
-}
-
-.react-calendar__tile:enabled:hover,
-.react-calendar__tile:enabled:focus {
- background-color: #d10000;
- color: whitesmoke;
- border-radius: 6px;
-}
-
-.react-calendar__tile--now {
-  background: #6f48eb33;
-  border-radius: 6px;
-  font-weight: bold;
-  color: #6f48eb;
- }
-
- .react-calendar__tile--now:enabled:hover,
- .react-calendar__tile--now:enabled:focus {
-  background: #6f48eb33;
-  border-radius: 6px;
-  font-weight: bold;
-  color: #6f48eb;
- }
-.react-calendar__tile--hasActive {
-  background: pink;
-}
-
-.react-calendar__tile--hasActive:enabled:hover,
-.react-calendar__tile--hasActive:enabled:focus {
- background: #f8f8fa;
-}
-
-.react-calendar__tile--active {
-  background: #d10000;
-  border-radius: 6px;
-  font-weight: bold;
-  color: white;
- }
-
- .react-calendar__tile--active:enabled:hover,
- .react-calendar__tile--active:enabled:focus {
-  background: #d10000;
-  color: white;
- }
-
- .react-calendar--selectRange .react-calendar__tile--hover {
-  background-color: #f8f8fa;
- }
-
- .react-calendar__tile--range {
-  background: #f8f8fa;
-  color: #6f48eb;
-  border-radius: 0;
- }
- .react-calendar__tile--rangeStart {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-  background: #d10000;
-  color: white;
- }
- .react-calendar__tile--rangeEnd {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  background: #d10000;
-  color: white;
- }
-
-/*
-.container {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
+.footer-content {
+  max-width: 1200px;
   margin: 0 auto;
-  max-width: 600px;
-  width: 100%;
 }
 
-.calendar {
-  background: #2b4450;
-  border-radius: 4px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-  height: 501px;
-  perspective: 1000;
-  transition: 0.9s;
-  transform-style: preserve-3d;
-  width: 100%;
+.site-footer p {
+  margin: 5px;
 }
-
-.front {
-  transform: rotateY(0deg);
-}
-
-.current-date {
-  border-bottom: 1px solid rgba(73, 114, 133, 0.6);
-  display: flex;
-  justify-content: space-between;
-  padding: 30px 40px;
-}
-
-.current-date h1 {
-  color: #dfebed;
-  font-size: 1.4em;
-  font-weight: 300;
-}
-
-.week-days {
-  color: #dfebed;
-  display: flex;
-  justify-content: space-between;
-  font-weight: 600;
-  padding: 30px 40px;
-}
-
-.days {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.weeks {
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  padding: 0 40px;
-}
-
-.weeks div {
-  display: flex;
-  font-size: 1.2em;
-  font-weight: 300;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.last-month {
-  opacity: 0.3;
-}
-
-.weeks span {
-  padding: 10px;
-}
-
-.weeks span.active {
-  background: #f78536;
-  border-radius: 50%;
-}
-
-.weeks span:not(.last-month):hover {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.event {
-  position: relative;
-}
-
-.event:after {
-  content: "•";
-  color: #f78536;
-  font-size: 1.4em;
-  position: absolute;
-  right: -4px;
-  top: -4px;
-}
-
-.back {
-  height: 100%;
-  transform: rotateY(180deg);
-}
-
-.back input {
-  background: none;
-  border: none;
-  border-bottom: 1px solid rgba(73, 114, 133, 0.6);
-  color: #dfebed;
-  font-size: 1.4em;
-  font-weight: 300;
-  padding: 30px 40px;
-  width: 100%;
-}
-
-.info {
-  color: #dfebed;
-  display: flex;
-  flex-direction: column;
-  font-weight: 600;
-  font-size: 1.2em;
-  padding: 30px 40px;
-}
-
-.info div:not(.observations) {
-  margin-bottom: 40px;
-}
-
-.info span {
-  font-weight: 300;
-}
-
-.info .date {
-  display: flex;
-  justify-content: space-between;
-}
-
-.info .date p {
-  width: 50%;
-}
-
-.info .address p {
-  width: 100%;
-}
-
-.actions {
-  bottom: 0;
-  border-top: 1px solid rgba(73, 114, 133, 0.6);
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  width: 100%;
-}
-
-.actions button {
-  background: none;
-  border: 0;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 3px;
-  margin: 0;
-  padding: 30px 0;
-  text-transform: uppercase;
-  width: 50%;
-}
-
-.actions button:first-of-type {
-  border-right: 1px solid rgba(73, 114, 133, 0.6);
-}
-
-.actions button:hover {
-  background: #497285;
-  cursor: pointer;
-}
-
-.actions button:active {
-  background: #5889a0;
-  outline: none;
-}
-
-.flip {
-  transform: rotateY(180deg);
-}
-
-.front,
-.back {
-  backface-visibility: hidden;
-}*/
