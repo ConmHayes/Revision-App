@@ -35,6 +35,7 @@ export default function NotesPage() {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: localStorage.token
       },
     };
     await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
