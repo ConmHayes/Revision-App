@@ -12,14 +12,14 @@ export default function HomePage() {
         Stay Productive{" "}
         <img
           className="happy"
-          src="../../../public/happy.png"
+          src="../../../happy.png"
           alt="happy-emoji"
         />
       </h1>
 
       <img
         className="greenFlower"
-        src="../../../public/greenFlower.png"
+        src="../../../greenFlower.png"
         alt="green-flower"
       />
       {/* <span>Manage Your Schedule and Note Your Way to Success!</span> */}
@@ -52,7 +52,7 @@ export default function HomePage() {
       </ul>
       <img
         className="orangeFlower"
-        src="../../../public/orangeFlower.png"
+        src="../../../orangeFlower.png"
         alt="orangeFlower"
       />
 
