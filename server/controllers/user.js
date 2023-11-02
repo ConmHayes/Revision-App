@@ -98,4 +98,5 @@ const findByToken = async (req, res) => {
     }
 }
 
+
 module.exports = { logIn, register, logOut, findByToken}

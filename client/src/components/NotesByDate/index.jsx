@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react"
 import { dateFnsLocalizer } from "react-big-calendar"
 import { Link } from "react-router-dom"
 
+const apiURL = "https://time-table-server.onrender.com"
+const siteURL = "https://time-table-app.onrender.com/"
+const localURL = "http://localhost:5173/"
+const localapi = "http://localhost:3003"
+
+
 export default function NotesByDate( { tempData, setTempData, events, setEvents, createEvent, setCreateEvent, timestamp, setTimestamp  } ){
     const [subjectFilter, setSubjectFilter] = useState("All")
     const [notesDated, setNotesDated] = useState([{
@@ -35,7 +41,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 dateposted: timestamp
             })
         }
-        const response = await fetch("https://time-table-server.onrender.com/notes/dates", options)
+        const response = await fetch(`${siteURL}/notes/dates`, options)
         const data = await response.json()
         if (data.length === undefined){
             setDataLength(1)
@@ -68,7 +74,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
             }
         }else{
         return notesDated.map((note, i) => (
-            <Link to = {`https://time-table-app.onrender.com/notes/${note.note_id}`} key = {i}><li className="listed-note">
+            <Link to = {`${siteURL}/notes/${note.note_id}`} key = {i}><li className="listed-note">
                 TOPIC: {note.topic}<br></br>NOTE: {note.note}
             </li></Link>))
         }

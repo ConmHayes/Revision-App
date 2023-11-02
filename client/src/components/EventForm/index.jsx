@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react"
 
+const apiURL = "https://time-table-server.onrender.com"
+const siteURL = "https://time-table-app.onrender.com/"
+const localURL = "http://localhost:5173/"
+const localapi = "http://localhost:3003"
+
 export default function EventForm({ tempData, setTempData, events, setEvents, createEvent, setCreateEvent, timestamp, setTimestamp }){
     const [subject, setSubject] = useState("ENGLISH")
     const [noteText, setNoteText] = useState("")
@@ -35,7 +40,7 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
                 dateposted: timestamp
             })
         }
-        const response = await fetch("https://time-table-server.onrender.com/notes", options)
+        const response = await fetch(`${apiURL}/notes`, options)
         const data = await response.json()
 
         if (response.status == 200){
