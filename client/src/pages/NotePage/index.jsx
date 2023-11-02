@@ -18,10 +18,13 @@ export default function NotePage() {
       const options = {
         method: "GET",
         Headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
           Authorization: localStorage.token
         }
       }
       const res = await fetch(`${apiURL}/notes/${id}`, options);
+      console.log(res)
 
       const note = await res.json();
       setNote(note);
@@ -36,7 +39,7 @@ export default function NotePage() {
 
   async function deleteNote() {
     try {
-      const res = await fetch(`https://time-table-server.onrender.com/notes/${id}`, {
+      const res = await fetch(`${apiURL}/notes/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
