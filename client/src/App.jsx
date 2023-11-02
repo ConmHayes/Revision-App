@@ -8,13 +8,15 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Pages.LoginPage />} />
-        <Route path = "signup" element = {<Pages.SignupPage />} />
+        <Route path = "/signup" element = {<Pages.SignupPage />} />
         {/* Create a layout for the rest of the routes that includes the Header */}
-        <Route path = "home" element={<Pages.HomePage />} />
-        <Route path="timetables" element={<Pages.TimetablesPage />} />
-        <Route path="notes" element={<Pages.NotesPage />} />
-        <Route path="notes/:id" element={<Pages.NotePage />} />
-        <Route path="*" element={<Pages.NotFoundPage />} />
+        <Route element={<LayoutWithHeader />}>
+          <Route path="/home" element={<Pages.HomePage />} />
+          <Route path= "/timetables" element={<Pages.TimetablesPage />} />
+          <Route path= "/notes" element={<Pages.NotesPage />} />
+          <Route path= "/notes/:id" element={<Pages.NotePage />} />
+          <Route path= "*" element={<Pages.NotFoundPage />} />
+        </Route>
       </Routes>
       <Footer />
     </div>
@@ -32,6 +34,3 @@ function LayoutWithHeader({ children }) {
 }
 
 export default App;
-
-// <Route element={<LayoutWithHeader />}>
-// </Route>
