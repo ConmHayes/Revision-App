@@ -11,7 +11,6 @@ export default function TimetablePage() {
       try {
         const response = await fetch(`http://localhost:5173/timetables/${id}`);
         const data = await response.json();
-        console.log(data);
         setTimetable(data);
       } catch (err) {
         console.log(err);

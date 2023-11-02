@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-
+import { dateFnsLocalizer } from "react-big-calendar"
+import { Link } from "react-router-dom"
 
 export default function NotesByDate( { tempData, setTempData, events, setEvents, createEvent, setCreateEvent, timestamp, setTimestamp  } ){
     const [subjectFilter, setSubjectFilter] = useState("All")
@@ -20,7 +21,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     }
 
     async function getByDate(){
-        console.log(tempData)
 
 
         const options = {
@@ -37,7 +37,11 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         }
         const response = await fetch("https://time-table-server.onrender.com/notes/dates", options)
         const data = await response.json()
-        setDataLength(data.length)
+        if (data.length === undefined){
+            setDataLength(1)
+        } else{
+            setDataLength(data.length)
+        }
         setNotesDated(data)
         if (response.status == 200){
             
@@ -52,15 +56,26 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         getByDate()
     }, [tempData])
 
-    function singleReturn(){
-        return <li>TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>
+    function renderList(){
+        if (dataLength == 1){
+            if (notesDated.note == "No notes for that date yet"){
+                console.log("whoops")
+                return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
+
+            }else{
+                return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
+
+            }
+        }else{
+        return notesDated.map((note, i) => (
+            <Link to = {`https://time-table-app.onrender.com/notes/${note.note_id}`} key = {i}><li className="listed-note">
+                TOPIC: {note.topic}<br></br>NOTE: {note.note}
+            </li></Link>))
+        }
     }
 
-    function multipleReturn(){
-        return notesDated.map((note, i) => {
-            <li key = {i}>TOPIC: {note.topic}<br></br>NOTE: {note.note}</li>})
-    }
-
+    //useEffect(() => {
+    //renderList()}, [dataLength])
 
     return (
         <div className = "flexbox-container tall-form" style = {{height: "570px"}}>
@@ -75,7 +90,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     )}
                 </select>
             </div> 
-            <div className="flexbox-form-list"><ul>{dataLength == 1 ? singleReturn(): multipleReturn()}</ul></div>
+            <div className="flexbox-form-list"><ul className="date-note-list">{renderList()}</ul></div>
             </form>
         </div>
     )

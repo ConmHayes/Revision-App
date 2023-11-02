@@ -14,6 +14,7 @@ const showNote = async (req,res) => {
     try{
         const id = req.params.id
         const note = await Notes.getOneById(id)
+        console.log(note)
         res.status(200).json(note)
 
     } catch (err){
@@ -60,7 +61,6 @@ const showNotesByDate = async (req, res) => {
         const data = req.body
         const token = req.headers["authorization"]
         const notes = await Notes.getAllByDate(data, token)
-        console.log(notes)
         res.status(200).json(notes)
 
     }catch(err){
