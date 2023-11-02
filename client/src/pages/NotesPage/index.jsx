@@ -40,7 +40,7 @@ export default function NotesPage() {
     };
 
     await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
-    const updatedNotes = notes.filter((note) => note.id !== id);
+    const updatedNotes = notes.filter((note) => note.note_id !== id);
 
     setNotes(updatedNotes);
   }
