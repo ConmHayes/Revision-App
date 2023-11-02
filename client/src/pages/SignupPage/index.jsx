@@ -10,8 +10,6 @@ export default function SignupPage() {
   const [inputPw, setInputPw] = useState("Password");
   const [button_Text, setButtonText] = useState("Create Account")
 
-  console.log(button_Text)
-
   useEffect(() => {
     document.body.classList.add("signup-page");
     document.body.classList.remove("home-page");
