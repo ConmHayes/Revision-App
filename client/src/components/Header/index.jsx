@@ -1,31 +1,37 @@
 import React from "react";
+import "animate.css";
 import "./index.css";
 import { NavLink, Outlet } from "react-router-dom";
 
 const styles = ({ isActive }) => ({ fontWeight: isActive ? "bold" : "medium" });
 
 export default function Header() {
-  function handleClick(){
-    localStorage.clear()
+  function handleClick() {
+    localStorage.clear();
   }
   return (
     <>
       <header>
         <nav className="navbar">
           <img src="../../../logo.png" alt="logo" />
-          <NavLink to="/" style={styles}>
+          <NavLink className="white" to="/" style={styles}>
             {" "}
-            Home{" "}
+            🏡 Home{" "}
           </NavLink>
-          <NavLink to="/timetables" style={styles}>
-            Timetables{" "}
+          <NavLink to="/timetables" style={styles} className="white">
+            🗓️ Timetables{" "}
           </NavLink>
-          <NavLink to="/notes" style={styles}>
-            Notes
+          <NavLink className="white" to="/notes" style={styles}>
+            📝 Notes
           </NavLink>
-          <NavLink to="/login" style={styles} onClick={handleClick}>
+          <NavLink
+            className="yellow"
+            to="/login"
+            style={styles}
+            onClick={handleClick}
+          >
             {" "}
-            Logout
+            🔒 Logout
           </NavLink>
         </nav>
       </header>

@@ -5,12 +5,13 @@ class User {
         this.users_id = users_id;
         this.username = username;
         this.password = password;
+        this.lastLoggedIn = lastLoggedIn;
+        this.streak = streak;
     }
 
     static async checkUsername (username){
         const response = await db.query("SELECT * FROM users WHERE username = $1;", [username])
-
-        
+     
         const today = new Date(); const y = today.getFullYear(); const m = today.getMonth(); const d = today.getDate()
         const LLI = response.rows[0].lastloggedin
 
@@ -85,7 +86,16 @@ class User {
         return user
     }
 
-    
+    static async updateStreak(username) {
+        try {
+          const response = await db.query('UPDATE users SET streak = streak + 1 WHERE username = $1 RETURNING *;', [username])
+          return new Notes(response.rows[0])
+        } catch(err) {
+          throw new Error(err.message)
+        }
+      }
+
+
 }
 
 module.exports = User
