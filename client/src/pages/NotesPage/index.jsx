@@ -18,7 +18,7 @@ export default function NotesPage() {
           Authorization: localStorage.token
         }
       }
-      const res = await fetch(`${localapi}/notes`, options);
+      const res = await fetch(`${apiURL}/notes`, options);
       console.log(res)
       if(res.ok) {
       const notesData = await res.json();
