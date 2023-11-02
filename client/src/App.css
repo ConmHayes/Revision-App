@@ -457,8 +457,17 @@ ul {
   background-color: #ffcb2f;
 }
 
+.date-note-list{
+  list-style: disc;
+  flex-direction: column;
+  background-color: transparent;
+}
+
 li {
   margin: 0 10px;
+}
+.listed-note{
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .link {
