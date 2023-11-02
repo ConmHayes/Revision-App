@@ -5,27 +5,12 @@ class User {
         this.users_id = users_id;
         this.username = username;
         this.password = password;
+        this.lastLoggedIn = lastLoggedIn;
+        this.streak = streak;
     }
 
     static async checkUsername (username){
         const response = await db.query("SELECT * FROM users WHERE username = $1;", [username])
-
-
-        const today = new Date(); const y = today.getFullYear(); const m = today.getMonth(); const d = today.getDate()
-        console.log(response.rows[0].lastloggedin)
-        const LLI = response.rows[0].lastloggedin
-        const year = LLI.getUTCFullYear();
-        const month = (LLI.getUTCMonth() + 1).toString().padStart(2, '0');
-        const day = LLI.getUTCDate().toString().padStart(2, '0');
-
-        console.log(day, month, year)
-
-        console.log(new Date(LLI))
-        const workingDate = new Date(y, m, d)
-        const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
-    
-        console.log(today, SQLTimestamp)
-
         if (response.rows.length != 1){
             throw new Error("Unable to locate username!")
         }
@@ -70,7 +55,16 @@ class User {
         return user
     }
 
-    
+    static async updateStreak(username) {
+        try {
+          const response = await db.query('UPDATE users SET streak = streak + 1 WHERE username = $1 RETURNING *;', [username])
+          return new Notes(response.rows[0])
+        } catch(err) {
+          throw new Error(err.message)
+        }
+      }
+
+
 }
 
 module.exports = User

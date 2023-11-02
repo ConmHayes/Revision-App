@@ -19,7 +19,6 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
 
     async function handleCreate(e){
         e.preventDefault()
-        console.log(tempData)
 
 
         const options = {

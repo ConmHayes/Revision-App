@@ -14,7 +14,6 @@ export default function TimetableGallery() {
       try {
         const response = await fetch("http://localhost:5173/timetables");
         const data = await response.json();
-        console.log(data);
         setTimetables(data);
       } catch (err) {
         console.log(err);

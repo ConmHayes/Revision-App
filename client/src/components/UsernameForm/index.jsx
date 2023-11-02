@@ -55,9 +55,7 @@ export default function UsernameForm({
       }
       response = await fetch("https://time-table-server.onrender.com/login", options)
       data = await response.json()
-      console.log(data.token)
     }
-    console.log(data.token)
 
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
@@ -65,10 +63,6 @@ export default function UsernameForm({
     }else{
       alert(data.error)
     }
-    console.log("Hi")
-
-    
-
   }
 
   function revealPassword() {
