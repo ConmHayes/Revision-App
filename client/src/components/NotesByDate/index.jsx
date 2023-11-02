@@ -9,6 +9,8 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         topic: "ENGLISH",
         dateposted: "2023-11-18 00:00:00"
     }])
+    const [dataLength, setDataLength] = useState(1)
+
     function subjectChange(){
         setSubject(document.getElementById("Subject-Select").value)
     }
@@ -35,7 +37,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         }
         const response = await fetch("https://time-table-server.onrender.com/notes/dates", options)
         const data = await response.json()
-        console.log(data)
+        setDataLength(data.length)
         setNotesDated(data)
         if (response.status == 200){
             
@@ -50,6 +52,16 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         getByDate()
     }, [tempData])
 
+    function singleReturn(){
+        return <li>TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>
+    }
+
+    function multipleReturn(){
+        return notesDated.map((note, i) => {
+            <li key = {i}>TOPIC: {note.topic}<br></br>NOTE: {note.note}</li>})
+    }
+
+
     return (
         <div className = "flexbox-container tall-form" style = {{height: "570px"}}>
             <div className="flexbox-header-left">
@@ -63,14 +75,12 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     )}
                 </select>
             </div> 
-            <div className="flexbox-form-list"></div>
+            <div className="flexbox-form-list"><ul>{dataLength == 1 ? singleReturn(): multipleReturn()}</ul></div>
             </form>
         </div>
     )
 }
 
 /*
-<ul>{notesDated.map((note, i) => {
-                                                                    <li key = {i}>TOPIC: {note.topic}<br></br>Note: {note.note}</li>
-            })}</ul>
+ : 
 */
