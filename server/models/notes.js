@@ -26,6 +26,7 @@ class Notes {
   static async getOneById(id,token) {
     try {
       const user = await User.getOneByToken(token)
+      console.log(`User: ${user}`)
       const response = await db.query("SELECT * FROM Notes WHERE note_id = $1 AND users_id = $2;", [id,user.users_id])
       if (response.rows.length != 1) {
           throw new Error("Unable to find that note")

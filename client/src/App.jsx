@@ -8,7 +8,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Pages.LoginPage />} />
-
+        <Route path = "signup" element = {<Pages.SignupPage />} />
         {/* Create a layout for the rest of the routes that includes the Header */}
         <Route element={<LayoutWithHeader />}>
           <Route path = "home" element={<Pages.HomePage />} />
