@@ -9,8 +9,19 @@ export default function HomePage() {
   return (
     <div className="container">
       <h1 className="heading animate__animated animate__bounce">
-        Stay Productivity
+        Stay Productive{" "}
+        <img
+          className="happy"
+          src="../../../public/happy.png"
+          alt="happy-emoji"
+        />
       </h1>
+
+      <img
+        className="greenFlower"
+        src="../../../public/greenFlower.png"
+        alt="green-flower"
+      />
       {/* <span>Manage Your Schedule and Note Your Way to Success!</span> */}
       <ul className="notes-timetables">
         <li>
@@ -39,6 +50,17 @@ export default function HomePage() {
           </Link>
         </li>
       </ul>
+      <img
+        className="orangeFlower"
+        src="../../../public/orangeFlower.png"
+        alt="orangeFlower"
+      />
+
+      {/* <img
+        className="colorfulStar"
+        src="../../../public/colorfulStar.png"
+        alt="corner"
+      /> */}
     </div>
   );
 }
