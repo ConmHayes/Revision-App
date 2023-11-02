@@ -3,10 +3,26 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar"
 
 
-export default function schedule( {createEvent, setCreateEvent, tempData, setTempData}) {
+export default function schedule( {createEvent, setCreateEvent, tempData, setTempData, timestamp, setTimestamp}) {
   const [today, setToday] = useState("");
   const [date, setDate] = useState(new Date())
+  const [username, setUsername] = useState("")
   
+  async function getUsername(){
+    const options = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization : localStorage.token,
+      },
+    }
+    const response = await fetch("https://time-table-server.onrender.com/token", options)
+    const data = await response.json()
+    setUsername(data.username)
+    console.log(data)
+  }
+
   function dateReturn(d, m, y){
     const months = [
       "January",
@@ -35,6 +51,11 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     }
 
     const date = `${d}${suffix} ${months[m]} ${y}`;
+    const workingDate = new Date(y, m, d)
+    const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
+    console.log(SQLTimestamp)
+    setTimestamp(SQLTimestamp)
+
     return date
   }
 
@@ -60,12 +81,13 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
   }
   useEffect(() => {
     getToday();
+    getUsername();
   }, []);
-
+  
 
   return (
     <div className = "app">
-      <h1 className = "text-center">Your Calendar</h1>
+      <h1 className = "text-center">{username}'s Calendar</h1>
       <div className = "calendar-container">
         <Calendar onChange = { setDate } value = { date } onClickDay={logi}/>
       </div>

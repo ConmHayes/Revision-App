@@ -5,11 +5,14 @@ import { NavLink, Outlet } from "react-router-dom";
 const styles = ({ isActive }) => ({ fontWeight: isActive ? "bold" : "medium" });
 
 export default function Header() {
+  function handleClick(){
+    localStorage.clear()
+  }
   return (
     <>
       <header>
         <nav className="navbar">
-          <img src="../../../public/logo.png" alt="logo" />
+          <img src="../../../logo.png" alt="logo" />
           <NavLink to="/" style={styles}>
             {" "}
             Home{" "}
@@ -20,7 +23,7 @@ export default function Header() {
           <NavLink to="/notes" style={styles}>
             Notes
           </NavLink>
-          <NavLink to="/login" style={styles}>
+          <NavLink to="/login" style={styles} onClick={handleClick}>
             {" "}
             Logout
           </NavLink>

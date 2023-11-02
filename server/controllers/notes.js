@@ -2,7 +2,8 @@ const Notes = require('../models/notes')
 
 const index = async (req,res) => {
    try {
-        const notes = await Notes.getAll()
+        const token = req.headers["authorization"]
+        const notes = await Notes.getAll(token)
         res.status(200).json(notes)    
    } catch (err) {
     res.status (500).json({error:err.message})
@@ -21,8 +22,10 @@ const showNote = async (req,res) => {
 }
 
 const createNote = async (req, res) => {
+    const token = req.headers["authorization"]
+
     try{
-        const note = await Notes.createNote(req.body)
+        const note = await Notes.createNote(req.body, token)
         res.status(200).json(note)
 
     }catch (err){
@@ -52,4 +55,18 @@ const deleteNote = async (req, res) => {
     }
 }
 
-module.exports = { index, showNote, createNote, updateNote, deleteNote }
+const showNotesByDate = async (req, res) => {
+    try{
+        const data = req.body
+        const token = req.headers["authorization"]
+        const notes = await Notes.getAllByDate(data, token)
+        console.log(notes)
+        res.status(200).json(notes)
+
+    }catch(err){
+        res.status(400).json({error: err.message})
+
+    }
+}
+
+module.exports = { index, showNote, createNote, updateNote, deleteNote, showNotesByDate }
