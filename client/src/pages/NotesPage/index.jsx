@@ -6,7 +6,13 @@ export default function NotesPage() {
 
   useEffect(() => {
     async function getNotes() {
-      const res = await fetch(`https://time-table-server.onrender.com/notes`);
+      const options = {
+        method: "GET",
+        headers: {
+          Authorization: localStorage.token
+        }
+      }
+      const res = await fetch(`https://time-table-server.onrender.com/notes`, options);
       if(res.ok) {
       const notesData = await res.json();
       setNotes(notesData)
