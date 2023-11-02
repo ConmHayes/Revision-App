@@ -57,11 +57,14 @@ class Token {
     }
 
     async destroyToken() {
-        const response = await db.query("DELETE FROM token WHERE token_id = $1 RETURNING *;", [this.token_id])
-        if (response.rows.length != 1){
-            throw new Error("Unable to delete token")
-        }else{
-            return new Token(response.rows[0])
+        try {
+            const response = await db.query("DELETE FROM token WHERE token_id = $1 RETURNING *;", [this.token_id]);
+            if (response.rows.length === 0) {
+                return null; 
+            }
+            return new Token(response.rows[0]);
+        } catch (err) {
+            throw new Error(err.message);
         }
     }
 

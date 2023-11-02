@@ -57,7 +57,7 @@ const logOut = async (req,res) => {
     try {
         const token = req.body.token
         const fullToken = await Token.getOneByToken(token)
-        const result = fullToken.destroyToken()
+        const result = await fullToken.destroyToken()
         res.status(204).json(result)
     } catch (err) {
         res.status(404).json({error: err.message})

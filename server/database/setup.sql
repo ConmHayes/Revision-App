@@ -21,11 +21,11 @@ CREATE TABLE Notes(
     note_id INT GENERATED ALWAYS AS IDENTITY,
     note VARCHAR(255) NOT NULL,
     topic VARCHAR(255) NOT NULL,
-    datePosted TIMESTAMP NOT NULL,
+    dateposted TIMESTAMP NOT NULL,
     PRIMARY KEY (note_id)
 );
 
-INSERT INTO Notes (note, topic, datePosted)
+INSERT INTO Notes (note, topic, dateposted)
 VALUES
 ('This is the note text 1', 'Topic 1', CURRENT_TIMESTAMP),
 ('This is the note text 2', 'Topic 2', '2002-01-23 13:50:25.789');
