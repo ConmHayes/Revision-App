@@ -4,8 +4,8 @@ import { Link, useParams } from "react-router-dom";
 
 export default function NotePage() {
   const { id } = useParams();
-  const [note, setNote] = useState({});
   const [loading, setLoading] = useState(true);
+  const [note, setNote] = useState({});
 
   useEffect(() => { 
     async function loadNote() {
