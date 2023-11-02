@@ -20,7 +20,7 @@ export default function NotePage() {
         Headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          authorization: localStorage.token
+          Authorization: localStorage.token
 
         }
       }

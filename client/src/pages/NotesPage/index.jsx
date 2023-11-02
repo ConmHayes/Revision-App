@@ -11,35 +11,25 @@ export default function NotesPage() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    const handlePageReload = () => {
-      
-      console.log('Page is being reloaded!');
-      // For example, you might want to clear the local storage token on page reload
-      // localStorage.removeItem('token');
-    };
-
-    window.addEventListener('beforeunload', handlePageReload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handlePageReload);
-    };
-  }, []);
-
-  useEffect(() => {
     async function getNotes() {
-      const options = {
-        method: "GET",
-        headers: {
-          Authorization: localStorage.getItem('token')
+      const token = localStorage.token
+      if (token) {
+        const options = {
+          method: "GET",
+          headers: {
+            Authorization: localStorage.token
+          }
         }
-      }
-      const res = await fetch("https://time-table-server.onrender.com/notes", options);
-      console.log(res)
-      if(res.ok) {
-        const notesData = await res.json();
-        setNotes(notesData)
-      }else{
-        setNotes([])
+        const res = await fetch("https://time-table-server.onrender.com/notes", options);
+        console.log(res)
+        if(res.ok) {
+          const notesData = await res.json();
+          setNotes(notesData)
+        }else{
+          setNotes([])
+        }
+      } else {
+        console.log('sad')
       }
     }
     getNotes();
