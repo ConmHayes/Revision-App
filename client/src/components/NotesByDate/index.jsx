@@ -69,7 +69,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
             }
         }else{
         return notesDated.map((note, i) => (
-            <Link to = {`https://time-table-app.onrender.com/notes/${note.note_id}`}><li key = {i} className="listed-note">
+            <Link to = {`https://time-table-app.onrender.com/notes/${note.note_id}`} key = {i}><li className="listed-note">
                 TOPIC: {note.topic}<br></br>NOTE: {note.note}
             </li></Link>))
         }

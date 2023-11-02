@@ -14,6 +14,7 @@ const showNote = async (req,res) => {
     try{
         const id = req.params.id
         const note = await Notes.getOneById(id)
+        console.log(note)
         res.status(200).json(note)
 
     } catch (err){
