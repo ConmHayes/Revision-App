@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { UsernameForm } from "../../components";
 import "./style.css"
+import { Link } from "react-router-dom"
 
 
 export default function SignupPage() {
@@ -24,8 +25,8 @@ export default function SignupPage() {
   return (
     <>
       <div className="flexbox-container">
-      <div className="flexbox-item flexbox-login-array">
-          <div className="login-array">
+      <div className="flexbox-item flexbox-login-array" >
+          <div className="login-array" >
             <h2>Register</h2>
             <UsernameForm
               inputUn={inputUn}
@@ -35,7 +36,20 @@ export default function SignupPage() {
               button_Text = {button_Text}
               setButtonText = {setButtonText}
             />
+            <p>
+              Already have an account?{" "}
+              <Link
+                to="/login"
+                className="inline-link"
+                style={{ color: "#3C7F72" }}
+              >
+                Back to Login
+              </Link>
+            </p>
           </div>
+          
+
+
         </div>
         <div className="flexbox-item flexbox-image-login"></div>
       </div>

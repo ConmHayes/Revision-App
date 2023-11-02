@@ -13,7 +13,7 @@ export default function NotesPage() {
         }
       }
       const res = await fetch(`https://time-table-server.onrender.com/notes`, options);
-
+      console.log(res)
       if(res.ok) {
       const notesData = await res.json();
       setNotes(notesData)
