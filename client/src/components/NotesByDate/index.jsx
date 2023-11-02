@@ -27,7 +27,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     }
 
     async function getByDate(){
-        console.log(tempData)
 
 
         const options = {
