@@ -37,18 +37,19 @@ export default function NotesPage() {
         "Content-Type": "application/json",
       },
     };
-    await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
+    await fetch(`${apiURL}/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.id !== id);
     setNotes(updatedNotes);
   }
 
   function displayNotes() {
     if (Array.isArray(notes)) {
+      console.log(notes)
       return (
-       notes.map((note) => (
+       notes.map((note, i) => (
         <NoteCard 
-        key={note.id} 
-        id={note.id} 
+        key={i} 
+        id={note.note_id} 
         topic={note.topic} 
         note={note.note} 
         deleteNote={deleteNote} />

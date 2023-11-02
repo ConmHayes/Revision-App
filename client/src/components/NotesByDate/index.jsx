@@ -43,6 +43,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         }
         const response = await fetch(`${localapi}/notes/dates`, options)
         const data = await response.json()
+        console.log(data)
         if (data.length === undefined){
             setDataLength(1)
         } else{
@@ -65,7 +66,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     function renderList(){
         if (dataLength == 1){
             if (notesDated.note == "No notes for that date yet"){
-                console.log("whoops")
+                console.log(".")
                 return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
 
             }else{
@@ -74,7 +75,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
             }
         }else{
         return notesDated.map((note, i) => (
-            <Link to = {`${siteURL}/notes/${note.note_id}`} key = {i}><li className="listed-note">
+            <Link to = {`${localURL}notes/${note.note_id}`} key = {i}><li className="listed-note">
                 TOPIC: {note.topic}<br></br>NOTE: {note.note}
             </li></Link>))
         }
