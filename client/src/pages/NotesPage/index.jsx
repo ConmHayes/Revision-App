@@ -1,5 +1,5 @@
-
 import React, { useEffect, useState } from "react";
+import {NoteCard} from "../../components";
 
 export default function NotesPage() {
   const [notes, setNotes] = useState([]);
@@ -13,6 +13,7 @@ export default function NotesPage() {
         }
       }
       const res = await fetch(`https://time-table-server.onrender.com/notes`, options);
+      console.log(res)
       if(res.ok) {
       const notesData = await res.json();
       setNotes(notesData)
@@ -39,16 +40,19 @@ export default function NotesPage() {
     if (Array.isArray(notes)) {
       return (
        notes.map((note) => (
-        <div key={note.id}>
-          <h1>{note.topic}</h1>
-          <p>{note.note}</p>
-          <button onClick={() => deleteNote(note.id)}>Delete Note</button>
-        </div>
+        <NoteCard 
+        key={note.id} 
+        id={note.id} 
+        topic={note.topic} 
+        note={note.note} 
+        deleteNote={deleteNote} />
+       
       ))
-      );
+      )
     } else {
       return <p>No notes available.</p>
-    }    
+    }
+       
   }
 
   return (

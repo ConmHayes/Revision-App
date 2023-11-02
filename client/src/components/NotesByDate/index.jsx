@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-
+import { dateFnsLocalizer } from "react-big-calendar"
+import { Link } from "react-router-dom"
 
 export default function NotesByDate( { tempData, setTempData, events, setEvents, createEvent, setCreateEvent, timestamp, setTimestamp  } ){
     const [subjectFilter, setSubjectFilter] = useState("All")
@@ -9,6 +10,8 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         topic: "ENGLISH",
         dateposted: "2023-11-18 00:00:00"
     }])
+    const [dataLength, setDataLength] = useState(1)
+
     function subjectChange(){
         setSubject(document.getElementById("Subject-Select").value)
     }
@@ -34,6 +37,11 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         }
         const response = await fetch("https://time-table-server.onrender.com/notes/dates", options)
         const data = await response.json()
+        if (data.length === undefined){
+            setDataLength(1)
+        } else{
+            setDataLength(data.length)
+        }
         setNotesDated(data)
         if (response.status == 200){
             
@@ -48,6 +56,27 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         getByDate()
     }, [tempData])
 
+    function renderList(){
+        if (dataLength == 1){
+            if (notesDated.note == "No notes for that date yet"){
+                console.log("whoops")
+                return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
+
+            }else{
+                return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
+
+            }
+        }else{
+        return notesDated.map((note, i) => (
+            <Link to = {`https://time-table-app.onrender.com/notes/${note.note_id}`} key = {i}><li className="listed-note">
+                TOPIC: {note.topic}<br></br>NOTE: {note.note}
+            </li></Link>))
+        }
+    }
+
+    //useEffect(() => {
+    //renderList()}, [dataLength])
+
     return (
         <div className = "flexbox-container tall-form" style = {{height: "570px"}}>
             <div className="flexbox-header-left">
@@ -61,14 +90,12 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     )}
                 </select>
             </div> 
-            <div className="flexbox-form-list"></div>
+            <div className="flexbox-form-list"><ul className="date-note-list">{renderList()}</ul></div>
             </form>
         </div>
     )
 }
 
 /*
-<ul>{notesDated.map((note, i) => {
-                                                                    <li key = {i}>TOPIC: {note.topic}<br></br>Note: {note.note}</li>
-            })}</ul>
+ : 
 */
