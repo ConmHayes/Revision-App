@@ -11,18 +11,13 @@ export default function NotesPage() {
 
   useEffect(() => {
     async function getNotes() {
-
-      const token = localStorage.token
-      console.log(token)
-      if (token) {
-        console.log(token)
         const options = {
           method: "GET",
           headers: {
             Authorization: localStorage.token
           }
         }
-        const res = await fetch(`${localapi}/notes`, options);
+        const res = await fetch("https://time-table-server.onrender.com/notes", options);
         console.log(res)
         if(res.ok) {
           const notesData = await res.json();
@@ -30,10 +25,6 @@ export default function NotesPage() {
         }else{
           setNotes([])
         }
-      } else {
-        console.log('sad')
-
-      }
     }
     getNotes();
   }, []);
@@ -47,7 +38,7 @@ export default function NotesPage() {
       },
     };
 
-    await fetch(`${localapi}/notes/${id}`, options);
+    await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.note_id !== id);
 
     setNotes(updatedNotes);
@@ -81,52 +72,3 @@ export default function NotesPage() {
     </>
   );
 }
-
-// import React, { useEffect, useState } from "react";
-
-// export default function NotesPage() {
-//   const [notes, setNotes] = useState([]);
-
-//   useEffect(() => {
-//     async function getNotes() {
-//       const res = await fetch(`https://time-table-server.onrender.com/notes`);
-//       const notes = await res.json();
-//       setNotes(notes);
-//     }
-//     getNotes();
-//   }, []);
-
-//   function displayNotes() {
-//     return notes.map((note) => {
-//       return (
-//         <div key={note.id}>
-//           <h1>{note.topic}</h1>
-//           <p>{note.note}</p>
-//           <button onClick={deleteNote}>Delete</button>
-//         </div>
-//       );
-//     });
-//   }
-
-//   async function deleteNote(id) {
-//     const options = {
-//       method: "DELETE",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     };
-//     await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
-//     const updatedNotes = notes.filter((note) => note.id !== id);
-//     setNotes(updatedNotes);
-
-//   }
-
-//   return (
-//   <>
-
-//   <h1>Notes Page</h1>
-//   <div>{displayNotes()}</div>
-//   </>
-
-//   );
-// }
