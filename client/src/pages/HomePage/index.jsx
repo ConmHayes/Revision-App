@@ -55,12 +55,6 @@ export default function HomePage() {
         src="../../../public/orangeFlower.png"
         alt="orangeFlower"
       />
-
-      {/* <img
-        className="colorfulStar"
-        src="../../../public/colorfulStar.png"
-        alt="corner"
-      /> */}
     </div>
   );
 }
