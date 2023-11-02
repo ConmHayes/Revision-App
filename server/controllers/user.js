@@ -17,7 +17,7 @@ const register = async (req,res) => {
         const token = await Token.create(result.users_id)
 
         res.status(201).json({authenticated: true, token: token.token})
-        res.status(201).send(result)
+        // res.status(201).send(result)
 
     } catch (err){
         res.status(401).json({error: err.message})

@@ -13,7 +13,8 @@ const index = async (req,res) => {
 const showNote = async (req,res) => {
     try{
         const id = req.params.id
-        const note = await Notes.getOneById(id)
+        const token = req.headers["authorization"]
+        const note = await Notes.getOneById(id,token)
         res.status(200).json(note)
 
     } catch (err){
@@ -22,9 +23,8 @@ const showNote = async (req,res) => {
 }
 
 const createNote = async (req, res) => {
-    const token = req.headers["authorization"]
-
     try{
+        const token = req.headers["authorization"]
         const note = await Notes.createNote(req.body, token)
         res.status(200).json(note)
 
@@ -35,8 +35,9 @@ const createNote = async (req, res) => {
 
 const updateNote = async (req, res) => {
     try{
+        const token = req.headers["authorization"]
         const id = req.params.id
-        const note = await Notes.updateNote(id, req.body)
+        const note = await Notes.updateNote(id, req.body, token)
         res.status(200).json(note)
 
     }catch(err) {
@@ -60,7 +61,6 @@ const showNotesByDate = async (req, res) => {
         const data = req.body
         const token = req.headers["authorization"]
         const notes = await Notes.getAllByDate(data, token)
-        console.log(notes)
         res.status(200).json(notes)
 
     }catch(err){
