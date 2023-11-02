@@ -41,7 +41,7 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
                 dateposted: timestamp
             })
         }
-        const response = await fetch(`${apiURL}/notes`, options)
+        const response = await fetch(`${localapi}/notes`, options)
         const data = await response.json()
 
         if (response.status == 200){

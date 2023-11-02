@@ -42,7 +42,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 dateposted: timestamp
             })
         }
-        const response = await fetch(`${siteURL}/notes/dates`, options)
+        const response = await fetch(`${localapi}/notes/dates`, options)
         const data = await response.json()
         if (data.length === undefined){
             setDataLength(1)
