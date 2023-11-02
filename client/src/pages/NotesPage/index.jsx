@@ -1,5 +1,11 @@
-
 import React, { useEffect, useState } from "react";
+import {NoteCard} from "../../components";
+
+const apiURL = "https://time-table-server.onrender.com"
+const siteURL = "https://time-table-app.onrender.com/"
+const localURL = "http://localhost:5173/"
+const localapi = "http://localhost:3003"
+
 
 export default function NotesPage() {
   const [notes, setNotes] = useState([]);
@@ -12,8 +18,8 @@ export default function NotesPage() {
           Authorization: localStorage.token
         }
       }
-      const res = await fetch(`https://time-table-server.onrender.com/notes`, options);
-
+      const res = await fetch(`${apiURL}/notes`, options);
+      console.log(res)
       if(res.ok) {
       const notesData = await res.json();
       setNotes(notesData)
@@ -32,7 +38,7 @@ export default function NotesPage() {
       },
     };
     await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
-    const updatedNotes = notes.filter((note) => note.id !== id);
+    const updatedNotes = notes.filter((note) => note.note_id !== id);
     setNotes(updatedNotes);
   }
 
@@ -40,16 +46,19 @@ export default function NotesPage() {
     if (Array.isArray(notes)) {
       return (
        notes.map((note) => (
-        <div key={note.id}>
-          <h1>{note.topic}</h1>
-          <p>{note.note}</p>
-          <button onClick={() => deleteNote(note.id)}>Delete Note</button>
-        </div>
+        <NoteCard 
+        key={note.note_id} 
+        id={note.note_id} 
+        topic={note.topic} 
+        note={note.note} 
+        deleteNote={() => deleteNote(note.note_id)} />
+       
       ))
-      );
+      )
     } else {
       return <p>No notes available.</p>
-    }    
+    }
+       
   }
 
   return (

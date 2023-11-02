@@ -32,6 +32,8 @@ const logIn = async (req,res) => {
         const user = await User.checkUsername(username)
         // Compare passwords using bcrypt 
         const legit = await bcrypt.compare(password, user.password)
+
+        
         // Checking if the password is correct 
         if (!legit){
             throw new Error ("Username and password does not match")
@@ -73,5 +75,6 @@ const findByToken = async (req, res) => {
         res.status(404).json({error: err.message})
     }
 }
+
 
 module.exports = { logIn, register, logOut, findByToken}
