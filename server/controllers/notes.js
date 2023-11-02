@@ -60,7 +60,6 @@ const showNotesByDate = async (req, res) => {
         const data = req.body
         const token = req.headers["authorization"]
         const notes = await Notes.getAllByDate(data, token)
-        console.log(notes)
         res.status(200).json(notes)
 
     }catch(err){

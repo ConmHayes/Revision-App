@@ -18,7 +18,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     }
 
     async function getByDate(){
-        console.log(tempData)
 
 
         const options = {
@@ -35,7 +34,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         }
         const response = await fetch("https://time-table-server.onrender.com/notes/dates", options)
         const data = await response.json()
-        console.log(data)
         setNotesDated(data)
         if (response.status == 200){
             

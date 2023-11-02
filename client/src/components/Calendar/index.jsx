@@ -20,7 +20,6 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     const response = await fetch("https://time-table-server.onrender.com/token", options)
     const data = await response.json()
     setUsername(data.username)
-    console.log(data)
   }
 
   function dateReturn(d, m, y){
@@ -53,7 +52,6 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     const date = `${d}${suffix} ${months[m]} ${y}`;
     const workingDate = new Date(y, m, d)
     const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
-    console.log(SQLTimestamp)
     setTimestamp(SQLTimestamp)
 
     return date
@@ -74,7 +72,6 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
     const data = {
       dateString: selectedDate,
     }
-    console.log(selectedDate)
     setCreateEvent(true)
     setTempData(selectedDate)
 

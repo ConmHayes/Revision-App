@@ -32,6 +32,30 @@ const logIn = async (req,res) => {
         const user = await User.checkUsername(username)
         // Compare passwords using bcrypt 
         const legit = await bcrypt.compare(password, user.password)
+
+        
+
+        const today = new Date()
+        const y = today.getFullYear() 
+        const m = today.getMonth() 
+        const d = today.getDate()
+
+        const year = LLI.getUTCFullYear();
+        const month = (LLI.getUTCMonth() + 1).toString().padStart(2, '0');
+        const day = LLI.getUTCDate().toString().padStart(2, '0');
+
+        // console.log(day, month, year)
+
+        // console.log(new Date(LLI))
+        const workingDate = new Date(y, m, d)
+        const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
+        await User.updateStreak(username)
+        
+        if (lastLoggedIn > workingDate) {
+            console.log('bob')
+        }
+        
+
         // Checking if the password is correct 
         if (!legit){
             throw new Error ("Username and password does not match")
