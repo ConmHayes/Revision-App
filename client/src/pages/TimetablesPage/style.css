@@ -1,0 +1,17 @@
+/* Add the provided CSS code to this file */
+.flexbox-container {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-item {
+  margin: 0 10px; /* Adjust the margin as needed */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .flexbox-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
