@@ -21,15 +21,15 @@ class User {
 
         const lastLogIn = new Date(year, month, day)
         const workingDate = new Date(y, m, d)
-        console.log(workingDate, lastLogIn)
 
         const date_UTC = Date.UTC(workingDate.getUTCFullYear(), workingDate.getUTCMonth(), workingDate.getUTCDate(), 0, 0, 0)
         const LLI_UTC = Date.UTC(lastLogIn.getUTCFullYear(), lastLogIn.getUTCMonth(), lastLogIn.getUTCDate(), 0, 0, 0)
 
-        console.log(date_UTC - LLI_UTC)
+        
         let newStreak = response.rows[0].streak
         const newLLI = workingDate.toISOString().slice(0, 19).replace("T", " ")
         const query = "UPDATE users SET streak = $1, lastloggedin = $2 WHERE username = $3 RETURNING *"
+
         if((date_UTC - LLI_UTC) ==  86400000){
             newStreak++
             const values = [newStreak, newLLI, username]
