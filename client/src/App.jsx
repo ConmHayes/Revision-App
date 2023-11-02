@@ -12,11 +12,7 @@ function App() {
         {/* Create a layout for the rest of the routes that includes the Header */}
         <Route element={<LayoutWithHeader />}>
           <Route path = "home" element={<Pages.HomePage />} />
-
-          <Route path="timetables">
-            <Route index element={<Pages.TimetablesPage />} />
-            <Route path=":id" element={<Pages.TimetablePage />} />
-          </Route>
+          <Route path="timetables" element={<Pages.TimetablesPage />} />
           <Route path="notes" element={<Pages.NotesPage />} />
           <Route path="notes/:id" element={<Pages.NotePage />} />
           <Route path="*" element={<Pages.NotFoundPage />} />
