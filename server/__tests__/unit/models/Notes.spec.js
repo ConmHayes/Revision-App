@@ -1,5 +1,6 @@
 // __tests__/unit
 const Notes = require('../../../models/notes')
+const User = require('../../../models/user')
 const db = require('../../../database/connect')
 
 describe ('Notes model', () =>{
@@ -9,22 +10,39 @@ describe ('Notes model', () =>{
 
     describe('getAll', ()=> {
         it('resolves with notes on success', async () =>{
+
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             jest.spyOn(db, 'query').mockResolvedValueOnce({
+                
                 rows: [{note: 'sample note 1', topic:'sample topic 1', dateposted:'2023-10-30T12:00:00.000Z'}, 
                 {note: 'sample note 2', topic:'sample topic 2', dateposted:'2023-11-30T12:00:00.000Z'}
             ]
             })
 
-            const notes = await Notes.getAll()
+            const notes = await Notes.getAll(userWithToken.token)
             expect(notes).toHaveLength(2)
             expect(notes[0]).toHaveProperty('note_id')
         })
 
         it ('should throw an Error on database query error', async () =>{
+
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             jest.spyOn(db,'query').mockResolvedValueOnce({ rows: []})
 
             try {
-                await Notes.getAll()
+                await Notes.getAll(userWithToken.token)
             } catch(err){
                 expect(err).toBeDefined()
                 expect(err.message).toBe("No Notes available")
@@ -35,6 +53,14 @@ describe ('Notes model', () =>{
 
     describe('getOneById', ()=> {
         it ('resolves with note of specified id on success', async ()=>{
+
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             jest.spyOn(db, 'query').mockResolvedValueOnce({
                 rows: [{
                     note_id: 1,
@@ -46,7 +72,7 @@ describe ('Notes model', () =>{
             })
 
             const noteId = 1
-            const notes = await Notes.getOneById(noteId)
+            const notes = await Notes.getOneById(noteId, userWithToken.token)
             expect(notes).toHaveProperty('note_id', noteId)
             expect(notes).toHaveProperty('note', 'Sample note 1')
             expect(notes).toHaveProperty('topic', 'Sample topic 1')
@@ -54,6 +80,14 @@ describe ('Notes model', () =>{
         })
 
         it ('should throw an Error on database query error', async () =>{
+
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             jest.spyOn(db, 'query').mockResolvedValueOnce({
                 rows: [{
                     note_id: 1,
@@ -66,7 +100,7 @@ describe ('Notes model', () =>{
 
             try {
                 noteId = 2
-                await Notes.getOneById(noteId)
+                await Notes.getOneById(noteId, userWithToken.token)
             } catch(err){
                 expect(err).toBeDefined()
                 expect(err.message).toBe("Unable to find that note")
@@ -76,6 +110,13 @@ describe ('Notes model', () =>{
 
     describe('createNote', ()=> {
         it ('should create a new note and return it on success', async () => {
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             const newNote = {
                 note_id: 1,
                 note: 'Sample note 1',
@@ -87,7 +128,7 @@ describe ('Notes model', () =>{
                 rows: [newNote]
             })
 
-            const createdNote = await Notes.createNote(newNote)
+            const createdNote = await Notes.createNote(newNote, userWithToken.token)
 
             expect(createdNote).toHaveProperty('note_id', newNote.note_id)
             expect(createdNote).toHaveProperty('note', newNote.note)
@@ -96,6 +137,14 @@ describe ('Notes model', () =>{
         })
 
         it ('should throw an Error on database query error', async () =>{
+
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             jest.spyOn(db,'query').mockRejectedValueOnce(new Error('Failed to create new note'))
 
             const newNote = {
@@ -105,12 +154,20 @@ describe ('Notes model', () =>{
                 dateposted: '2023-10-30T12:00:00.000Z'
             }
 
-            await expect(Notes.createNote(newNote)).rejects.toThrowError('Failed to create new note')
+            await expect(Notes.createNote(newNote, userWithToken.token)).rejects.toThrowError('Failed to create new note')
         })
     })
 
     describe('updateNote', ()=> {
         it ('should update a note and return it on success', async () =>{
+
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             const noteId = 1
             const updatedNoteInput = {
                 note: 'Updated note 1',
@@ -127,7 +184,7 @@ describe ('Notes model', () =>{
                 }]
             })
 
-            const updatedNote = await Notes.updateNote(noteId,updatedNoteInput)
+            const updatedNote = await Notes.updateNote(noteId,updatedNoteInput, userWithToken.token)
 
             expect(updatedNote).toHaveProperty('note_id', noteId);
             expect(updatedNote).toHaveProperty('note', updatedNoteInput.note);
@@ -136,6 +193,13 @@ describe ('Notes model', () =>{
         })
         
         it ('should throw an Error on database query error', async () =>{
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             jest.spyOn(db,'query').mockRejectedValueOnce(new Error('Failure to update note'))
 
             const noteId = 1
@@ -145,12 +209,19 @@ describe ('Notes model', () =>{
                 dateposted: '2023-10-30T12:00:00.000Z'
             }
 
-            await expect(Notes.updateNote(noteId, updatedNoteInput)).rejects.toThrowError('Failure to update note')
+            await expect(Notes.updateNote(noteId, updatedNoteInput, userWithToken.token)).rejects.toThrowError('Failure to update note')
         })
     })
 
     describe('deleteNote', ()=> {
         it ('should delete a note and remove it from database on success', async()=>{
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
+
             const noteId = 1
             const deletedNoteInput = new Notes({
                 note_id: noteId,
@@ -163,7 +234,7 @@ describe ('Notes model', () =>{
                 rows: [deletedNoteInput]
             })
 
-            const deletedNote = await deletedNoteInput.deleteNote()
+            const deletedNote = await deletedNoteInput.deleteNote(userWithToken.token)
 
             expect(deletedNote).toHaveProperty('note_id', noteId);
             expect(deletedNote).toHaveProperty('note', 'Delete note test');
@@ -172,6 +243,13 @@ describe ('Notes model', () =>{
         })
 
         it ('should thrown an error Error on database query error', async ()=>{
+
+            const userWithToken = {
+                users_id: 1,
+                token: 'tokenTest1',
+            };
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValueOnce(userWithToken)
 
             const noteId = 1
             const deletedNoteInput = new Notes({
@@ -183,7 +261,7 @@ describe ('Notes model', () =>{
 
             jest.spyOn(db,'query').mockRejectedValueOnce(new Error('Failure to delete note'))
 
-            await expect(deletedNoteInput.deleteNote()).rejects.toThrowError('Failure to delete note')
+            await expect(deletedNoteInput.deleteNote(userWithToken.token)).rejects.toThrowError('Failure to delete note')
 
 
 

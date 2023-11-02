@@ -4,22 +4,26 @@ const db = require('../../../database/connect')
 
 
 
-describe ('Notes model', () =>{
+describe ('Users model', () =>{
     beforeEach(()=> jest.clearAllMocks())
 
     afterAll(()=> jest.resetAllMocks())
 
     describe('checkUsername', () =>{
         it ('checks if the username exists in the database and returns it', async ()=>{
+
+            const userName = 'constantinos';
+
             jest.spyOn(db, 'query'). mockResolvedValueOnce({
                 rows:[{
                     users_id: 1,
                     username: 'constantinos',
-                    password: 'stylianou'
+                    password: 'stylianou',
+                    lastloggedin: new Date('2023-10-30T12:00:00Z')
                 }]
             })
 
-            const userName = 'constantinos'
+          
             const checkUsername = await User.checkUsername(userName)
 
             expect(checkUsername).toHaveProperty('users_id', 1)
@@ -33,7 +37,8 @@ describe ('Notes model', () =>{
                 rows:[{
                     users_id: 1,
                     username: 'constantinos',
-                    password: 'stylianou'
+                    password: 'stylianou',
+                    lastloggedin: new Date('2023-10-30T12:00:00Z')
                 }]
             })
 

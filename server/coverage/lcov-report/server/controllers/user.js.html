@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.19% </span>
+                <span class="strong">85.36% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/42</span>
+                <span class='fraction'>35/41</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.19% </span>
+                <span class="strong">85.36% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/42</span>
+                <span class='fraction'>35/41</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -147,20 +147,21 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -177,21 +178,19 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -200,11 +199,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,6 +217,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,7 +239,8 @@ const register = async (req,res) =&gt; {
         const result = await User.create(data)
         const token = await Token.create(result.users_id)
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        res.status(201).json({authenticated: true, token: token.token})</span>
+        res.status(201).json({authenticated: true, token: token.token})
+        // res.status(201).send(result)
 &nbsp;
     } catch (err){
         res.status(401).json({error: err.message})
@@ -255,22 +256,20 @@ const logIn = async (req,res) =&gt; {
         // Compare passwords using bcrypt 
         const legit = await bcrypt.compare(password, user.password)
 &nbsp;
-        // Checking if the password is correct
+        
+        // Checking if the password is correct 
         if (!legit){
             throw new Error ("Username and password does not match")
         } else {
-&nbsp;
             try {
                 const prevToken = await Token.getByUser(user.users_id)
-&nbsp;
-                console.log(lastLoggedIn)
-&nbsp;
                 const result = await prevToken.destroyToken()
             } catch (err) {
             }finally{
                 const token = await Token.create(user.users_id)
                 // Sending a response to the client 
-                res.status(200).json({authenticated: true, token: token.token})
+                res.status(200).json({token:
+                token.token})
             }
             }
     } catch (err){
@@ -281,9 +280,9 @@ const logIn = async (req,res) =&gt; {
 const logOut = async (req,res) =&gt; {
     try {
         const token = req.headers["authorization"]
-        const fullToken = <span class="cstat-no" title="statement not covered" >await Token.getOneByToken(token)</span>
-        const result = <span class="cstat-no" title="statement not covered" >fullToken.destroyToken()</span>
-<span class="cstat-no" title="statement not covered" >        res.status(204).json(result)</span>
+        const fullToken = await Token.getOneByToken(token)
+        const result = await fullToken.destroyToken()
+        res.status(204).json(result)
     } catch (err) {
         res.status(404).json({error: err.message})
     }
@@ -300,6 +299,7 @@ const findByToken = <span class="fstat-no" title="function not covered" >as</spa
     }
 }
 &nbsp;
+&nbsp;
 module.exports = { logIn, register, logOut, findByToken}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -307,7 +307,7 @@ module.exports = { logIn, register, logOut, findByToken}</pre></td></tr></table>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-01T22:13:40.753Z
+                at 2023-11-02T21:43:22.032Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
