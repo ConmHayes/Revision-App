@@ -17,7 +17,7 @@ export default function NotesPage() {
             Authorization: localStorage.token
           }
         }
-        const res = await fetch("https://time-table-server.onrender.com/notes", options);
+        const res = await fetch(`${apiURL}/notes`, options);
         console.log(res)
         if(res.ok) {
           const notesData = await res.json();
@@ -38,7 +38,7 @@ export default function NotesPage() {
       },
     };
 
-    await fetch(`https://time-table-server.onrender.com/notes/${id}`, options);
+    await fetch(`${apiURL}/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.note_id !== id);
 
     setNotes(updatedNotes);
