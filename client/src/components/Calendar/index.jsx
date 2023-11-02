@@ -2,6 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar"
 
+const apiURL = "https://time-table-server.onrender.com"
+const siteURL = "https://time-table-app.onrender.com/"
+const localURL = "http://localhost:5173/"
+const localapi = "http://localhost:3003"
 
 export default function schedule( {createEvent, setCreateEvent, tempData, setTempData, timestamp, setTimestamp}) {
   const [today, setToday] = useState("");
@@ -17,7 +21,7 @@ export default function schedule( {createEvent, setCreateEvent, tempData, setTem
         Authorization : localStorage.token,
       },
     }
-    const response = await fetch("https://time-table-server.onrender.com/token", options)
+    const response = await fetch(`${apiURL}/token`, options)
     const data = await response.json()
     setUsername(data.username)
     console.log(data)
