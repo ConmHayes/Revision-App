@@ -15,14 +15,14 @@ export default function NotesPage() {
       const options = {
         method: "GET",
         headers: {
-          Authorization: localStorage.token
+          Authorization: localStorage.getItem('token')
         }
       }
       const res = await fetch(`${apiURL}/notes`, options);
       console.log(res)
       if(res.ok) {
-      const notesData = await res.json();
-      setNotes(notesData)
+        const notesData = await res.json();
+        setNotes(notesData)
       }else{
         setNotes([])
       }
