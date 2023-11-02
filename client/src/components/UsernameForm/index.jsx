@@ -59,7 +59,7 @@ export default function UsernameForm({
 
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
-      // window.location.replace("https://time-table-app.onrender.com/")
+      window.location.replace("https://time-table-app.onrender.com/")
     }else{
       alert(data.error)
     }

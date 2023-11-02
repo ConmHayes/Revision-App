@@ -49,7 +49,7 @@ const logIn = async (req,res) => {
         // console.log(new Date(LLI))
         const workingDate = new Date(y, m, d)
         const SQLTimestamp = workingDate.toISOString().slice(0, 19).replace("T", " ")
-        await User.updateStreak(username)
+        const streakUpdate = await User.updateStreak(username)
         
         if (lastLoggedIn > workingDate) {
             console.log('bob')
