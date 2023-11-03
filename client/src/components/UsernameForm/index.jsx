@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom'
 const apiURL = "https://time-table-server.onrender.com"
 const siteURL = "https://time-table-app.onrender.com/"
@@ -15,8 +15,7 @@ export default function UsernameForm({
   setButtonText
 }) {
   const navigate = useNavigate()
-  
-  
+  const [loginStatus, setLoginStatus] = useState('')
 
   function handleInputUN(e) {
     setInputUn(e.target.value);
@@ -41,9 +40,8 @@ export default function UsernameForm({
           password: inputPw
         }),
       }
-      response = await fetch(`${localapi}/register`, options)
+      response = await fetch(`${apiURL}/register`, options)
       data = await response.json()
-
     }
     else if (button_Text === "Login"){
       const options = {
@@ -57,22 +55,16 @@ export default function UsernameForm({
           password: inputPw
         }),
       }
-      response = await fetch(`${localapi}/login`, options)
+      response = await fetch(`${apiURL}/login`, options)
       data = await response.json()
     }
-    console.log(data.token)
 
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
       navigate('/home')
-
     }else{
-      alert(data.error)
+      setLoginStatus('Username and/or password is invalid')
     }
-    console.log("Hi")
-
-    
-
   }
 
   function revealPassword() {
@@ -118,6 +110,7 @@ export default function UsernameForm({
       <button className="loginButton" type="submit">
       {button_Text}
       </button>
+      <p>{loginStatus}</p>
     </form>
   );
 }

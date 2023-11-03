@@ -37,7 +37,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         }
         const response = await fetch(`${localapi}/notes/dates`, options)
         const data = await response.json()
-        console.log(data)
         if (data.length === undefined){
             setDataLength(1)
         } else{
@@ -61,8 +60,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     }, [tempData])
 
     function renderList() {
-        
-    
+ 
         if (dataLength === 1) {
             if (notesDated.note === "No notes for that date yet") {
                 console.log(".");
@@ -112,8 +110,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     </Link>
                 ));
     }
-
-
 
     return (
         <div className = "flexbox-container tall-form" style = {{height: "570px"}}>
