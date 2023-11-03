@@ -41,7 +41,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 dateposted: timestamp
             })
         }
-        const response = await fetch(`${apiURL}/notes/dates`, options)
+        const response = await fetch(`${localapi}/notes/dates`, options)
         const data = await response.json()
         console.log(data)
         if (data.length === undefined){
@@ -63,30 +63,59 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         getByDate()
     }, [tempData])
 
-    function renderList(){
-        if (dataLength == 1){
-            if (notesDated.note == "No notes for that date yet"){
-                console.log(".")
-                return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
+    function renderList() {
+        
+    
+        if (dataLength === 1) {
+            if (notesDated.note === "No notes for that date yet") {
+                console.log(".");
+                return (
+                    <li className="listed-note">
+                        TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}
+                    </li>
+                );
+            }else{
+                return (
+                    <Link to={`${localURL}notes/${notesDated.note_id}`}>
+                        <li className="listed-note">
+                        TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}
+                    </li>
+                    </Link>
+                )
             }
-        }else{
-        return notesDated.map((note, i) => (
-            <Link to = {`${siteURL}notes/${note.note_id}`} key = {i}><li className="listed-note">
-                TOPIC: {note.topic}<br></br>NOTE: {note.note}
-            </li></Link>))
-
+        } else {
+            const filteredNotes = notesDated.filter(
+                note =>
+                    subjectFilter === "All" || note.topic === subjectFilter
+            );
+            return filteredNotes.map((note, i) => (
+                <Link to={`${localURL}notes/${note.note_id}`} key={i}>
+                    <li className="listed-note">
+                        TOPIC: {note.topic}<br></br>NOTE: {note.note}
+                    </li>
+                </Link>
+            ));
         }
     }
-   
-
-    function multipleReturn(){
-        console.log(notesDated)
-        return <li key = {notesDated.note_id}>TOPIC: {notesDated.topic}<br></br>NOTE: {notesDated.note}</li>
-
+           
+    function subjectChange(){
+        const selectedSubject = document.getElementById("Subject-Select").value;
+        setSubjectFilter(selectedSubject);
     }
 
-    //useEffect(() => {
-    //renderList()}, [dataLength])
+    function filterNotes() {
+        return notesDated
+                .filter(s => subjectFilter === "All" || notesDated.topic === subjectFilter)
+                .map((note, i) => (
+                    <Link to={`${localURL}notes/${notesDated.note_id}`} key={i}>
+                        <li className="listed-note">
+                            TOPIC: {notesDated.topic}<br></br>NOTE: {notesDated.note}
+                        </li>
+                    </Link>
+                ));
+    }
+
+
 
     return (
         <div className = "flexbox-container tall-form" style = {{height: "570px"}}>
