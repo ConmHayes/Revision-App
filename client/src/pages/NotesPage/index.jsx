@@ -31,8 +31,7 @@ export default function NotesPage() {
             Authorization: localStorage.token
           }
         }
-        const res = await fetch(`${localapi}/notes`, options);
-        console.log(res)
+        const res = await fetch(`${apiURL}/notes`, options);
         if(res.ok) {
           const notesData = await res.json();
           setNotes(notesData)
@@ -60,8 +59,6 @@ export default function NotesPage() {
 
   function displayNotes() {
     if (Array.isArray(notes)) {
-
-      console.log(notes)
       return (
        notes.map((note, i) => (
         <NoteCard 
