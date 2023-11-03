@@ -46,11 +46,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
             setDataLength(data.length)
         }
         setNotesDated(data)
-        if (response.status == 200){
-            
-        } else {
-            alert(data.error)
-        }
+
 
 
     }
