@@ -218,5 +218,45 @@ describe('user controller', () => {
         })
     })
 
+    
+    describe ('findByToken', () =>{
+        it ('should find user by their token and return 201', async () =>{
+
+            const userData = {
+                users_id:1,
+                username: 'existingUsername',
+                password: 'correctPasswordHashed'
+            }
+
+            const mockReq = {headers: { authorization: 'test-token'}}
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValue(userData)
+
+            await userController.findByToken(mockReq, mockRes)
+
+            expect(User.getOneByToken).toHaveBeenCalledTimes(1)
+            expect(User.getOneByToken).toHaveBeenCalledWith('test-token')
+        })
+
+        it ('should handle errors and return status code 404', async () =>{
+
+            const mockReq = {
+                headers: {
+                  authorization: 'test-token', // Replace with an invalid token
+                }}
+
+            jest.spyOn(User, 'getOneByToken').mockRejectedValue(new Error("Failed find user"))
+
+            await userController.findByToken(mockReq, mockRes)
+
+            expect(User.getOneByToken).toHaveBeenCalledTimes(1)
+            expect(User.getOneByToken).toHaveBeenCalledWith('test-token')
+
+            expect(mockStatus).toHaveBeenCalledWith(404)
+            expect(mockJson).toHaveBeenCalledWith({error: "Failed find user"})
+ 
+
+        })
+    })
 
 })

@@ -96,4 +96,55 @@ describe('api server', ()=> {
         .expect(200,done)
     })
 
+    it ('responds to GET / with a 200', (done) =>{
+        request(api)
+        .get('/')
+        .set('authorization', 'tokenTest1')
+        .expect(200,done)
+    })
+
+    it ('responds to GET /token with a 201', (done) =>{
+        request(api)
+        .get('/token')
+        .set('authorization', 'tokenTest1')
+        .expect(201,done)
+    })
+
+
+    it ('responds to POST /register with a 201', (done) =>{
+
+        const createUserData = {
+            body:{
+                username: 'Test-username',
+                password: 'Test-password',
+            }
+        }
+        request(api)
+        .post('/register')
+        .send(createUserData.body)
+        .expect(201,done)
+    })
+
+    it ('responds to POST /login with a 200', (done) =>{
+
+        const userLoginDB = {
+            body:{
+                username: '1',
+                password: '1',
+            }
+        }
+        request(api)
+        .post('/login')
+        .send(userLoginDB.body)
+        .expect(200,done)
+    })
+
+    it('responds to DELETE /logout with a 204', (done)=>{
+        request(api)
+        .delete('/logout')
+        .set('authorization', 'tokenTest1')
+        .expect(204,done)
+    })
+
+
 })

@@ -99,4 +99,69 @@ describe ('Users model', () =>{
             await expect(User.create(existingUsername)).rejects.toThrowError('Username already exists')
         })
     })
+
+    describe ('getOneById', () =>{
+        it('should select get user from the user id', async ()=>{
+            const userId = 1
+
+            jest.spyOn(db, 'query').mockResolvedValueOnce({
+                rows: [{
+                    users_id: userId, 
+                    username: 'Constantinos',
+                    password: 'Stylianou'}]
+                }
+                )
+
+            const user = await User.getOneById(userId)
+
+            expect(db.query).toHaveBeenCalledWith('SELECT * FROM users WHERE users_id = $1', [userId])
+            expect(user).toHaveProperty('users_id', userId)
+            expect(user).toHaveProperty('username', 'Constantinos')
+            expect(user).toHaveProperty('password', 'Stylianou')
+        })
+
+        it('should throw an error when the user does not exist', async () => {
+            const userId = 1
+        
+            jest.spyOn(db, 'query').mockResolvedValueOnce({
+              rows: [],
+            })
+        
+            await expect(User.getOneById(userId)).rejects.toThrow('Unable to locate user')
+          })
+    })
+
+    describe('getOneByToken', () => {
+        it('should retrieve a user based on a valid token', async () => {
+          const token = 'test-token';
+          const userId = 1
+      
+          jest.spyOn(db, 'query').mockResolvedValueOnce({
+            rows: [{ users_id: userId }],
+          })
+      
+          const expectedUser = {
+            users_id: userId,
+            username: 'TestUser',
+            password: 'TestPassword',
+          }
+          jest.spyOn(User, 'getOneById').mockResolvedValueOnce(expectedUser);
+      
+          const user = await User.getOneByToken(token);
+      
+          expect(db.query).toHaveBeenCalledWith('SELECT users_id FROM Token WHERE token = $1', [token]);
+          expect(User.getOneById).toHaveBeenCalledWith(userId);
+          expect(user).toEqual(new User(expectedUser));
+        })
+      
+        it('should throw an error when the token does not exist', async () => {
+          const token = 'wrong-token';
+      
+          jest.spyOn(db, 'query').mockResolvedValueOnce({
+            rows: [],
+          })
+      
+          await expect(User.getOneByToken(token)).rejects.toThrow('Unable to locate user');
+        })
+      })
 })
