@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom'
 const apiURL = "https://time-table-server.onrender.com"
 const siteURL = "https://time-table-app.onrender.com/"
@@ -15,6 +15,7 @@ export default function UsernameForm({
   setButtonText
 }) {
   const navigate = useNavigate()
+  const [loginStatus, setLoginStatus] = useState('')
 
   function handleInputUN(e) {
     setInputUn(e.target.value);
@@ -62,7 +63,7 @@ export default function UsernameForm({
       localStorage.setItem("token", data.token)
       navigate('/home')
     }else{
-      alert(data.error)
+      setLoginStatus('Username and/or password is invalid')
     }
   }
 
@@ -109,6 +110,7 @@ export default function UsernameForm({
       <button className="loginButton" type="submit">
       {button_Text}
       </button>
+      <p>{loginStatus}</p>
     </form>
   );
 }
