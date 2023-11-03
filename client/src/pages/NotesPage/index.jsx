@@ -51,7 +51,7 @@ export default function NotesPage() {
       },
     };
 
-    await fetch(`${localapi}/notes/${id}`, options);
+    await fetch(`${apiURL}/notes/${id}`, options);
     const updatedNotes = notes.filter((note) => note.note_id !== id);
 
     setNotes(updatedNotes);

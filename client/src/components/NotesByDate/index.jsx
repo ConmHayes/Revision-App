@@ -41,7 +41,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 dateposted: timestamp
             })
         }
-        const response = await fetch(`${localapi}/notes/dates`, options)
+        const response = await fetch(`${apiURL}/notes/dates`, options)
         const data = await response.json()
         if (data.length === undefined){
             setDataLength(1)
@@ -74,7 +74,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 );
             }else{
                 return (
-                    <Link to={`${localURL}notes/${notesDated.note_id}`}>
+                    <Link to={`${siteURL}notes/${notesDated.note_id}`}>
                         <li className="listed-note">
                         TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}
                     </li>
@@ -87,7 +87,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     subjectFilter === "All" || note.topic === subjectFilter
             );
             return filteredNotes.map((note, i) => (
-                <Link to={`${localURL}notes/${note.note_id}`} key={i}>
+                <Link to={`${siteURL}notes/${note.note_id}`} key={i}>
                     <li className="listed-note">
                         TOPIC: {note.topic}<br></br>NOTE: {note.note}
                     </li>
@@ -105,7 +105,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         return notesDated
                 .filter(s => subjectFilter === "All" || notesDated.topic === subjectFilter)
                 .map((note, i) => (
-                    <Link to={`${localURL}notes/${notesDated.note_id}`} key={i}>
+                    <Link to={`${siteURL}notes/${notesDated.note_id}`} key={i}>
                         <li className="listed-note">
                             TOPIC: {notesDated.topic}<br></br>NOTE: {notesDated.note}
                         </li>
