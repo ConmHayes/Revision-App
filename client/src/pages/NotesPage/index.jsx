@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NoteCard } from "../../components";
+import { NoteCard, Android } from "../../components";
 import LoginPage from "../LoginPage";
+
 
 const apiURL = "https://time-table-server.onrender.com";
 const siteURL = "https://time-table-app.onrender.com/";
@@ -81,7 +82,13 @@ export default function NotesPage() {
     <>
       <h1>Notes</h1>
       <br></br>
-      <div className = "flexbox-container flexbox-container-notes">{displayNotes()}</div>
+      <div className="flexbox-container">
+        <div className="flexbox-item"></div>
+        <div className = "flexbox-container flexbox-container-notes" style={{justifyContent:"flex-start", position:"relative", left: "-10px"}}>{displayNotes()}</div>
+        <div className="flexbox-item" style = {{position: "relative", left: "500px"}}><Android /></div>
+
+      </div>
+      
       <br></br>
     </>
   );

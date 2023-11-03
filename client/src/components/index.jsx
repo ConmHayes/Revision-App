@@ -12,3 +12,5 @@ export { default as NoteCard } from "./NoteCard";
 
 export { default as NotesByDate } from "./NotesByDate";
 export { default as Footer } from "./Footer";
+
+export { default as Android } from "./Android"
