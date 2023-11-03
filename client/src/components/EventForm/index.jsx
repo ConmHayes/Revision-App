@@ -9,7 +9,6 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
     const [subject, setSubject] = useState("ENGLISH")
     const [noteText, setNoteText] = useState("")
 
-    const [eventStatus, setEventStatus] = useState('')
 
     function subjectChange(){
         setSubject(document.getElementById("Subject-Select").value)
@@ -45,11 +44,6 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
         const response = await fetch(`${apiURL}/notes`, options)
         const data = await response.json()
 
-        if (response.status == 200){
-            setEventStatus('Note created')
-        } else {
-            setEventStatus('Note failed to create')
-        }
 
         setCreateEvent(false)
 
@@ -76,7 +70,6 @@ export default function EventForm({ tempData, setTempData, events, setEvents, cr
                 <button className = "form-button" type = "click" onClick={handleCancel}><i className="material-icons" style = {{color: "#ff724b", position: "relative", top: "5px"}}>close</i>Cancel</button>
                 <button className = "form-button" type = "submit" ><i className="material-icons" style = {{color: "#ff724b", position: "relative", top: "5px"}}>done</i>Create Event</button>
             </div>
-            <p>{eventStatus}</p>
             </form>
         </div>
     )
