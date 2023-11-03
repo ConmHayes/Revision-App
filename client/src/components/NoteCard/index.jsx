@@ -15,7 +15,7 @@ export default function NoteCard({ id, topic, note, deleteNote }) {
 
     return (
         <div className='note-box'>
-            <h3><Link to={`${localURL}notes/${id}`} className='link'>{note}</Link></h3>
+            <h3><Link to={`${siteURL}notes/${id}`} className='link'>{note}</Link></h3>
 
             <h1>TOPIC: {topic}</h1>
             <div className='flexbox-container' style= {{height: "20px"}}><button onClick={handleDelete} className="deleteButton">Delete</button>

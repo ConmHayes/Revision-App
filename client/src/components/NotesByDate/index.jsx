@@ -35,7 +35,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 dateposted: timestamp
             })
         }
-        const response = await fetch(`${localapi}/notes/dates`, options)
+        const response = await fetch(`${apiURL}/notes/dates`, options)
         const data = await response.json()
         if (data.length === undefined){
             setDataLength(1)
@@ -72,7 +72,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
             }else{
                 console.log(notesDated[0])
                 return (
-                    <Link to={`${localURL}notes/${notesDated[0].note_id}`} className="link">
+                    <Link to={`${siteURL}notes/${notesDated[0].note_id}`} className="link">
                         <li className="listed-note">
                         TOPIC: {notesDated[0].topic} <br></br> NOTE: {notesDated[0].note}
                     </li>
@@ -85,7 +85,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     subjectFilter === "All" || note.topic === subjectFilter
             );
             return filteredNotes.map((note, i) => (
-                <Link to={`${localURL}notes/${note.note_id}`} key={i} className="link">
+                <Link to={`${siteURL}notes/${note.note_id}`} key={i} className="link">
                     <li className="listed-note">
                         TOPIC: {note.topic}<br></br>NOTE: {note.note}
                     </li>
@@ -97,18 +97,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     function subjectChange(){
         const selectedSubject = document.getElementById("Subject-Select").value;
         setSubjectFilter(selectedSubject);
-    }
-
-    function filterNotes() {
-        return notesDated
-                .filter(s => subjectFilter === "All" || notesDated.topic === subjectFilter)
-                .map((note, i) => (
-                    <Link to={`${localURL}notes/${notesDated.note_id}`} key={i}>
-                        <li className="listed-note">
-                            TOPIC: {notesDated.topic}<br></br>NOTE: {notesDated.note}
-                        </li>
-                    </Link>
-                ));
     }
 
     return (

@@ -76,6 +76,7 @@ class Notes {
 
   async deleteNote() {
     try{
+      console.log("Here")
       const response = await db.query('DELETE FROM Notes WHERE note_id = $1 RETURNING *;', [this.note_id]);
       if (response.rows.length ===0){
         return null

@@ -39,7 +39,7 @@ export default function NotePage() {
 
   async function deleteNote() {
     try {
-      const res = await fetch(`${localapi}}/notes/${id}`, {
+      const res = await fetch(`${apiURL}}/notes/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
