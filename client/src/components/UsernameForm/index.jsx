@@ -40,7 +40,7 @@ export default function UsernameForm({
           password: inputPw
         }),
       }
-      response = await fetch(`${localapi}/register`, options)
+      response = await fetch(`${apiURL}/register`, options)
       data = await response.json()
     }
     else if (button_Text === "Login"){
@@ -55,7 +55,7 @@ export default function UsernameForm({
           password: inputPw
         }),
       }
-      response = await fetch(`${localapi}/login`, options)
+      response = await fetch(`${apiURL}/login`, options)
       data = await response.json()
     }
 
