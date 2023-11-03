@@ -73,6 +73,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                 console.log(notesDated[0])
                 return (
                     <Link to={`${siteURL}notes/${notesDated[0].note_id}`} className="link">
+
                         <li className="listed-note">
                         TOPIC: {notesDated[0].topic} <br></br> NOTE: {notesDated[0].note}
                     </li>
@@ -85,7 +86,9 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     subjectFilter === "All" || note.topic === subjectFilter
             );
             return filteredNotes.map((note, i) => (
+
                 <Link to={`${siteURL}notes/${note.note_id}`} key={i} className="link">
+
                     <li className="listed-note">
                         TOPIC: {note.topic}<br></br>NOTE: {note.note}
                     </li>
