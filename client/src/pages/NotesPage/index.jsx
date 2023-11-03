@@ -18,7 +18,6 @@ export default function NotesPage() {
           }
         }
         const res = await fetch(`${apiURL}/notes`, options);
-        console.log(res)
         if(res.ok) {
           const notesData = await res.json();
           setNotes(notesData)
@@ -46,8 +45,6 @@ export default function NotesPage() {
 
   function displayNotes() {
     if (Array.isArray(notes)) {
-
-      console.log(notes)
       return (
        notes.map((note, i) => (
         <NoteCard 

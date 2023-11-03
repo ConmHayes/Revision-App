@@ -24,12 +24,9 @@ export default function NotePage() {
 
         }
       }
-      console.log(options)
       const res = await fetch(`${apiURL}/notes/${id}`, options);
-      console.log(res)
       const note = await res.json();
       
-      console.log(note)
       setNote(note);
       setLoading(false);
       } catch (error) {
@@ -46,7 +43,6 @@ export default function NotePage() {
         method: "DELETE",
       });
       const data = await res.json();
-      console.log("Note deleted", data);
       window.location.assign("/notes");
      
     } catch (error) {

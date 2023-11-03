@@ -43,7 +43,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         }
         const response = await fetch(`${apiURL}/notes/dates`, options)
         const data = await response.json()
-        console.log(data)
         if (data.length === undefined){
             setDataLength(1)
         } else{
@@ -66,7 +65,6 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     function renderList(){
         if (dataLength == 1){
             if (notesDated.note == "No notes for that date yet"){
-                console.log(".")
                 return <li className="listed-note">TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}</li>    
             }
         }else{
@@ -80,13 +78,9 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
    
 
     function multipleReturn(){
-        console.log(notesDated)
         return <li key = {notesDated.note_id}>TOPIC: {notesDated.topic}<br></br>NOTE: {notesDated.note}</li>
 
     }
-
-    //useEffect(() => {
-    //renderList()}, [dataLength])
 
     return (
         <div className = "flexbox-container tall-form" style = {{height: "570px"}}>
