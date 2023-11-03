@@ -11,7 +11,7 @@ body {
   background-color: #fff2d4;
 }
 body.notes-page{
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 h1 {

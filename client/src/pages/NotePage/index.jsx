@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams} from "react-router-dom";
+import { Android } from "../../components";
 
 
 const apiURL = "https://time-table-server.onrender.com"
@@ -53,12 +54,14 @@ export default function NotePage() {
   function displayNote() {
     
       return (<div className="flexbox-container" style = {{justifyContent: "center", alignItems: "center"}}>
+        <div className="flexbox-item"></div>
       <div className="note-box flexbox-container-notes">
           <h1>{note.topic}</h1>
           <p>{note.note}</p>
           <button onClick={deleteNote} className="deleteButton">Delete</button>
           <Link to="/notes"><button className = "deleteButton">Back</button></Link>
       </div>
+      <div className="flexbox-item" style = {{position: "relative", left: "500px"}}><Android /></div>
       </div>
       );  
     
