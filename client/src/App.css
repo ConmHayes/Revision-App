@@ -465,6 +465,7 @@ ul.notes-timetables li {
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
+  position: fixed
 }
 
 .site-footer p {
@@ -753,7 +754,7 @@ ul.notes-timetables li {
 
 .note-box{
   border-radius: 8px;
-  border: 4px solid #3c7f72;
+  border: 4px solid transparent;
   width: 500px;
   text-align: center;
   background-color: #fff2d4;

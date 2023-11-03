@@ -20,7 +20,8 @@ export default function NoteCard({ id, topic, note, deleteNote }) {
             <h1>TOPIC: {topic}</h1>
             <div className='flexbox-container' style= {{height: "20px"}}><button onClick={handleDelete} className="deleteButton">Delete</button>
             {document.body.classList.contains("notes-page") ? <p></p> : <Link to="/notes" className='inline-link'><button className='loginButton'>Back</button></Link>}
-</div>
+            </div>
+            <hr style = {{color: "#3c7f72"}} />
         </div>
     )
 
