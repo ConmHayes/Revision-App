@@ -18,13 +18,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
     }])
     const [dataLength, setDataLength] = useState(1)
 
-    function subjectChange(){
-        setSubject(document.getElementById("Subject-Select").value)
-    }
 
-    function handleCancel(){
-        setCreateEvent(false)
-    }
 
     async function getByDate(){
 
@@ -47,6 +41,9 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
         if (data.length === undefined){
             setDataLength(1)
         } else{
+            if (data.length == 1){
+                console.log(data[0])
+            }
             setDataLength(data.length)
         }
         setNotesDated(data)
@@ -75,10 +72,11 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     </li>
                 );
             }else{
+                console.log(notesDated[0])
                 return (
-                    <Link to={`${localURL}notes/${notesDated.note_id}`}>
+                    <Link to={`${localURL}notes/${notesDated[0].note_id}`} className="link">
                         <li className="listed-note">
-                        TOPIC: {notesDated.topic} <br></br> NOTE: {notesDated.note}
+                        TOPIC: {notesDated[0].topic} <br></br> NOTE: {notesDated[0].note}
                     </li>
                     </Link>
                 )
@@ -89,7 +87,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
                     subjectFilter === "All" || note.topic === subjectFilter
             );
             return filteredNotes.map((note, i) => (
-                <Link to={`${localURL}notes/${note.note_id}`} key={i}>
+                <Link to={`${localURL}notes/${note.note_id}`} key={i} className="link">
                     <li className="listed-note">
                         TOPIC: {note.topic}<br></br>NOTE: {note.note}
                     </li>
@@ -124,7 +122,7 @@ export default function NotesByDate( { tempData, setTempData, events, setEvents,
             </div>
             <form id = "Notes">
             <div className= "flex-options">
-            FILTER:<select id="Subject-Select" onChange={subjectChange} style = {{  fontFamily: 'Courier New, Courier, monospace', position: "relative", left: "10px"}}>
+            FILTER:<select onChange={subjectChange} style = {{  fontFamily: 'Courier New, Courier, monospace', position: "relative", left: "10px"}}>
                     {subjects.map((s, i) =>
                         <option className = "select-option" key = {i} value = {s}>{s}</option>
                     )}
