@@ -16,6 +16,7 @@ describe('notes controller', () => {
 
     describe('index', () => {
         it('should return notes with a status code 200', async () => {
+            const mockReq = { headers: { authorization: 'test-token'}}
             const testNotes = [
                 {
                   note_id: 1,
@@ -33,7 +34,7 @@ describe('notes controller', () => {
               
             jest.spyOn(Notes, 'getAll').mockResolvedValue(testNotes)
         
-            await notesController.index(null, mockRes)
+            await notesController.index(mockReq, mockRes)
         
             expect(Notes.getAll).toHaveBeenCalledTimes(1)
             expect(mockStatus).toHaveBeenCalledWith(200)
@@ -41,10 +42,12 @@ describe('notes controller', () => {
             })
 
       it('sends an error upon fail', async () =>{
+        const mockReq = { headers: { authorization: 'test-token'}}
+
         jest.spyOn(Notes,'getAll')
             .mockRejectedValue(new Error('Something happened to your db'))
 
-        await notesController.index (null,mockRes)
+        await notesController.index (mockReq,mockRes)
         expect(Notes.getAll).toHaveBeenCalledTimes(1)
         expect(mockStatus).toHaveBeenCalledWith(500)
         expect(mockJson).toHaveBeenCalledWith({ error: 'Something happened to your db'})
@@ -63,13 +66,16 @@ describe('notes controller', () => {
             }
             // spyon basically gets the getOneById in the Notes.
             jest.spyOn(Notes, 'getOneById').mockResolvedValue(testNote);
-
-            const mockReq = { params: {id: noteId}}
+    
+            const mockReq = {
+                params: {id: noteId},
+                headers: { authorization: 'test-token'}
+            }
 
             await notesController.showNote(mockReq, mockRes);
 
             expect(Notes.getOneById).toHaveBeenCalledTimes(1)
-            expect(Notes.getOneById).toHaveBeenCalledWith(noteId)
+            expect(Notes.getOneById).toHaveBeenCalledWith(noteId, 'test-token')
             expect(mockStatus).toHaveBeenCalledWith(200)
             expect(mockJson).toHaveBeenCalledWith(testNote)
         })
@@ -80,12 +86,15 @@ describe('notes controller', () => {
 
             jest.spyOn(Notes, 'getOneById').mockRejectedValue(new Error(err));
 
-            const mockReq = {params: {id:noteId} };
+            const mockReq = {
+                params: {id: noteId},
+                headers: { authorization: 'test-token'}
+            }
 
             await notesController.showNote(mockReq, mockRes)
 
             expect(Notes.getOneById).toHaveBeenCalledTimes(1);
-            expect(Notes.getOneById).toHaveBeenCalledWith(noteId);
+            expect(Notes.getOneById).toHaveBeenCalledWith(noteId, 'test-token');
             expect(mockStatus).toHaveBeenCalledWith(404);
             expect(mockJson).toHaveBeenCalledWith({ error: err });
 
@@ -108,12 +117,15 @@ describe('notes controller', () => {
 
             jest.spyOn(Notes, 'createNote').mockResolvedValue(createdNote)
 
-            const mockReq = {body: reqBody}
+            const mockReq = {body: reqBody,
+                headers: { authorization: 'test-token'}
+            }
+
 
             await notesController.createNote(mockReq, mockRes)
 
             expect(Notes.createNote).toHaveBeenCalledTimes(1);
-            expect(Notes.createNote).toHaveBeenCalledWith(reqBody);
+            expect(Notes.createNote).toHaveBeenCalledWith(reqBody, 'test-token');
             expect(mockStatus).toHaveBeenCalledWith(200);
             expect(mockJson).toHaveBeenCalledWith(createdNote);
         })
@@ -129,12 +141,14 @@ describe('notes controller', () => {
 
             jest.spyOn(Notes, 'createNote').mockRejectedValue(new Error(err))
 
-            const mockReq = {body: reqBody}
+            const mockReq = {body: reqBody,
+                headers: { authorization: 'test-token'}
+            }
 
             await notesController.createNote(mockReq, mockRes)
 
             expect(Notes.createNote).toHaveBeenCalledTimes(1);
-            expect(Notes.createNote).toHaveBeenCalledWith(reqBody);
+            expect(Notes.createNote).toHaveBeenCalledWith(reqBody, 'test-token');
             expect(mockStatus).toHaveBeenCalledWith(404);
             expect(mockJson).toHaveBeenCalledWith({error: err});
         })
@@ -156,12 +170,15 @@ describe('notes controller', () => {
 
             jest.spyOn(Notes, 'updateNote').mockResolvedValue(updatedNote)
 
-            const mockReq = {params: {id: noteId}, body: reqBody}
+            const mockReq = {params: {id: noteId}, 
+                             body: reqBody,
+                             headers: { authorization: 'test-token'}
+        }
 
             await notesController.updateNote(mockReq, mockRes)
 
             expect (Notes.updateNote).toHaveBeenCalledTimes(1)
-            expect (Notes.updateNote).toHaveBeenCalledWith(noteId, reqBody)
+            expect (Notes.updateNote).toHaveBeenCalledWith(noteId, reqBody, 'test-token')
             expect (mockStatus).toHaveBeenCalledWith(200);
             expect (mockJson).toHaveBeenCalledWith(updatedNote)
         })
@@ -178,12 +195,15 @@ describe('notes controller', () => {
 
             jest.spyOn(Notes, 'updateNote').mockRejectedValue(new Error(err))
 
-            const mockReq = {params:{id:noteId}, body: reqBody}
+            const mockReq = {params: {id: noteId}, 
+            body: reqBody,
+            headers: { authorization: 'test-token'}
+            }
 
             await notesController.updateNote(mockReq, mockRes)
 
             expect(Notes.updateNote).toHaveBeenCalledTimes(1);
-            expect(Notes.updateNote).toHaveBeenCalledWith(noteId, reqBody);
+            expect(Notes.updateNote).toHaveBeenCalledWith(noteId, reqBody, 'test-token');
             expect(mockStatus).toHaveBeenCalledWith(404);
             expect(mockJson).toHaveBeenCalledWith({error: err});
         })
@@ -205,12 +225,14 @@ describe('notes controller', () => {
 
             jest.spyOn(deletedNote, 'deleteNote').mockResolvedValue({message: 'Note has been successfully deleted'})
 
-            const mockReq = {params:{id:noteId}}
+            const mockReq = {params:{id:noteId},
+                             headers: { authorization: 'test-token'}
+                            }
 
             await notesController.deleteNote(mockReq, mockRes)
 
             expect (Notes.getOneById).toHaveBeenCalledTimes(1)
-            expect (Notes.getOneById).toHaveBeenCalledWith(noteId)
+            expect (Notes.getOneById).toHaveBeenCalledWith(noteId, 'test-token')
             expect (deletedNote.deleteNote).toHaveBeenCalledTimes(1)
             expect (mockStatus).toHaveBeenCalledWith(200)
             expect (mockJson).toHaveBeenCalledWith({message: 'Note has been successfully deleted'})
@@ -231,7 +253,9 @@ describe('notes controller', () => {
 
             jest.spyOn(attemptedDeletedNote, 'deleteNote').mockRejectedValue(new Error(err))
 
-            const mockReq = {params: {id: noteId}}
+            const mockReq = {params:{id:noteId},
+            headers: { authorization: 'test-token'}
+           }
 
             await notesController.deleteNote(mockReq, mockRes)
 

@@ -68,7 +68,6 @@ const logOut = async (req,res) => {
 const findByToken = async (req, res) => {
     try{
         const token = req.headers["authorization"]
-        console.log(token)
         const user = await User.getOneByToken(token)
         res.status(201).json(user)
     }catch(err){

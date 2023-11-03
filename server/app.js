@@ -5,7 +5,6 @@ const cors = require("cors")
 
 // Importing routers
 const userRouter = require("./routes/user")
-const subjectsRouter = require('./routes/subjects')
 const notesRouter = require('./routes/notes')
 
 const path = require("path")
@@ -20,7 +19,6 @@ app.use(cors())
 
 // Using the routers 
 app.use("/", userRouter)
-app.use("/subjects", subjectsRouter)
 app.use("/notes", notesRouter)
 
 // Exporting the server

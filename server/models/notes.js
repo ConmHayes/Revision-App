@@ -74,12 +74,15 @@ class Notes {
     }
   }
 
-  async deleteNote() {
+
+
+  async deleteNote(token) {
     try{
-      console.log("Here")
-      const response = await db.query('DELETE FROM Notes WHERE note_id = $1 RETURNING *;', [this.note_id]);
+      const user = await User.getOneByToken(token)
+      const response = await db.query('DELETE FROM Notes WHERE note_id = $1 AND users_id = $2 RETURNING *;', [this.note_id, user.users_id]);
+      
       if (response.rows.length ===0){
-        return null
+        return {message: "Note deleted successfully"}
       }
       return new Notes(response.rows[0])  
   } catch (err){

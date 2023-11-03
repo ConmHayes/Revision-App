@@ -1,9 +1,8 @@
-DROP TABLE IF EXISTS Subjects;
-DROP TABLE IF EXISTS timetable;
-DROP TABLE IF EXISTS Notes;
-DROP TABLE IF EXISTS Token;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS Badges;
+
+DROP TABLE IF EXISTS Notes CASCADE;
+DROP TABLE IF EXISTS Token CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS Badges CASCADE;
 
 
 CREATE TABLE Badges(
@@ -60,19 +59,3 @@ CREATE TABLE Token(
     FOREIGN KEY (users_id) REFERENCES users(users_id)
 );
 
-CREATE TABLE Subjects(
-    subject_id INT GENERATED ALWAYS AS IDENTITY,
-    subjectname VARCHAR(255) NOT NULL,
-    subjectdescription VARCHAR(255) NOT NULL,
-    note_id INT NOT NULL,
-    users_id INT NOT NULL,
-    PRIMARY KEY (subject_id),
-    FOREIGN KEY (note_id) REFERENCES Notes(note_id),
-    FOREIGN KEY (users_id) REFERENCES users(users_id)
-);
-
-INSERT INTO Subjects (subjectname, subjectdescription, note_id, users_id)
-VALUES
-('Topic 1','This is my first subject',1,1),
-('Topic 2','This is my second subject',2,1),
-('Topic 1','This is my first subject',2,2);

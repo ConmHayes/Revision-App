@@ -35,7 +35,19 @@ describe('user controller', () => {
                 username: "newUser"
             }
 
+            const tokenData = {
+                token: "token-test"
+            }
+
+
             jest.spyOn(User,'create').mockResolvedValue(userCreated)
+
+            jest.spyOn(Token, 'create').mockResolvedValue(tokenData)
+
+            const expectedResponse = {
+                authenticated: true,
+                token: tokenData.token
+              }
 
             await userController.register(mockReq, mockRes)
 
@@ -48,7 +60,7 @@ describe('user controller', () => {
             })
 
             expect(mockStatus).toHaveBeenCalledWith(201)
-            expect(mockSend).toHaveBeenCalledWith(userCreated)
+            expect(mockJson).toHaveBeenCalledWith(expectedResponse)
 
         })
 
@@ -91,7 +103,7 @@ describe('user controller', () => {
             }
 
             const tokenData = {
-                token: "token test"
+                token: "token-test"
             }
 
             jest.spyOn(User,'checkUsername').mockResolvedValue(userData)
@@ -156,14 +168,14 @@ describe('user controller', () => {
     describe ('logOut', () =>{
         it('should log out user, destroy token and return a status 204', async() =>{
             
-            const tokenSet = 'awyaacszcisvvrixxkjkzgrhxmligzfvtibr'
+        
             const tokenInstance = new Token({
                 token_id: 1,
                 users_id:1,
-                token: tokenSet
+                token: 'token-test'
             })
 
-            const mockReq = {body:{token:tokenSet}}
+            const mockReq = {headers: { authorization: 'test-token'}}
 
 
             jest.spyOn(Token, 'getOneByToken').mockResolvedValue(tokenInstance)
@@ -172,7 +184,7 @@ describe('user controller', () => {
             await userController.logOut(mockReq, mockRes)
 
             expect (Token.getOneByToken).toHaveBeenCalledTimes(1)
-            expect(Token.getOneByToken).toHaveBeenCalledWith(tokenSet)
+            expect(Token.getOneByToken).toHaveBeenCalledWith('test-token')
             expect(tokenInstance.destroyToken).toHaveBeenCalledTimes(1)
 
             expect(mockStatus).toHaveBeenCalledWith(204)
@@ -181,15 +193,15 @@ describe('user controller', () => {
         })
 
         it ('should handle errors and return status code 404', async () =>{
-            const tokenSet = 'awyaacszcisvvrixxkjkzgrhxmligzfvtibr'
 
             const tokenInstance = new Token({
                 token_id: 1,
                 users_id:1,
-                token: tokenSet
+                token: 'test-token'
             })
 
-            const mockReq = {body:{token:tokenSet}}
+            const mockReq = {headers: { authorization: 'test-token'}}
+
 
             jest.spyOn(Token, 'getOneByToken').mockResolvedValue(tokenInstance)
             jest.spyOn(tokenInstance, 'destroyToken').mockRejectedValue(new Error("Failed to delete token"))
@@ -198,7 +210,7 @@ describe('user controller', () => {
             await userController.logOut(mockReq, mockRes)
 
             expect(Token.getOneByToken).toHaveBeenCalledTimes(1)
-            expect(Token.getOneByToken).toHaveBeenCalledWith(tokenSet)
+            expect(Token.getOneByToken).toHaveBeenCalledWith('test-token')
 
             expect(mockStatus).toHaveBeenCalledWith(404)
             expect(mockJson).toHaveBeenCalledWith({error: "Failed to delete token"})
@@ -206,5 +218,45 @@ describe('user controller', () => {
         })
     })
 
+    
+    describe ('findByToken', () =>{
+        it ('should find user by their token and return 201', async () =>{
+
+            const userData = {
+                users_id:1,
+                username: 'existingUsername',
+                password: 'correctPasswordHashed'
+            }
+
+            const mockReq = {headers: { authorization: 'test-token'}}
+
+            jest.spyOn(User, 'getOneByToken').mockResolvedValue(userData)
+
+            await userController.findByToken(mockReq, mockRes)
+
+            expect(User.getOneByToken).toHaveBeenCalledTimes(1)
+            expect(User.getOneByToken).toHaveBeenCalledWith('test-token')
+        })
+
+        it ('should handle errors and return status code 404', async () =>{
+
+            const mockReq = {
+                headers: {
+                  authorization: 'test-token', // Replace with an invalid token
+                }}
+
+            jest.spyOn(User, 'getOneByToken').mockRejectedValue(new Error("Failed find user"))
+
+            await userController.findByToken(mockReq, mockRes)
+
+            expect(User.getOneByToken).toHaveBeenCalledTimes(1)
+            expect(User.getOneByToken).toHaveBeenCalledWith('test-token')
+
+            expect(mockStatus).toHaveBeenCalledWith(404)
+            expect(mockJson).toHaveBeenCalledWith({error: "Failed find user"})
+ 
+
+        })
+    })
 
 })
