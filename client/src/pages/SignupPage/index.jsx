@@ -14,6 +14,8 @@ export default function SignupPage() {
     document.body.classList.add("signup-page");
     document.body.classList.remove("home-page");
     document.body.classList.remove("login-page")
+    document.body.classList.remove("notes-page")
+
     return () => {
       document.body.classList.remove("signup-page");
     };
