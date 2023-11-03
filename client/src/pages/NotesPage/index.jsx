@@ -43,6 +43,7 @@ export default function NotesPage() {
   }, []);
 
   async function deleteNote(id) {
+    console.log(id)
     const options = {
       method: "DELETE",
       headers: {

@@ -10,6 +10,9 @@ body {
   overflow: hidden;
   background-color: #fff2d4;
 }
+body.notes-page{
+  overflow-y: scroll;
+}
 
 h1 {
   color: #3c7f72;
