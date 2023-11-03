@@ -1,4 +1,3 @@
-import { Redirect } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 const apiURL = "https://time-table-server.onrender.com"
 const siteURL = "https://time-table-app.onrender.com/"
@@ -66,7 +65,6 @@ export default function UsernameForm({
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
 
-      return <Redirect to={`${siteURL}home`}/>
       window.location.replace(`${siteURL}home`)
 
     }else{
