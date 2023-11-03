@@ -82,7 +82,9 @@ export default function NotesPage() {
   return (
     <>
       <h1>Notes</h1>
-      <div>{displayNotes()}</div>
+      <br></br>
+      <div className = "flexbox-container flexbox-container-notes">{displayNotes()}</div>
+      <br></br>
     </>
   );
 }

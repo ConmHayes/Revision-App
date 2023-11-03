@@ -56,12 +56,13 @@ export default function NotePage() {
 
   function displayNote() {
     
-      return (
-      <div>
-        <h1>{note.topic}</h1>
-        <p>{note.note}</p>
-        <button onClick={deleteNote}>Delete</button>
-        <Link to="/notes">Back</Link>
+      return (<div className="flexbox-container" style = {{justifyContent: "center", alignItems: "center"}}>
+      <div className="note-box flexbox-container-notes">
+          <h1>{note.topic}</h1>
+          <p>{note.note}</p>
+          <button onClick={deleteNote} className="deleteButton">Delete</button>
+          <Link to="/notes"><button className = "deleteButton">Back</button></Link>
+      </div>
       </div>
       );  
     
