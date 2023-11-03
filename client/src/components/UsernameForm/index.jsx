@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useNavigate } from 'react-router-dom'
 const apiURL = "https://time-table-server.onrender.com"
 const siteURL = "https://time-table-app.onrender.com/"
 const localURL = "http://localhost:5173/"
@@ -13,6 +14,7 @@ export default function UsernameForm({
   button_Text,
   setButtonText
 }) {
+  const navigate = useNavigate()
   
   
 
@@ -62,7 +64,8 @@ export default function UsernameForm({
 
     if (response.status == 200 || response.status == 201){
       localStorage.setItem("token", data.token)
-      window.location.replace(`${localURL}home`)
+      navigate('/home')
+
     }else{
       alert(data.error)
     }
