@@ -20,6 +20,8 @@ export default function LoginPage() {
     document.body.classList.add("login-page");
     document.body.classList.remove("home-page");
     document.body.classList.remove("signup-page")
+    document.body.classList.remove("notes-page")
+
 
     return () => {
       document.body.classList.remove("login-page");
