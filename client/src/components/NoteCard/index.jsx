@@ -14,14 +14,13 @@ export default function NoteCard({ id, topic, note, deleteNote }) {
     }
 
     return (
-        <div>
-            <h3><Link to={`${siteURL}notes/${id}`} >{note}</Link></h3>
+        <div className='note-box'>
+            <h3><Link to={`${siteURL}notes/${id}`} className='link'>{note}</Link></h3>
 
-            <h1>{topic}</h1>
-            <p>{note}</p>
-
-            <button onClick={handleDelete}>Delete</button>
-            <Link to="/notes">Back</Link>
+            <h1>TOPIC: {topic}</h1>
+            <div className='flexbox-container' style= {{height: "20px"}}><button onClick={handleDelete} className="deleteButton">Delete</button>
+            {document.body.classList.contains("notes-page") ? <p></p> : <Link to="/notes" className='inline-link'><button className='loginButton'>Back</button></Link>}
+</div>
         </div>
     )
 

@@ -24,12 +24,9 @@ export default function NotePage() {
 
         }
       }
-      console.log(options)
       const res = await fetch(`${apiURL}/notes/${id}`, options);
-      console.log(res)
       const note = await res.json();
       
-      console.log(note)
       setNote(note);
       setLoading(false);
       } catch (error) {
@@ -42,11 +39,10 @@ export default function NotePage() {
 
   async function deleteNote() {
     try {
-      const res = await fetch(`${siteURL}}/notes/${id}`, {
+      const res = await fetch(`${apiURL}}/notes/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
-      console.log("Note deleted", data);
       window.location.assign("/notes");
      
     } catch (error) {
@@ -56,12 +52,13 @@ export default function NotePage() {
 
   function displayNote() {
     
-      return (
-      <div>
-        <h1>{note.topic}</h1>
-        <p>{note.note}</p>
-        <button onClick={deleteNote}>Delete</button>
-        <Link to="/notes">Back</Link>
+      return (<div className="flexbox-container" style = {{justifyContent: "center", alignItems: "center"}}>
+      <div className="note-box flexbox-container-notes">
+          <h1>{note.topic}</h1>
+          <p>{note.note}</p>
+          <button onClick={deleteNote} className="deleteButton">Delete</button>
+          <Link to="/notes"><button className = "deleteButton">Back</button></Link>
+      </div>
       </div>
       );  
     
