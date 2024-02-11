@@ -1,0 +1,35 @@
+/* Login Page styles */
+body.login-page {
+  background-image: url("../../assets/start.svg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.flexbox-container {
+  display: flex;
+  justify-content: center; /* Positions the content to the right */
+  align-items: center;
+  height: 100vh;
+}
+
+.login-array {
+  background-color: transparent; /*#ff724b Set the background for the login form */
+  color: black; /* Font color */
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px; /* Adjust the width as needed */
+  margin-left: 20px; /* Add margin to push it to the left initially */
+}
+
+/* Apply responsive changes for smaller screens */
+@media (max-width: 768px) {
+  .flexbox-container {
+    justify-content: flex-end; /* Positions the content to the right on smaller screens */
+  }
+
+  .login-array {
+    margin-left: 0; /* Remove the left margin */
+    margin-right: 20px; /* Add margin to push it to the right on smaller screens */
+  }
+}
